@@ -16,7 +16,7 @@ int main() {
     while(true)
     {
         char key = static_cast<char>(keyboard.read());
-        std::clog << "0: "<< key;
+        std::clog << key;
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
