@@ -4,11 +4,12 @@
 class App
 {
 private:
-	char m_nextKey;
+    char m_nextKey;
 public:
-	virtual ~App() = default;
-	int sendKey(char key);
-	virtual int initialise();
+    App();
+    virtual ~App() = default;
+    int sendKey(char key);
+    virtual int initialise();
 };
 
 #endif // APP_H_
