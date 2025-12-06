@@ -27,11 +27,9 @@ int CardKB::initialise()
 
 int CardKB::read()
 {
-    std::clog << "Attempting to read keyboard input";
+    std::clog << "Attempting to read keyboard input" << std::endl;
     uint32_t len = 1;
-    if (!bcm2835_i2c_read(m_buf, len)){
-        std::clog << "Failed to read keyboard input" << std::endl;
-        return 1;
-    }
-    return m_buf[0];
+    uint8_t data = bcm2835_i2c_read(m_buf, len);
+    // return m_buf[0];
+    return data;
 }

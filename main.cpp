@@ -14,7 +14,8 @@ int main() {
     }
     while(true)
     {
-        std::clog << "Keyboard Input: " << keyboard.read() << std::endl;
+        int resp = keyboard.read();
+        std::clog << "Keyboard Input: " << resp << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
