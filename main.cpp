@@ -6,9 +6,10 @@
 // auto main(int argc, char *argv[]) -> int {
 int main() {
     std::clog << "Starting Pocket Terminal OS" << std::endl;
-    int addr = 0x5f;
+    uint8_t addr = 0x5f;
     CardKB keyboard(addr);
     if (!keyboard.initialise())
+        std::cerr << "Failed to initialise keyboard" << std::endl;
         return 1;
     while(true)
     {

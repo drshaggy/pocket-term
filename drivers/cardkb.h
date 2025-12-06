@@ -7,9 +7,9 @@ class CardKB
 {
 private:
     char m_buf[256];
-    [[maybe_unused]]int& m_address;
+    [[maybe_unused]]uint8_t  m_address;
 public:
-    CardKB(int& address);
+    CardKB(uint8_t address);
     int initialise();
     int read();
 
