@@ -8,6 +8,7 @@ public:
     virtual ~Display() = default;
     virtual int initialise();
     virtual int redraw();
+    virtual int clear();
 };
 
 #endif // DISPLAY_H_

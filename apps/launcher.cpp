@@ -1,7 +1,7 @@
 #include "launcher.h"
 
-Launcher::Launcher() :
-    App()
+Launcher::Launcher(Display& display) :
+    App(display)
 {};
 
 int Launcher::initialise(){

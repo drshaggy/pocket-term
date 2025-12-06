@@ -24,7 +24,7 @@ int main() {
         return 1;
     }
     //Load default app
-    std::unique_ptr<App> app = std::make_unique<Launcher>();
+    std::unique_ptr<App> app = std::make_unique<Launcher>(*display);
     if(app->initialise()){
        std::cerr << "Default app failed to load" << std::endl;
        return 1;

@@ -7,7 +7,7 @@
 class Launcher : public App
 {
 public:
-    Launcher();
+    Launcher(Display& display);
     int initialise() override;
 };
 

@@ -9,6 +9,7 @@ class TtyDisplay : public Display
 public:
     TtyDisplay();
     int initialise() override;
+    int clear() override;
 };
 
 #endif // TTY_DISPLAY_H_
