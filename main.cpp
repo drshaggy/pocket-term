@@ -11,19 +11,21 @@ using namespace std::chrono_literals;
 // auto main(int argc, char *argv[]) -> int {
 int main() {
     std::clog << "Starting Pocket Terminal OS" << std::endl;
+    //Initialise drivers
     uint8_t addr = 0x5f;
     CardKB keyboard(addr);
-    std::unique_ptr<Display> display = std::make_unique<TtyDisplay>();
     if (keyboard.initialise()){
         std::cerr << "Failed to initialise keyboard" << std::endl;
         return 1;
     }
+    std::unique_ptr<Display> display = std::make_unique<TtyDisplay>();
+    //Load default app
     std::unique_ptr<App> app = std::make_unique<Launcher>();
-   if(app->initialise()){
+    if(app->initialise()){
        std::cerr << "Default app failed to load" << std::endl;
        return 1;
-   }
-
+    }
+    //Main loop
     while(true)
     {
         char key = static_cast<char>(keyboard.read());
@@ -31,7 +33,7 @@ int main() {
         app->sendKey(key);
         std::this_thread::sleep_for(10ms);
     }
-
+    //Clean up
     keyboard.end();
     return 0;
 }
