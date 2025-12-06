@@ -14,8 +14,8 @@ int main() {
     }
     while(true)
     {
-        int resp = keyboard.read();
-        std::clog << "Keyboard Input: " << resp << std::endl;
+        char key = static_cast<char>(keyboard.read());
+        std::clog << "Keyboard Input: " << key << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
