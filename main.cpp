@@ -9,7 +9,7 @@ int main() {
     uint8_t addr = 0x5f;
     CardKB keyboard(addr);
     if (!keyboard.initialise()){
-        // std::cerr << "Failed to initialise keyboard" << std::endl;
+        std::cerr << "Failed to initialise keyboard" << std::endl;
         return 1;
     }
     while(true)
