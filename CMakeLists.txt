@@ -18,11 +18,13 @@ find_library(BCM2835_LIBRARY bcm2835 REQUIRED)
 set(SOURCES
     main.cpp
     drivers/cardkb.cpp
+    app.cpp
 )
 
 # Headers
 set(HEADERS
     drivers/cardkb.h
+    app.h
 )
 
 # Create executable

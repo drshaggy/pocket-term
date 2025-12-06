@@ -11,6 +11,7 @@ private:
 public:
     CardKB(uint8_t address);
     int initialise();
+    void end();
     int read();
 
 };

@@ -1,7 +1,9 @@
 #include <iostream>
 #include "drivers/cardkb.h"
+#include "apps/launcher.h"
 #include <chrono>
 #include <thread>
+#include <memory>
 
 using namespace std::chrono_literals;
 
@@ -10,17 +12,20 @@ int main() {
     std::clog << "Starting Pocket Terminal OS" << std::endl;
     uint8_t addr = 0x5f;
     CardKB keyboard(addr);
+    std::unique_ptr<App> app = std::make_unique<Launcher>();
     if (keyboard.initialise()){
         std::cerr << "Failed to initialise keyboard" << std::endl;
         return 1;
     }
-    std::cout << "User Input: " << std::endl;
+
     while(true)
     {
         char key = static_cast<char>(keyboard.read());
         std::clog << key;
+        app->sendKey(key);
         std::this_thread::sleep_for(10ms);
     }
 
+    keyboard.end();
     return 0;
 }
