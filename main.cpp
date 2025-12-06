@@ -5,6 +5,7 @@
 
 // auto main(int argc, char *argv[]) -> int {
 int main() {
+    std::cout << "Starting Pocket Terminal OS" << std::endl;
     int addr = 0x5f;
     CardKB keyboard(addr);
     if (!keyboard.initialise())
