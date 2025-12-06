@@ -19,7 +19,7 @@ int main() {
         return 1;
     }
     std::unique_ptr<Display> display = std::make_unique<TtyDisplay>();
-    if (display.initialise()){
+    if (display->initialise()){
         std::cerr << "Failed to initialise display" << std::endl;
         return 1;
     }
