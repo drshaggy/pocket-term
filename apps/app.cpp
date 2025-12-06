@@ -9,7 +9,7 @@ int App::initialise(){
 }
 
 int App::sendKey(char key){
-    std::clog << "Sending key " << key << std::endl;
+    //std::clog << "Sending key " << key << std::endl;
     m_keyQueue.push(key);
     return 0;
 }
