@@ -19,7 +19,7 @@ int main() {
     {
         char key = static_cast<char>(keyboard.read());
         std::clog << key;
-        std::this_thread::sleep_for(100ms);
+        std::this_thread::sleep_for(10ms);
     }
 
     return 0;
