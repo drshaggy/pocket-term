@@ -10,10 +10,12 @@ int Launcher::initialise(){
 }
 
 int Launcher::processNextKey(){
-    std::clog << "processing key " << m_keyQueue.front() << std::endl;
+    //std::clog << "processing key " << m_keyQueue.front() << std::endl;
     if(m_keyQueue.front() == '\x1b' ){
-        std::clog << "escape pressed" << std::endl;
+        //std::clog << "escape pressed" << std::endl;
         m_display.clear();
+    } else {
+        std::clog << m_keyQueue.front() << std::endl;
     }
     m_keyQueue.pop();
     return 0;
