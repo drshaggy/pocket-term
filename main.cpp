@@ -8,7 +8,7 @@ int main() {
     std::clog << "Starting Pocket Terminal OS" << std::endl;
     uint8_t addr = 0x5f;
     CardKB keyboard(addr);
-    if (!keyboard.initialise()){
+    if (keyboard.initialise()){
         std::cerr << "Failed to initialise keyboard" << std::endl;
         return 1;
     }

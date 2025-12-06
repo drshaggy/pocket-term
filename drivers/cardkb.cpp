@@ -12,7 +12,7 @@ int CardKB::initialise()
         std::cerr << "Failed to initialise CardKB Keyboard" << std::endl;
         return 1;
     }
-    std::clog << "Keyboard Initialised" << std::endl << "Starting I2C Operations" << std::endl;
+    std::clog << "bcm2835 Initialised" << std::endl << "Starting I2C Operations" << std::endl;
     if (!bcm2835_i2c_begin()) {
 			std::cerr << "I2C failed to begin, are you running as root?" << std::endl;
 			return 1;
