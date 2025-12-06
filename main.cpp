@@ -12,11 +12,15 @@ int main() {
     std::clog << "Starting Pocket Terminal OS" << std::endl;
     uint8_t addr = 0x5f;
     CardKB keyboard(addr);
-    std::unique_ptr<App> app = std::make_unique<Launcher>();
     if (keyboard.initialise()){
         std::cerr << "Failed to initialise keyboard" << std::endl;
         return 1;
     }
+    std::unique_ptr<App> app = std::make_unique<Launcher>();
+   if(app->initialise()){
+       std::cerr << "Default app failed to load" << std::endl;
+       return 1;
+   }
 
     while(true)
     {
