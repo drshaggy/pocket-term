@@ -19,12 +19,14 @@ set(SOURCES
     main.cpp
     drivers/cardkb.cpp
     app.cpp
+    apps/launcher.cpp
 )
 
 # Headers
 set(HEADERS
     drivers/cardkb.h
     app.h
+    apps/launcher.h
 )
 
 # Create executable
