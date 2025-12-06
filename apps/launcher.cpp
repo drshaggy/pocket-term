@@ -11,6 +11,7 @@ int Launcher::initialise(){
 
 int Launcher::processNextKey(){
     if(m_keyQueue.front() == '\x1b' ){
+        std::clog << "escape pressed" << std::endl;
         m_display.clear();
     }
     return 0;
