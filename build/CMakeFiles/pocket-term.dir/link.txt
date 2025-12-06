@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/pocket-term.dir/main.cpp.o" "CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o" -o pocket-term  /usr/local/lib/libbcm2835.a

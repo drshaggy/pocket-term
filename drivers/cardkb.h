@@ -6,9 +6,13 @@
 class CardKB
 {
 private:
-    int& m_address;
+    char m_buf[1];
+    [[maybe_unused]]int& m_address;
 public:
-	CardKB(int& address);
+    CardKB(int& address);
+    int initialise();
+    int read();
+
 };
 
 #endif // CARDKB_H_
