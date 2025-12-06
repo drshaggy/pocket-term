@@ -1,6 +1,7 @@
 #ifndef APP_H_
 #define APP_H_
 
+#include <iostream>
 #include <queue>
 #include "../drivers/display.h"
 
