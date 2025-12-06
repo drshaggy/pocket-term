@@ -33,9 +33,11 @@ int main() {
     while(true)
     {
         char key = static_cast<char>(keyboard.read());
-        std::clog << key;
-        app->sendKey(key);
-        app->processNextKey();
+        if(key) {
+            std::clog << key;
+            app->sendKey(key);
+            app->processNextKey();
+        }
         std::this_thread::sleep_for(10ms);
     }
     //Clean up
