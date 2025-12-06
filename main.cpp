@@ -34,7 +34,6 @@ int main() {
     {
         char key = static_cast<char>(keyboard.read());
         if(key) {
-            std::clog << key;
             app->sendKey(key);
             app->processNextKey();
         }
