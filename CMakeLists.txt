@@ -18,14 +18,18 @@ find_library(BCM2835_LIBRARY bcm2835 REQUIRED)
 set(SOURCES
     main.cpp
     drivers/cardkb.cpp
-    app.cpp
+    drivers/display.cpp
+    drivers/tty_display.cpp
+    apps/app.cpp
     apps/launcher.cpp
 )
 
 # Headers
 set(HEADERS
     drivers/cardkb.h
-    app.h
+    drivers/display.h
+    drivers/tty_display.h
+    apps/app.h
     apps/launcher.h
 )
 

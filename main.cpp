@@ -1,5 +1,6 @@
 #include <iostream>
 #include "drivers/cardkb.h"
+#include "drivers/tty_display.h"
 #include "apps/launcher.h"
 #include <chrono>
 #include <thread>
@@ -12,6 +13,7 @@ int main() {
     std::clog << "Starting Pocket Terminal OS" << std::endl;
     uint8_t addr = 0x5f;
     CardKB keyboard(addr);
+    std::unique_ptr<Display> display = std::make_unique<TtyDisplay>();
     if (keyboard.initialise()){
         std::cerr << "Failed to initialise keyboard" << std::endl;
         return 1;

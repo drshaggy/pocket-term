@@ -1,7 +1,7 @@
 #ifndef LAUNCHER_H_
 #define LAUNCHER_H_
 
-#include "../app.h"
+#include "app.h"
 #include <iostream>
 
 class Launcher : public App
