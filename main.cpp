@@ -12,10 +12,12 @@ int main() {
         std::cerr << "Failed to initialise keyboard" << std::endl;
         return 1;
     }
+    std::cout << "User Input: " << std::endl;
     while(true)
     {
         char key = static_cast<char>(keyboard.read());
-        std::cout << key;
+        if (key)
+            std::cout << key;
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
