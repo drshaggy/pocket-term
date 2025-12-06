@@ -3,6 +3,8 @@
 #include <chrono>
 #include <thread>
 
+using namespace std::chrono_literals;
+
 // auto main(int argc, char *argv[]) -> int {
 int main() {
     std::clog << "Starting Pocket Terminal OS" << std::endl;
@@ -17,7 +19,7 @@ int main() {
     {
         char key = static_cast<char>(keyboard.read());
         std::clog << key;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(100ms);
     }
 
     return 0;
