@@ -7,9 +7,9 @@ CardKB::CardKB(int& address)
 
 int CardKB::initialise()
 {
-    std::cout << "Initiallising CardKB Keyboard" << std::endl;
+    std::clog << "Initiallising CardKB Keyboard" << std::endl;
     if (!bcm2835_init()) {
-        std::cout << "Failed to initialise CardKB Keyboard" << std::endl;
+        std::clog << "Failed to initialise CardKB Keyboard" << std::endl;
         return 1;
     }
     bcm2835_i2c_begin();                //Start I2C operations
@@ -20,6 +20,7 @@ int CardKB::initialise()
 
 int CardKB::read()
 {
+	std::clog << "Attempting to read keyboard input";
 	uint32_t len = 1;
 	bcm2835_i2c_read(m_buf, len);
 	return m_buf[0];

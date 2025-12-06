@@ -6,7 +6,7 @@
 class CardKB
 {
 private:
-    char m_buf[1];
+    char m_buf[256];
     [[maybe_unused]]int& m_address;
 public:
     CardKB(int& address);
