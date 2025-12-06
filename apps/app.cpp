@@ -9,6 +9,10 @@ int App::initialise(){
 }
 
 int App::sendKey(char key){
-    m_nextKey = key;
+    m_keyQueue.push(key);
     return 0;
+}
+
+int App::processNextKey(){
+    return 1;
 }
