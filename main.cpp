@@ -16,8 +16,7 @@ int main() {
     while(true)
     {
         char key = static_cast<char>(keyboard.read());
-        if (key)
-            std::cout << "0: "<< key;
+        std::cout << "0: "<< key;
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
