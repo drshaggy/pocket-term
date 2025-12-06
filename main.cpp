@@ -7,10 +7,11 @@
 int main() {
     int addr = 0x5f;
     CardKB keyboard(addr);
-    keyboard.initialise();
+    if (!keyboard.initialise())
+        return 1;
     while(true)
     {
-        std::cout << keyboard.read();
+        std::cout << keyboard.read() << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
