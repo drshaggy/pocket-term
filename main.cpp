@@ -44,8 +44,10 @@ int main() {
         if (keyboard.hasEvents()) {
             eventQueue.push(keyboard.getNextEvent());
         }
-        app->processNextEvent(std::move(eventQueue.front()));
-        eventQueue.pop();
+        if (!eventQueue.empty()) {
+            app->processNextEvent(std::move(eventQueue.front()));
+            eventQueue.pop();
+        }
         std::this_thread::sleep_for(10ms);
     }
     //Clean up
