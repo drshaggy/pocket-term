@@ -10,6 +10,7 @@ int TtyDisplay::initialise() {
 }
 
 int TtyDisplay::clear() {
-    std::cout << "\033[2J\033[H";
+
+    std::cout << "\033[2J\033[H" << std::flush;
     return 0;
 }
