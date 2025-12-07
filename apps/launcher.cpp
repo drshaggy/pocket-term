@@ -15,7 +15,7 @@ int Launcher::processNextKey(){
         //std::clog << "escape pressed" << std::endl;
         m_display.clear();
     } else {
-        std::clog << m_keyQueue.front();
+        std::cout << m_keyQueue.front() << std::flush;
     }
     m_keyQueue.pop();
     return 0;
