@@ -9,14 +9,15 @@ int Launcher::initialise(){
     return 0;
 }
 
-int Launcher::processNextKey(){
-    //std::clog << "processing key " << m_keyQueue.front() << std::endl;
-    if(m_keyQueue.front() == '\x1b' ){
-        //std::clog << "escape pressed" << std::endl;
-        m_display.clear();
-    } else {
-        std::cout << m_keyQueue.front() << std::flush;
+int Launcher::processNextEvent(Event e){
+    if (e.type == KEY_PRESS) {
+        char key = static_cast<KeyEventData&>(*e.data).getKey();
+        //clear screen on escape
+        if (key == '\x1b') {
+            m_display.clear();
+        } else {
+            std::cout << key << std::flush;
+        }
     }
-    m_keyQueue.pop();
     return 0;
 }

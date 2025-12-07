@@ -8,12 +8,6 @@ int App::initialise(){
     return 1;
 }
 
-int App::sendKey(char key){
-    //std::clog << "Sending key " << key << std::endl;
-    m_keyQueue.push(key);
-    return 0;
-}
-
-int App::processNextKey(){
+int App::processNextEvent(Event e){
     return 1;
 }

@@ -1,12 +1,10 @@
 #include "cardkb.h"
 #include <iostream>
 
-CardKB::CardKB(uint8_t address)
-	: m_address(address)
+CardKB::CardKB(uint8_t address) : m_address(address)
 {};
 
-int CardKB::initialise()
-{
+int CardKB::initialise() {
     std::clog << "Initiallising CardKB Keyboard" << std::endl;
     if (!bcm2835_init()) {
         std::cerr << "Failed to initialise bcm2835" << std::endl;
@@ -25,8 +23,7 @@ int CardKB::initialise()
     return 0;
 };
 
-int CardKB::read()
-{
+int CardKB::read() {
     //std::clog << "Attempting to read keyboard input" << std::endl;
     m_buf[0] = 0;
     uint32_t len = 1;
@@ -34,7 +31,19 @@ int CardKB::read()
     return m_buf[0];
 }
 
-void CardKB::end()
-{
+// override EventSource.poll
+void CardKB::poll() {
+    //std::clog << "Attempting to read keyboard input" << std::endl;
+    char buf[256];
+    buf[0] = 0;
+    uint32_t len = 1;
+    bcm2835_i2c_read(buf, len);
+    if (buf[0]) {
+        Event e = Event::createKeyEvent(buf[0], 0);
+        m_eventQueue.push(std::move(e));
+    }
+}
+
+void CardKB::end() {
     bcm2835_i2c_end();
 }

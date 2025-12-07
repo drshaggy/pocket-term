@@ -9,7 +9,7 @@ class Launcher : public App
 public:
     Launcher(Display& display);
     int initialise() override;
-    int processNextKey() override;
+    int processNextEvent(Event e) override;
 };
 
 

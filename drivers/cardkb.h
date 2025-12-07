@@ -2,17 +2,19 @@
 #define CARDKB_H_
 
 #include <bcm2835.h>
+#include "event_source.h"
 
-class CardKB
+class CardKB : public EventSource
 {
 private:
     char m_buf[256];
-    [[maybe_unused]]uint8_t  m_address;
+    uint8_t  m_address;
 public:
     CardKB(uint8_t address);
     int initialise();
     void end();
     int read();
+    void poll() override;
 
 };
 
