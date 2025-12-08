@@ -37,6 +37,7 @@ int main() {
        std::cerr << "Default app failed to load" << std::endl;
        return 1;
     }
+    ui.clear();
 
     //Main loop
     while(true)

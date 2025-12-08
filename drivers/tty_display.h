@@ -2,8 +2,11 @@
 #define TTY_DISPLAY_H_
 
 #include <iostream>
+#include <thread>
 #include <string>
 #include "display.h"
+
+using namespace std::chrono_literals;
 
 class TtyDisplay : public Display
 {
