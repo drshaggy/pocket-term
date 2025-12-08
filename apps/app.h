@@ -5,13 +5,14 @@
 #include <queue>
 #include "../drivers/display.h"
 #include "../event.h"
+#include "../ui.h"
 
 class App
 {
 protected:
-    Display& m_display;
+    UI& m_ui;
 public:
-    App(Display& display);
+    App(UI& ui);
     virtual ~App() = default;
     virtual int initialise();
     virtual int processNextEvent(Event e);

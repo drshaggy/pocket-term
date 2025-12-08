@@ -1,7 +1,7 @@
 #include "app.h"
 
-App::App(Display& display) :
-    m_display{display}
+App::App(UI& ui) :
+    m_ui{ui}
 {};
 
 int App::initialise(){

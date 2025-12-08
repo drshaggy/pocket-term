@@ -1,6 +1,8 @@
 #ifndef DISPLAY_H_
 #define DISPLAY_H_
 
+#include <string>
+
 class Display
 {
 public:
@@ -9,6 +11,7 @@ public:
     virtual int initialise();
     virtual int redraw();
     virtual int clear();
+    virtual int print(const std::string& text);
 };
 
 #endif // DISPLAY_H_

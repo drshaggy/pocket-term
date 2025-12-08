@@ -18,6 +18,7 @@ find_library(BCM2835_LIBRARY bcm2835 REQUIRED)
 set(SOURCES
     main.cpp
     event.cpp
+    ui.cpp
     drivers/event_source.cpp
     drivers/cardkb.cpp
     drivers/display.cpp
@@ -29,6 +30,7 @@ set(SOURCES
 # Headers
 set(HEADERS
     event.h
+    ui.h
     drivers/event_source.h
     drivers/cardkb.h
     drivers/display.h

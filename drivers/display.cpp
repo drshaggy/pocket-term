@@ -14,3 +14,7 @@ int Display::redraw() {
 int Display::clear() {
     return 1;
 };
+
+int Display::print(const std::string& text) {
+    return 1;
+}

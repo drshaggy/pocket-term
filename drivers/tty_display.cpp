@@ -14,3 +14,8 @@ int TtyDisplay::clear() {
     std::cout << "\033[2J\033[H" << std::flush;
     return 0;
 }
+
+int TtyDisplay::print(const std::string& text) {
+    std::cout << text;
+    return 0;
+}
