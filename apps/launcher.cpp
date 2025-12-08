@@ -14,6 +14,7 @@ int Launcher::processNextEvent(Event e){
         } else {
             std::string pr;
             pr[0] = key;
+            std::clog << "Sending: " << pr << std::endl;
             m_ui.print(pr);
         }
     }
