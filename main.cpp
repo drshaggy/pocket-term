@@ -30,6 +30,7 @@ int main() {
     }
 
     UI ui(*display);
+    ui.clear();
 
     //Load default app
     std::unique_ptr<App> app = std::make_unique<Home>(ui);
@@ -37,7 +38,6 @@ int main() {
        std::cerr << "Default app failed to load" << std::endl;
        return 1;
     }
-    ui.clear();
 
     //Main loop
     while(true)

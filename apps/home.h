@@ -2,6 +2,7 @@
 #define HOME_H_
 
 #include "app.h"
+#include "../utilities.h"
 
 class Home : public App
 {
