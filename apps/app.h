@@ -19,4 +19,6 @@ public:
     virtual int processSpecificEvent(const Event& e);
 };
 
+int switchApp(std::unique_ptr<App> newApp); //do we use a map to hold installed apps that are registered? and use this is restore an app if required
+                                            //
 #endif // APP_H_

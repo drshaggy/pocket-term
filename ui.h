@@ -3,14 +3,14 @@
 
 #include <string>
 #include "drivers/display.h"
+#include "drivers/tty_display.h"
 
 class UI
 {
 private:
-    Display& m_display;
+    std::unique_ptr<Display> m_display;
 public:
     UI();
-    UI(Display& display) : m_display(display) {};
     void print(const std::string& text);
     void printHighlighted(const std::string& text);
     void println(const std::string& text);

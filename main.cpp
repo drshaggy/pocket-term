@@ -1,6 +1,5 @@
 #include <iostream>
-#include "drivers/cardkb.h"
-#include "drivers/tty_display.h"
+#include "os.h"
 #include "apps/home.h"
 #include "event.h"
 #include "ui.h"
@@ -12,47 +11,10 @@ using namespace std::chrono_literals;
 // auto main(int argc, char *argv[]) -> int {
 int main() {
     std::clog << "Starting Pocket Terminal OS" << std::endl;
+    OS os;
 
-    //Initialise central event queue
-    std::queue<Event> eventQueue;
+    os.run();
 
-    //Initialise drivers
-    uint8_t addr = 0x5f;
-    CardKB keyboard(addr);
-    if (keyboard.initialise()){
-        std::cerr << "Failed to initialise keyboard" << std::endl;
-        return 1;
-    }
-    std::unique_ptr<Display> display = std::make_unique<TtyDisplay>();
-    if (display->initialise()){
-        std::cerr << "Failed to initialise display" << std::endl;
-        return 1;
-    }
-
-    UI ui(*display);
-
-    //Load default app
-    std::unique_ptr<App> app = std::make_unique<Home>(ui);
-    if(app->initialise()){
-       std::cerr << "Default app failed to load" << std::endl;
-       return 1;
-    }
-
-    //Main loop
-    while(true)
-    {
-        //poll all the event sources
-        keyboard.poll();
-        if (keyboard.hasEvents()) {
-            eventQueue.push(keyboard.getNextEvent());
-        }
-        if (!eventQueue.empty()) {
-            app->processNextEvent(std::move(eventQueue.front()));
-            eventQueue.pop();
-        }
-        std::this_thread::sleep_for(10ms);
-    }
-    //Clean up
-    keyboard.end();
+    os.cleanUp();
     return 0;
 }

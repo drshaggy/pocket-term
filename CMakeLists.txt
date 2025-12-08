@@ -17,6 +17,7 @@ find_library(BCM2835_LIBRARY bcm2835 REQUIRED)
 # Source files
 set(SOURCES
     main.cpp
+    os.cpp
     event.cpp
     ui.cpp
     utilities.cpp
@@ -31,8 +32,9 @@ set(SOURCES
 
 # Headers
 set(HEADERS
-    event.h
     ui.h
+    os.cpp
+    event.h
     utilities.h
     drivers/event_source.h
     drivers/cardkb.h
