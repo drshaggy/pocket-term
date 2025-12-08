@@ -5,7 +5,7 @@ int Launcher::initialise(){
     return 0;
 }
 
-int Launcher::processNextEvent(Event e){
+int Launcher::processSpecificEvent(const Event& e){
     if (e.type == KEY_PRESS) {
         char key = static_cast<KeyEventData&>(*e.data).getKey();
         //clear screen on escape

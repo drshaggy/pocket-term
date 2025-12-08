@@ -11,7 +11,7 @@ int Home::initialise() {
     return 0;
 }
 
-int Home::processNextEvent(Event e) {
+int Home::processSpecificEvent(const Event& e) {
     return 0;
 }
 

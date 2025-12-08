@@ -15,7 +15,8 @@ public:
     App(UI& ui);
     virtual ~App() = default;
     virtual int initialise();
-    virtual int processNextEvent(Event e);
+    int processNextEvent(const Event e);
+    virtual int processSpecificEvent(const Event& e);
 };
 
 #endif // APP_H_

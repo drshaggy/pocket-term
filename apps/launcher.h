@@ -9,7 +9,7 @@ class Launcher : public App
 public:
     using App::App;
     int initialise() override;
-    int processNextEvent(Event e) override;
+    int processSpecificEvent(const Event& e) override;
 };
 
 
