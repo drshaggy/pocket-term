@@ -24,6 +24,7 @@ set(SOURCES
     drivers/display.cpp
     drivers/tty_display.cpp
     apps/app.cpp
+    apps/home.cpp
     apps/launcher.cpp
 )
 
@@ -36,6 +37,7 @@ set(HEADERS
     drivers/display.h
     drivers/tty_display.h
     apps/app.h
+    apps/home.h
     apps/launcher.h
 )
 

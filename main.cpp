@@ -1,7 +1,7 @@
 #include <iostream>
 #include "drivers/cardkb.h"
 #include "drivers/tty_display.h"
-#include "apps/launcher.h"
+#include "apps/home.h"
 #include "event.h"
 #include "ui.h"
 #include <thread>
@@ -32,7 +32,7 @@ int main() {
     UI ui(*display);
 
     //Load default app
-    std::unique_ptr<App> app = std::make_unique<Launcher>(ui);
+    std::unique_ptr<App> app = std::make_unique<Home>(ui);
     if(app->initialise()){
        std::cerr << "Default app failed to load" << std::endl;
        return 1;

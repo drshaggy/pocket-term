@@ -22,3 +22,9 @@ int TtyDisplay::print(const std::string& text) {
     std::cout << text << std::flush;
     return 0;
 }
+
+int TtyDisplay::println(const std::string& text) {
+    std::this_thread::sleep_for(500ms);
+    std::cout << text << std::endl;
+    return 0;
+}

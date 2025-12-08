@@ -7,12 +7,13 @@
 class UI
 {
 private:
-	Display& m_display;
+    Display& m_display;
 public:
-	UI();
-	UI(Display& display) : m_display(display) {};
-	void print(const std::string& text);
-	void clear();
+    UI();
+    UI(Display& display) : m_display(display) {};
+    void print(const std::string& text);
+    void println(const std::string& text);
+    void clear();
 };
 
 #endif // UI_H_

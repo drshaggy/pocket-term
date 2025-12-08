@@ -8,7 +8,6 @@ class Launcher : public App
 {
 public:
     using App::App;
-    Launcher(Display& display);
     int initialise() override;
     int processNextEvent(Event e) override;
 };

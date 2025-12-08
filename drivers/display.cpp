@@ -18,3 +18,7 @@ int Display::clear() {
 int Display::print(const std::string& text) {
     return 1;
 }
+
+int Display::println(const std::string& text) {
+    return 1;
+}

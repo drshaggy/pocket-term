@@ -11,7 +11,9 @@ public:
     virtual int initialise();
     virtual int redraw();
     virtual int clear();
+    //text functions
     virtual int print(const std::string& text);
+    virtual int println(const std::string& text);
 };
 
 #endif // DISPLAY_H_
