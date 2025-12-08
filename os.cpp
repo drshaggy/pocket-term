@@ -3,7 +3,7 @@
 OS::OS()
     : m_ui(UI()),
       m_keyboard(CardKB(uint8_t(0x5f))),
-      m_currentApp(std::make_unique<App>(m_ui))
+      m_currentApp(std::make_unique<Home>(m_ui))
 {
     //move these inits in to constructors
     if (m_keyboard.initialise()){
