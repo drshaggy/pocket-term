@@ -12,10 +12,7 @@ int Launcher::processNextEvent(Event e){
         if (key == '\x1b') {
             m_ui.clear();
         } else {
-            std::string pr;
-            pr[0] = key;
-            std::clog << "Sending: " << pr << std::endl;
-            m_ui.print(pr);
+            m_ui.print(std::string(1, key));
         }
     }
     return 0;
