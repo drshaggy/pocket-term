@@ -16,6 +16,6 @@ int TtyDisplay::clear() {
 }
 
 int TtyDisplay::print(const std::string& text) {
-    std::cout << text;
+    std::cout << text << std::flush;
     return 0;
 }
