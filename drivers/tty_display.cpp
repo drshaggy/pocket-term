@@ -23,6 +23,12 @@ int TtyDisplay::print(const std::string& text) {
     return 0;
 }
 
+int TtyDisplay::printHighlighted(const std::string& text) {
+    std::this_thread::sleep_for(500ms);
+    std::cout << "\033[7m" + text + "\033[0m" << std::flush;
+    return 0;
+}
+
 int TtyDisplay::println(const std::string& text) {
     std::this_thread::sleep_for(500ms);
     std::cout << text << std::endl;

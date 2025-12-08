@@ -7,4 +7,6 @@
 
 std::string getCurrentTime();
 
+std::string getCurrentDate();
+
 #endif

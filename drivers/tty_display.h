@@ -15,6 +15,7 @@ public:
     int initialise() override;
     int clear() override;
     int print(const std::string& text) override;
+    int printHighlighted(const std::string& text) override;
     int println(const std::string& text) override;
 };
 

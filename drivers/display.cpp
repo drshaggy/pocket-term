@@ -19,6 +19,10 @@ int Display::print(const std::string& text) {
     return 1;
 }
 
+int Display::printHighlighted(const std::string& text) {
+    return 1;
+}
+
 int Display::println(const std::string& text) {
     return 1;
 }

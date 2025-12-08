@@ -30,7 +30,6 @@ int main() {
     }
 
     UI ui(*display);
-    ui.clear();
 
     //Load default app
     std::unique_ptr<App> app = std::make_unique<Home>(ui);

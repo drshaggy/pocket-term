@@ -12,6 +12,7 @@ public:
     UI();
     UI(Display& display) : m_display(display) {};
     void print(const std::string& text);
+    void printHighlighted(const std::string& text);
     void println(const std::string& text);
     void clear();
 };

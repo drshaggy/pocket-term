@@ -13,6 +13,7 @@ public:
     virtual int clear();
     //text functions
     virtual int print(const std::string& text);
+    virtual int printHighlighted(const std::string& text);
     virtual int println(const std::string& text);
 };
 
