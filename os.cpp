@@ -4,12 +4,7 @@ OS::OS()
     : m_keyboard(CardKB(uint8_t(0x5f))),
       m_ui(UI()),
       m_appManager(m_ui)
-{
-    //move these inits in to constructors
-    if (m_keyboard.initialise()){
-        std::cerr << "Failed to initialise keyboard" << std::endl;
-    }
-}
+{}
 
 void OS::run() {
     while(true) {
