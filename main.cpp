@@ -1,10 +1,5 @@
 #include <iostream>
 #include "os.h"
-#include "apps/home.h"
-#include "event.h"
-#include "ui.h"
-#include <thread>
-#include <memory>
 
 using namespace std::chrono_literals;
 
