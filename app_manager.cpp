@@ -13,7 +13,7 @@ AppManager::AppManager(UI& ui)
     m_installedApps[HOME] = [](UI& ui){return std::make_unique<Home>(ui);};
     m_installedApps[LAUNCHER] = [](UI& ui){return std::make_unique<Launcher>(ui);};
 
-    m_runningApps[HOME] = std::make_unique<Home>(ui);
+    launchApp(HOME);
 };
 
 void AppManager::launchApp(Apps appId) {
