@@ -46,6 +46,7 @@ void Sim800l::poll() {
                     spdlog::info("New SMS received: {}", response);
                     // Extract message index (e.g., from "+CMTI: "SM",5")
                     size_t pos = response.find_last_of(',');
+                    spdlog::debug("Index: {}", pos);
                     if (pos != std::string::npos) {
                         int index = std::stoi(response.substr(pos + 1));
                         std::string response;
