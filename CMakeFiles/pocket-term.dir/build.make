@@ -100,10 +100,24 @@ CMakeFiles/pocket-term.dir/os.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/pocket-term.dir/os.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/connor/Documents/Repos/pocket-term/os.cpp -o CMakeFiles/pocket-term.dir/os.cpp.s
 
+CMakeFiles/pocket-term.dir/logging.cpp.o: CMakeFiles/pocket-term.dir/flags.make
+CMakeFiles/pocket-term.dir/logging.cpp.o: logging.cpp
+CMakeFiles/pocket-term.dir/logging.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pocket-term.dir/logging.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/logging.cpp.o -MF CMakeFiles/pocket-term.dir/logging.cpp.o.d -o CMakeFiles/pocket-term.dir/logging.cpp.o -c /Users/connor/Documents/Repos/pocket-term/logging.cpp
+
+CMakeFiles/pocket-term.dir/logging.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/pocket-term.dir/logging.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/connor/Documents/Repos/pocket-term/logging.cpp > CMakeFiles/pocket-term.dir/logging.cpp.i
+
+CMakeFiles/pocket-term.dir/logging.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/pocket-term.dir/logging.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/connor/Documents/Repos/pocket-term/logging.cpp -o CMakeFiles/pocket-term.dir/logging.cpp.s
+
 CMakeFiles/pocket-term.dir/app_manager.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/app_manager.cpp.o: app_manager.cpp
 CMakeFiles/pocket-term.dir/app_manager.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pocket-term.dir/app_manager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pocket-term.dir/app_manager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/app_manager.cpp.o -MF CMakeFiles/pocket-term.dir/app_manager.cpp.o.d -o CMakeFiles/pocket-term.dir/app_manager.cpp.o -c /Users/connor/Documents/Repos/pocket-term/app_manager.cpp
 
 CMakeFiles/pocket-term.dir/app_manager.cpp.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/pocket-term.dir/app_manager.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/event.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/event.cpp.o: event.cpp
 CMakeFiles/pocket-term.dir/event.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pocket-term.dir/event.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pocket-term.dir/event.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/event.cpp.o -MF CMakeFiles/pocket-term.dir/event.cpp.o.d -o CMakeFiles/pocket-term.dir/event.cpp.o -c /Users/connor/Documents/Repos/pocket-term/event.cpp
 
 CMakeFiles/pocket-term.dir/event.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/pocket-term.dir/event.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/ui/ui.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/ui/ui.cpp.o: ui/ui.cpp
 CMakeFiles/pocket-term.dir/ui/ui.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pocket-term.dir/ui/ui.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/pocket-term.dir/ui/ui.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/ui/ui.cpp.o -MF CMakeFiles/pocket-term.dir/ui/ui.cpp.o.d -o CMakeFiles/pocket-term.dir/ui/ui.cpp.o -c /Users/connor/Documents/Repos/pocket-term/ui/ui.cpp
 
 CMakeFiles/pocket-term.dir/ui/ui.cpp.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/pocket-term.dir/ui/ui.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/ui/screen.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/ui/screen.cpp.o: ui/screen.cpp
 CMakeFiles/pocket-term.dir/ui/screen.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/pocket-term.dir/ui/screen.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/pocket-term.dir/ui/screen.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/ui/screen.cpp.o -MF CMakeFiles/pocket-term.dir/ui/screen.cpp.o.d -o CMakeFiles/pocket-term.dir/ui/screen.cpp.o -c /Users/connor/Documents/Repos/pocket-term/ui/screen.cpp
 
 CMakeFiles/pocket-term.dir/ui/screen.cpp.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/pocket-term.dir/ui/screen.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/utilities.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/utilities.cpp.o: utilities.cpp
 CMakeFiles/pocket-term.dir/utilities.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/pocket-term.dir/utilities.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/pocket-term.dir/utilities.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/utilities.cpp.o -MF CMakeFiles/pocket-term.dir/utilities.cpp.o.d -o CMakeFiles/pocket-term.dir/utilities.cpp.o -c /Users/connor/Documents/Repos/pocket-term/utilities.cpp
 
 CMakeFiles/pocket-term.dir/utilities.cpp.i: cmake_force
@@ -173,7 +187,7 @@ CMakeFiles/pocket-term.dir/utilities.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o: drivers/event_source.cpp
 CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o -MF CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o.d -o CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/event_source.cpp
 
 CMakeFiles/pocket-term.dir/drivers/event_source.cpp.i: cmake_force
@@ -187,7 +201,7 @@ CMakeFiles/pocket-term.dir/drivers/event_source.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o: drivers/cardkb.cpp
 CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o -MF CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o.d -o CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/cardkb.cpp
 
 CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.i: cmake_force
@@ -201,7 +215,7 @@ CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o: drivers/sim800l.cpp
 CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o -MF CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o.d -o CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/sim800l.cpp
 
 CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.i: cmake_force
@@ -215,7 +229,7 @@ CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/drivers/display.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/drivers/display.cpp.o: drivers/display.cpp
 CMakeFiles/pocket-term.dir/drivers/display.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/pocket-term.dir/drivers/display.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/pocket-term.dir/drivers/display.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/drivers/display.cpp.o -MF CMakeFiles/pocket-term.dir/drivers/display.cpp.o.d -o CMakeFiles/pocket-term.dir/drivers/display.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/display.cpp
 
 CMakeFiles/pocket-term.dir/drivers/display.cpp.i: cmake_force
@@ -229,7 +243,7 @@ CMakeFiles/pocket-term.dir/drivers/display.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o: drivers/tty_display.cpp
 CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o -MF CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o.d -o CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/tty_display.cpp
 
 CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.i: cmake_force
@@ -243,7 +257,7 @@ CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/apps/app.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/apps/app.cpp.o: apps/app.cpp
 CMakeFiles/pocket-term.dir/apps/app.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/pocket-term.dir/apps/app.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/pocket-term.dir/apps/app.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/apps/app.cpp.o -MF CMakeFiles/pocket-term.dir/apps/app.cpp.o.d -o CMakeFiles/pocket-term.dir/apps/app.cpp.o -c /Users/connor/Documents/Repos/pocket-term/apps/app.cpp
 
 CMakeFiles/pocket-term.dir/apps/app.cpp.i: cmake_force
@@ -257,7 +271,7 @@ CMakeFiles/pocket-term.dir/apps/app.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/apps/home.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/apps/home.cpp.o: apps/home.cpp
 CMakeFiles/pocket-term.dir/apps/home.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/pocket-term.dir/apps/home.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/pocket-term.dir/apps/home.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/apps/home.cpp.o -MF CMakeFiles/pocket-term.dir/apps/home.cpp.o.d -o CMakeFiles/pocket-term.dir/apps/home.cpp.o -c /Users/connor/Documents/Repos/pocket-term/apps/home.cpp
 
 CMakeFiles/pocket-term.dir/apps/home.cpp.i: cmake_force
@@ -271,7 +285,7 @@ CMakeFiles/pocket-term.dir/apps/home.cpp.s: cmake_force
 CMakeFiles/pocket-term.dir/apps/launcher.cpp.o: CMakeFiles/pocket-term.dir/flags.make
 CMakeFiles/pocket-term.dir/apps/launcher.cpp.o: apps/launcher.cpp
 CMakeFiles/pocket-term.dir/apps/launcher.cpp.o: CMakeFiles/pocket-term.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/pocket-term.dir/apps/launcher.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/pocket-term.dir/apps/launcher.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pocket-term.dir/apps/launcher.cpp.o -MF CMakeFiles/pocket-term.dir/apps/launcher.cpp.o.d -o CMakeFiles/pocket-term.dir/apps/launcher.cpp.o -c /Users/connor/Documents/Repos/pocket-term/apps/launcher.cpp
 
 CMakeFiles/pocket-term.dir/apps/launcher.cpp.i: cmake_force
@@ -286,6 +300,7 @@ CMakeFiles/pocket-term.dir/apps/launcher.cpp.s: cmake_force
 pocket__term_OBJECTS = \
 "CMakeFiles/pocket-term.dir/main.cpp.o" \
 "CMakeFiles/pocket-term.dir/os.cpp.o" \
+"CMakeFiles/pocket-term.dir/logging.cpp.o" \
 "CMakeFiles/pocket-term.dir/app_manager.cpp.o" \
 "CMakeFiles/pocket-term.dir/event.cpp.o" \
 "CMakeFiles/pocket-term.dir/ui/ui.cpp.o" \
@@ -305,6 +320,7 @@ pocket__term_EXTERNAL_OBJECTS =
 
 pocket-term: CMakeFiles/pocket-term.dir/main.cpp.o
 pocket-term: CMakeFiles/pocket-term.dir/os.cpp.o
+pocket-term: CMakeFiles/pocket-term.dir/logging.cpp.o
 pocket-term: CMakeFiles/pocket-term.dir/app_manager.cpp.o
 pocket-term: CMakeFiles/pocket-term.dir/event.cpp.o
 pocket-term: CMakeFiles/pocket-term.dir/ui/ui.cpp.o
@@ -323,7 +339,7 @@ pocket-term: /usr/local/lib/libbcm2835.a
 pocket-term: /opt/homebrew/lib/libspdlog.1.16.0.dylib
 pocket-term: /opt/homebrew/lib/libfmt.12.1.0.dylib
 pocket-term: CMakeFiles/pocket-term.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable pocket-term"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/connor/Documents/Repos/pocket-term/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable pocket-term"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pocket-term.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

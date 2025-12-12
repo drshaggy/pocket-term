@@ -19,6 +19,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o.d"
   "CMakeFiles/pocket-term.dir/event.cpp.o"
   "CMakeFiles/pocket-term.dir/event.cpp.o.d"
+  "CMakeFiles/pocket-term.dir/logging.cpp.o"
+  "CMakeFiles/pocket-term.dir/logging.cpp.o.d"
   "CMakeFiles/pocket-term.dir/main.cpp.o"
   "CMakeFiles/pocket-term.dir/main.cpp.o.d"
   "CMakeFiles/pocket-term.dir/os.cpp.o"

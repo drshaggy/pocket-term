@@ -414,6 +414,30 @@ event.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pocket-term.dir/build.make CMakeFiles/pocket-term.dir/event.cpp.s
 .PHONY : event.cpp.s
 
+logging.o: logging.cpp.o
+.PHONY : logging.o
+
+# target to build an object file
+logging.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pocket-term.dir/build.make CMakeFiles/pocket-term.dir/logging.cpp.o
+.PHONY : logging.cpp.o
+
+logging.i: logging.cpp.i
+.PHONY : logging.i
+
+# target to preprocess a source file
+logging.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pocket-term.dir/build.make CMakeFiles/pocket-term.dir/logging.cpp.i
+.PHONY : logging.cpp.i
+
+logging.s: logging.cpp.s
+.PHONY : logging.s
+
+# target to generate assembly for a file
+logging.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pocket-term.dir/build.make CMakeFiles/pocket-term.dir/logging.cpp.s
+.PHONY : logging.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -577,6 +601,9 @@ help:
 	@echo "... event.o"
 	@echo "... event.i"
 	@echo "... event.s"
+	@echo "... logging.o"
+	@echo "... logging.i"
+	@echo "... logging.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

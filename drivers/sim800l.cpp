@@ -15,6 +15,9 @@ Sim800l::Sim800l(std::string device, int baudRate)
         spdlog::error("Error connecting to SIM800L Module");
     } else {
         spdlog::info("SIM880L Module Initialised");
+        if (checkConnection()) {
+            spdlog::info("Connection to SIM800L established");
+        }
     }
 }
 
@@ -24,4 +27,9 @@ void Sim800l::poll() {
 
 void Sim800l::end() {
     close(m_serialPort);
+}
+
+bool Sim800l::checkConnection() {
+    unsigned char msg[] = { 'A', 'T', '\r' };
+    write(m_serialPort, msg, sizeof(msg));
 }

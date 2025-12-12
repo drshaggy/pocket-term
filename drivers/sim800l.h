@@ -7,13 +7,14 @@
 
 class Sim800l : EventSource{
 private:
-	const std::string m_device;
-	const int m_baudRate;
-	int m_serialPort;
+    const std::string m_device;
+    const int m_baudRate;
+    int m_serialPort;
 public:
-	Sim800l(std::string device, int baudRate);
-	void end();
-	void poll() override;
+    Sim800l(std::string device, int baudRate);
+    void end();
+    void poll() override;
+    bool checkConnection();
 };
 
 #endif // SIM800L_H_
