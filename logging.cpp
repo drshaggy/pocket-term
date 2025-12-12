@@ -7,7 +7,7 @@
 void setupLogging() {
       // Rotating file - 5MB max, 3 backup files
       auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(
-          "/tmp/pocketterm.log", 1024 * 1024 * 5, 3);
+          "/var/log/pocket-term.log", 1024 * 1024 * 5, 3);
 
       // Set file sink to flush on every write (for debugging)
       file_sink->set_level(spdlog::level::trace);
