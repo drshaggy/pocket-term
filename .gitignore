@@ -3,3 +3,20 @@
 *.log
 tmp/
 build/
+
+# CMake build artifacts (when building in project root)
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+*.cmake
+!CMakeLists.txt
+
+# Compiled binaries
+pocket-term
+
+# IDE/LSP caches
+.cache/
+
+# Optionally ignore compile_commands.json (some prefer to commit it for IDE support)
+# compile_commands.json
