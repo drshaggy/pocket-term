@@ -25,7 +25,18 @@ Sim800l::Sim800l(std::string device, int baudRate)
 }
 
 void Sim800l::poll() {
+    char buffer[512] = {0};
+    int bytes = read(m_serialPort, buffer, sizeof(buffer) - 1);
 
+    if (bytes > 0) {
+        buffer[bytes] = '\0';
+        std::string response(buffer);
+
+        // Check for new SMS notification
+        if (response.find("+CMTI:") != std::string::npos) {
+            spdlog::info("New SMS received: {}", response);
+        }
+    }
 }
 
 void Sim800l::end() {
