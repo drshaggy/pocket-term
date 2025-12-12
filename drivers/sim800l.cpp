@@ -6,6 +6,7 @@
 #include <errno.h> // Error integer and strerror() function
 #include <termios.h> // Contains POSIX terminal control definitions
 #include <unistd.h> // write(), read(), close()
+#include <spdlog/spdlog.h>
 
 Sim800l::Sim800l(std::string device, int baudRate)
     : m_device(device), m_baudRate(baudRate)
@@ -34,8 +35,14 @@ void Sim800l::end() {
 bool Sim800l::checkConnection() {
     unsigned char msg[] = { 'A', 'T', '\r' };
     write(m_serialPort, msg, sizeof(msg));
-    char readBuf [256];
+    char readBuf [256] {0};
 
     int n = read(m_serialPort, &readBuf, sizeof(readBuf));
-    return n > 0;
+    if (n > 0) {
+        spdlog::debug("SIM800L Response: {}", readBuf);
+        return true;
+    } else {
+        spdlog::error("No Response from SIM800L");
+        return false;
+    }
 }
