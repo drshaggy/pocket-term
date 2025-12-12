@@ -13,7 +13,7 @@ int TtyDisplay::initialise() {
 int TtyDisplay::clear() {
     std::this_thread::sleep_for(500ms);
 
-    std::cout << "\033[2J\033[H" << std::flush;
+    //std::cout << "\033[2J\033[H" << std::flush;
     return 0;
 }
 
