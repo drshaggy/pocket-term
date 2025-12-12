@@ -34,27 +34,15 @@ void Sim800l::poll() {
         // Check for new SMS notification
         if (response.find("+CMTI:") != std::string::npos) {
             spdlog::info("New SMS received: {}", response);
-            char buffer[512] = {0};
-            int bytes = read(m_serialPort, buffer, sizeof(buffer) - 1);
-
-            if (bytes > 0) {
-                buffer[bytes] = '\0';
-                std::string response(buffer);
-
-                // Check for new SMS notification
-                if (response.find("+CMTI:") != std::string::npos) {
-                    spdlog::info("New SMS received: {}", response);
-                    // Extract message index (e.g., from "+CMTI: "SM",5")
-                    size_t pos = response.find_last_of(',');
-                    spdlog::debug("Index: {}", pos);
-                    if (pos != std::string::npos) {
-                        int index = std::stoi(response.substr(pos + 1));
-                        std::string response;
-                        if (readSMS(index, response)) {
-                            spdlog::debug("SMS index: {}, content: {}", index, response);
-                            // Create Event here
-                        }
-                    }
+            // Extract message index (e.g., from "+CMTI: "SM",5")
+            size_t pos = response.find_last_of(',');
+            spdlog::debug("Index: {}", pos);
+            if (pos != std::string::npos) {
+                int index = std::stoi(response.substr(pos + 1));
+                std::string msg;
+                if (readSMS(index, msg)) {
+                    spdlog::debug("SMS index: {}, content: {}", index, msg);
+                    // Create Event here
                 }
             }
         }
