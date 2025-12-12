@@ -17,6 +17,7 @@ void OS::run() {
     while(true) {
         //poll all the event sources
         m_keyboard.poll();
+        m_gsm.poll();
         if (m_keyboard.hasEvents()) {
             m_eventQueue.push(m_keyboard.getNextEvent());
         }
