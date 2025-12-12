@@ -5,7 +5,7 @@
 
 #include "app_manager.h"
 #include "event.h"
-#include "ui.h"
+#include "ui/ui.h"
 #include "drivers/cardkb.h"
 
 class OS

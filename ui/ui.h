@@ -1,9 +1,10 @@
 #ifndef UI_H_
 #define UI_H_
 
-#include <string>
 #include "drivers/display.h"
-#include "drivers/tty_display.h"
+
+#include <string>
+#include <memory>
 
 class UI
 {
@@ -15,6 +16,7 @@ public:
     void printHighlighted(const std::string& text);
     void println(const std::string& text);
     void clear();
+    void update();
 };
 
 #endif // UI_H_

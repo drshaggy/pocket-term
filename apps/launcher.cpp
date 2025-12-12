@@ -1,11 +1,14 @@
 #include "launcher.h"
+#include "../ui/ui.h"
+
+#include <iostream>
 
 int Launcher::initialise(){
     std::clog << "Launcher Initialised" << std::endl;
     return 0;
 }
 
-int Launcher::processSpecificEvent(const Event& e){
+int Launcher::processSpecificEvent(Event& e){
     if (e.type == KEY_PRESS) {
         char key = static_cast<KeyEventData&>(*e.data).getKey();
         //clear screen on escape

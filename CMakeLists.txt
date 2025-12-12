@@ -23,7 +23,8 @@ set(SOURCES
     os.cpp
     app_manager.cpp
     event.cpp
-    ui.cpp
+    ui/ui.cpp
+    ui/screen.cpp
     utilities.cpp
     drivers/event_source.cpp
     drivers/cardkb.cpp
@@ -36,7 +37,8 @@ set(SOURCES
 
 # Headers
 set(HEADERS
-    ui.h
+    ui/ui.h
+    ui/screen.h
     os.h
     app_manager.h
     event.h

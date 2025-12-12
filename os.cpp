@@ -1,5 +1,9 @@
 #include "os.h"
 
+#include <thread>
+
+using namespace std::chrono_literals;
+
 OS::OS()
     : m_keyboard(CardKB(uint8_t(0x5f))),
       m_ui(UI()),
@@ -19,6 +23,7 @@ void OS::run() {
                 .processNextEvent(std::move(m_eventQueue.front()));
             m_eventQueue.pop();
         }
+        m_appManager.getCurrentApp().updateUI();
         std::this_thread::sleep_for(10ms);
     }
 }

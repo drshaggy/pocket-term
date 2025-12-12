@@ -1,6 +1,6 @@
 #include <memory>
 
-#include "ui.h"
+#include "ui/ui.h"
 #include "app_manager.h"
 #include "apps/home.h"
 #include "apps/launcher.h"
@@ -8,10 +8,9 @@
 AppManager::AppManager(UI& ui)
     : m_ui(ui),
       m_currentApp(HOME)
-
 {
-    m_installedApps[HOME] = [](UI& ui){return std::make_unique<Home>(ui);};
-    m_installedApps[LAUNCHER] = [](UI& ui){return std::make_unique<Launcher>(ui);};
+    m_installedApps[HOME] = [this](UI& ui){return std::make_unique<Home>(*this, ui);};
+    m_installedApps[LAUNCHER] = [this](UI& ui){return std::make_unique<Launcher>(*this, ui);};
 
     launchApp(HOME);
 };
@@ -32,3 +31,4 @@ void AppManager::switchToApp(Apps appId) {
     m_lastApp = m_currentApp;
     m_currentApp = appId;
 }
+

@@ -1,4 +1,5 @@
 #include "ui.h"
+#include "drivers/tty_display.h"
 
 UI::UI() {
     m_display = std::make_unique<TtyDisplay>();
@@ -21,4 +22,8 @@ void UI::println(const std::string& text){
 
 void UI::clear() {
     m_display->clear();
+}
+
+void UI::update() {
+
 }

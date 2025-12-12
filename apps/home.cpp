@@ -1,5 +1,10 @@
 #include "home.h"
 
+#include "../utilities.h"
+#include "../ui/ui.h"
+
+#include <iostream>
+
 int Home::initialise() {
     std::clog << "Home Initialised" << std::endl;
     m_ui.clear();
@@ -11,7 +16,7 @@ int Home::initialise() {
     return 0;
 }
 
-int Home::processSpecificEvent(const Event& e) {
+int Home::processSpecificEvent(Event& e) {
     return 0;
 }
 

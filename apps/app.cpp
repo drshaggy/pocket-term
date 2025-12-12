@@ -1,7 +1,10 @@
 #include "app.h"
+#include "../app_manager.h"
+#include "../ui/ui.h"
 
-App::App(UI& ui) :
-    m_ui{ui}
+App::App(AppManager& appManager, UI& ui)
+    : m_appManager{appManager},
+      m_ui{ui}
 {};
 
 int App::initialise(){
@@ -9,12 +12,12 @@ int App::initialise(){
 }
 
 //Event gets moved in to this function by design, tying the event lifetime to this functions  scope
-int App::processNextEvent(const Event e){
+int App::processNextEvent(Event e){
     if (e.type == KEY_PRESS) {
         char key = static_cast<KeyEventData&>(*e.data).getKey();
         //clear screen on escape
         if (key == '\x1b') {
-            m_ui.clear();
+            m_appManager.switchToApp(HOME);
         } else {
             m_ui.print(std::string(1, key));
         }
@@ -25,6 +28,10 @@ int App::processNextEvent(const Event e){
 }
 
 // pass event by reference as unique pointer
-int App::processSpecificEvent(const Event& e){
+int App::processSpecificEvent([[maybe_unused]]Event& e){
     return 1;
+}
+
+void App::updateUI(){
+   m_ui.update();
 }
