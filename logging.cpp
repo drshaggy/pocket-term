@@ -6,6 +6,8 @@ void setupLogging() {
       auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(
           "/tmp/pocketterm.log", 1024 * 1024 * 5, 3);
 
+      // Set file sink to flush on every write (for debugging)
+      file_sink->set_level(spdlog::level::trace);
 
       auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
 
@@ -16,5 +18,10 @@ void setupLogging() {
       spdlog::set_level(spdlog::level::debug);
       spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%^%l%$] %v");
 
+      // CRITICAL: Force flush on every log message
+      spdlog::flush_on(spdlog::level::trace);
 
+      // Test write immediately
+      spdlog::info("Logger initialized - testing file write");
+      spdlog::default_logger()->flush();
 }
