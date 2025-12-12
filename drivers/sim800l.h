@@ -15,6 +15,7 @@ public:
     void end();
     void poll() override;
     bool checkConnection();
+    int readSMS(int index, std::string& response);
 };
 
 #endif // SIM800L_H_
