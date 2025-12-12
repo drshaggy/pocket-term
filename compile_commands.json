@@ -1,1 +1,92 @@
-build/compile_commands.json
+[
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/main.cpp.o -c /Users/connor/Documents/Repos/pocket-term/main.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/main.cpp",
+  "output": "CMakeFiles/pocket-term.dir/main.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/os.cpp.o -c /Users/connor/Documents/Repos/pocket-term/os.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/os.cpp",
+  "output": "CMakeFiles/pocket-term.dir/os.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/app_manager.cpp.o -c /Users/connor/Documents/Repos/pocket-term/app_manager.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/app_manager.cpp",
+  "output": "CMakeFiles/pocket-term.dir/app_manager.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/event.cpp.o -c /Users/connor/Documents/Repos/pocket-term/event.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/event.cpp",
+  "output": "CMakeFiles/pocket-term.dir/event.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/ui/ui.cpp.o -c /Users/connor/Documents/Repos/pocket-term/ui/ui.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/ui/ui.cpp",
+  "output": "CMakeFiles/pocket-term.dir/ui/ui.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/ui/screen.cpp.o -c /Users/connor/Documents/Repos/pocket-term/ui/screen.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/ui/screen.cpp",
+  "output": "CMakeFiles/pocket-term.dir/ui/screen.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/utilities.cpp.o -c /Users/connor/Documents/Repos/pocket-term/utilities.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/utilities.cpp",
+  "output": "CMakeFiles/pocket-term.dir/utilities.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/event_source.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/drivers/event_source.cpp",
+  "output": "CMakeFiles/pocket-term.dir/drivers/event_source.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/cardkb.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/drivers/cardkb.cpp",
+  "output": "CMakeFiles/pocket-term.dir/drivers/cardkb.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/sim800l.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/drivers/sim800l.cpp",
+  "output": "CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/drivers/display.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/display.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/drivers/display.cpp",
+  "output": "CMakeFiles/pocket-term.dir/drivers/display.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o -c /Users/connor/Documents/Repos/pocket-term/drivers/tty_display.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/drivers/tty_display.cpp",
+  "output": "CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/apps/app.cpp.o -c /Users/connor/Documents/Repos/pocket-term/apps/app.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/apps/app.cpp",
+  "output": "CMakeFiles/pocket-term.dir/apps/app.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/apps/home.cpp.o -c /Users/connor/Documents/Repos/pocket-term/apps/home.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/apps/home.cpp",
+  "output": "CMakeFiles/pocket-term.dir/apps/home.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/apps/launcher.cpp.o -c /Users/connor/Documents/Repos/pocket-term/apps/launcher.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/apps/launcher.cpp",
+  "output": "CMakeFiles/pocket-term.dir/apps/launcher.cpp.o"
+}
+]

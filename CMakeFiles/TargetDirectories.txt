@@ -1,0 +1,7 @@
+/Users/connor/Documents/Repos/pocket-term/CMakeFiles/pocket-term.dir
+/Users/connor/Documents/Repos/pocket-term/CMakeFiles/edit_cache.dir
+/Users/connor/Documents/Repos/pocket-term/CMakeFiles/rebuild_cache.dir
+/Users/connor/Documents/Repos/pocket-term/CMakeFiles/list_install_components.dir
+/Users/connor/Documents/Repos/pocket-term/CMakeFiles/install.dir
+/Users/connor/Documents/Repos/pocket-term/CMakeFiles/install/local.dir
+/Users/connor/Documents/Repos/pocket-term/CMakeFiles/install/strip.dir

@@ -14,6 +14,12 @@ make
 sudo make install
 ```
 
+## Logging Library
+
+```
+sudo apt install libspdlog-dev
+```
+
 ## Building
 
 ```

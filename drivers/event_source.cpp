@@ -8,7 +8,7 @@ Event EventSource::getNextEvent(){
     //move as EventData is unique_ptr
     Event e = std::move(m_eventQueue.front());
     m_eventQueue.pop();
-    return std::move(e);
+    return e;
 }
 
 void EventSource::poll() {}

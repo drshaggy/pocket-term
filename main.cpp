@@ -1,9 +1,10 @@
-#include <iostream>
 #include "os.h"
+#include "logging.h"
 
 // auto main(int argc, char *argv[]) -> int {
 int main() {
-    std::clog << "Starting Pocket Terminal OS" << std::endl;
+    setupLogging();
+    spdlog::info("Starting Pocket Terminal OS");
     OS os;
 
     os.run();
@@ -11,3 +12,4 @@ int main() {
     os.cleanUp();
     return 0;
 }
+

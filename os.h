@@ -21,6 +21,7 @@ private:
     CardKB m_keyboard; //Change to a vector of input devices OR event creators
     UI m_ui;
     AppManager m_appManager;
+    void setupLogging();
 };
 
 #endif // OS_H_

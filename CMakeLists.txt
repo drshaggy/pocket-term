@@ -16,11 +16,13 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 # Find bcm2835 library
 find_library(BCM2835_LIBRARY bcm2835 REQUIRED)
+find_package(spdlog REQUIRED)
 
 # Source files
 set(SOURCES
     main.cpp
     os.cpp
+    logging.cpp
     app_manager.cpp
     event.cpp
     ui/ui.cpp
@@ -41,6 +43,7 @@ set(HEADERS
     ui/ui.h
     ui/screen.h
     os.h
+    logging.h
     app_manager.h
     event.h
     utilities.h
@@ -59,6 +62,7 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE ${BCM2835_LIBRARY})
+target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog)
 
 # Include directories
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR})

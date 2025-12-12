@@ -21,3 +21,7 @@ Sim800l::Sim800l(std::string device, int baudRate)
 void Sim800l::poll() {
 
 }
+
+void Sim800l::end() {
+    close(m_serialPort);
+}

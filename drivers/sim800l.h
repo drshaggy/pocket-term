@@ -12,6 +12,7 @@ private:
 	int m_serialPort;
 public:
 	Sim800l(std::string device, int baudRate);
+	void end();
 	void poll() override;
 };
 
