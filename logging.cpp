@@ -4,7 +4,7 @@
 void setupLogging() {
     // Rotating file - 5MB max, 3 backup files
     auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(
-        "/tmp/pocketterm.log", 1024 * 1024 * 5, 3);
+        "logs/pocketterm.log", 1024 * 1024 * 5, 3);
 
     // Also log to console for debugging
     auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
