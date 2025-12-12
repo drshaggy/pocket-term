@@ -32,4 +32,5 @@ void Sim800l::end() {
 bool Sim800l::checkConnection() {
     unsigned char msg[] = { 'A', 'T', '\r' };
     write(m_serialPort, msg, sizeof(msg));
+    return false;
 }
