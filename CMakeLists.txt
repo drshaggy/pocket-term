@@ -28,6 +28,7 @@ set(SOURCES
     utilities.cpp
     drivers/event_source.cpp
     drivers/cardkb.cpp
+    drivers/sim800l.cpp
     drivers/display.cpp
     drivers/tty_display.cpp
     apps/app.cpp
@@ -45,6 +46,7 @@ set(HEADERS
     utilities.h
     drivers/event_source.h
     drivers/cardkb.h
+    drivers/sim800l.h
     drivers/display.h
     drivers/tty_display.h
     apps/app.h

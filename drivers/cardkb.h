@@ -11,7 +11,6 @@ private:
     uint8_t  m_address;
 public:
     CardKB(uint8_t address);
-    int initialise();
     void end();
     int read();
     void poll() override;
