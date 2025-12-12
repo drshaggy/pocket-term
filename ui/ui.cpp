@@ -1,10 +1,12 @@
 #include "ui.h"
 #include "drivers/tty_display.h"
 
+#include <spdlog/spdlog.h>
+
 UI::UI() {
     m_display = std::make_unique<TtyDisplay>();
     if (m_display->initialise()){
-        std::cerr << "Failed to initialise display" << std::endl;
+        spdlog::error("Display Initialisation Failed");
     }
 }
 

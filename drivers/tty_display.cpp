@@ -1,19 +1,21 @@
 #include "tty_display.h"
 
+#include <spdlog/spdlog.h>
+
 TtyDisplay::TtyDisplay() :
     Display()
 {};
 
 int TtyDisplay::initialise() {
     std::this_thread::sleep_for(500ms);
-    std::clog << "TtyDisplay Initialised" << std::endl;
+    spdlog::info("TtyDisplay Initialised");
     return 0;
 }
 
 int TtyDisplay::clear() {
     std::this_thread::sleep_for(500ms);
 
-    //std::cout << "\033[2J\033[H" << std::flush;
+    std::cout << "\033[2J\033[H" << std::flush;
     return 0;
 }
 

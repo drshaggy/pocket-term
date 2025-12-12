@@ -1,5 +1,8 @@
 #include "logging.h"
 
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/rotating_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 
 void setupLogging() {
       // Rotating file - 5MB max, 3 backup files
@@ -20,8 +23,4 @@ void setupLogging() {
 
       // CRITICAL: Force flush on every log message
       spdlog::flush_on(spdlog::level::trace);
-
-      // Test write immediately
-      spdlog::info("Logger initialized - testing file write");
-      spdlog::default_logger()->flush();
 }
