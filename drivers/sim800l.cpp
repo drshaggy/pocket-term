@@ -50,7 +50,7 @@ void Sim800l::poll() {
                         int index = std::stoi(response.substr(pos + 1));
                         std::string response;
                         if (readSMS(index, response)) {
-                            spdlog::debug(response);
+                            spdlog::debug("SMS index: {}, content: {}", index, response);
                             // Create Event here
                         }
                     }
@@ -80,10 +80,10 @@ bool Sim800l::checkConnection() {
 }
 
 int Sim800l::readSMS(int index, std::string& response) {
-    unsigned char num = '0' + index;
-    unsigned char msg[] = { 'A', 'T', '+', 'C', 'M', 'G', 'R', '=', num, '\r' };
+    std::string cmd = "AT+CMGR=" + std::to_string(index) + "\r";
+    spdlog::debug("Command: {}", cmd);
+    write(m_serialPort, cmd.c_str(), cmd.length());
 
-    write(m_serialPort, msg, sizeof(msg));
     usleep(500000);
 
     char readBuf [256] {0};
