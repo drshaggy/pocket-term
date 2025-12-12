@@ -13,6 +13,12 @@
 },
 {
   "directory": "/Users/connor/Documents/Repos/pocket-term",
+  "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/logging.cpp.o -c /Users/connor/Documents/Repos/pocket-term/logging.cpp",
+  "file": "/Users/connor/Documents/Repos/pocket-term/logging.cpp",
+  "output": "CMakeFiles/pocket-term.dir/logging.cpp.o"
+},
+{
+  "directory": "/Users/connor/Documents/Repos/pocket-term",
   "command": "/usr/bin/c++ -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/Users/connor/Documents/Repos/pocket-term -isystem /opt/homebrew/include  -Wall -Wextra -std=c++2b -arch arm64 -o CMakeFiles/pocket-term.dir/app_manager.cpp.o -c /Users/connor/Documents/Repos/pocket-term/app_manager.cpp",
   "file": "/Users/connor/Documents/Repos/pocket-term/app_manager.cpp",
   "output": "CMakeFiles/pocket-term.dir/app_manager.cpp.o"

@@ -18,6 +18,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/connor/Documents/Repos/pocket-term/drivers/sim800l.cpp" "CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o" "gcc" "CMakeFiles/pocket-term.dir/drivers/sim800l.cpp.o.d"
   "/Users/connor/Documents/Repos/pocket-term/drivers/tty_display.cpp" "CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o" "gcc" "CMakeFiles/pocket-term.dir/drivers/tty_display.cpp.o.d"
   "/Users/connor/Documents/Repos/pocket-term/event.cpp" "CMakeFiles/pocket-term.dir/event.cpp.o" "gcc" "CMakeFiles/pocket-term.dir/event.cpp.o.d"
+  "/Users/connor/Documents/Repos/pocket-term/logging.cpp" "CMakeFiles/pocket-term.dir/logging.cpp.o" "gcc" "CMakeFiles/pocket-term.dir/logging.cpp.o.d"
   "/Users/connor/Documents/Repos/pocket-term/main.cpp" "CMakeFiles/pocket-term.dir/main.cpp.o" "gcc" "CMakeFiles/pocket-term.dir/main.cpp.o.d"
   "/Users/connor/Documents/Repos/pocket-term/os.cpp" "CMakeFiles/pocket-term.dir/os.cpp.o" "gcc" "CMakeFiles/pocket-term.dir/os.cpp.o.d"
   "/Users/connor/Documents/Repos/pocket-term/ui/screen.cpp" "CMakeFiles/pocket-term.dir/ui/screen.cpp.o" "gcc" "CMakeFiles/pocket-term.dir/ui/screen.cpp.o.d"
