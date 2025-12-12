@@ -6,7 +6,7 @@
 #include <spdlog/spdlog.h>
 
 int Home::initialise() {
-    spdlog::info("Launcher App Initilialised");
+    spdlog::info("Home App Initilialised");
     m_ui.clear();
     m_ui.println("Pocket Terminal OS");
     m_ui.println("");
