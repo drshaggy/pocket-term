@@ -1,10 +1,9 @@
 #include "launcher.h"
 #include "../ui/ui.h"
-
-#include <iostream>
+#include <spdlog/spdlog.h>
 
 int Launcher::initialise(){
-    std::clog << "Launcher Initialised" << std::endl;
+    spdlog::info("Launcher App Initilialised");
     return 0;
 }
 

@@ -3,10 +3,10 @@
 #include "../utilities.h"
 #include "../ui/ui.h"
 
-#include <iostream>
+#include <spdlog/spdlog.h>
 
 int Home::initialise() {
-    std::clog << "Home Initialised" << std::endl;
+    spdlog::info("Launcher App Initilialised");
     m_ui.clear();
     m_ui.println("Pocket Terminal OS");
     m_ui.println("");

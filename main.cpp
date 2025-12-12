@@ -1,6 +1,7 @@
 #include "os.h"
 #include "logging.h"
 
+#include <spdlog/spdlog.h>
 // auto main(int argc, char *argv[]) -> int {
 int main() {
     setupLogging();
