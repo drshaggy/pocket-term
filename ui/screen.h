@@ -2,6 +2,7 @@
 #define SCREEN_H_
 
 #include <string>
+#include <cstdint>
 
 class Screen
 {
