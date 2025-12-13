@@ -20,7 +20,7 @@ echo "Running CMake..."
 cmake ..
 
 echo "Building..."
-cmake --build . -j$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
+cmake --build . 
 
 echo "✓ Build complete!"
 echo "Binary: $PROJECT_ROOT/build/pocket-term"
