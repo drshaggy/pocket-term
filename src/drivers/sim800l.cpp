@@ -61,35 +61,21 @@ Sim800l::Sim800l(std::string device, int baudRate)
 }
 
 void Sim800l::poll() {
-    char buffer[512] = {0};
-    int bytes = read(m_serialPort, buffer, sizeof(buffer) - 1);
-    if (bytes > 0) {
-        buffer[bytes] = '\0';
-        std::string response(buffer);
-        m_readBuffer += response;
-        spdlog::debug("Read Buffer: {}", m_readBuffer);
-        size_t start = m_readBuffer.find("\r\n");
-        if (start != std::string::npos) {
-            size_t end = m_readBuffer.find("\r\n", start + 1);
-            if (end != std::string::npos) {
-                // Check for new SMS notification
-                if (m_readBuffer.find("+CMTI:") != std::string::npos) {
-                    spdlog::info("New SMS received. Bytes: {}. Command: {}", bytes, m_readBuffer);
-                    // Extract message index (e.g., from "+CMTI: "SM",5")
-                    size_t pos = m_readBuffer.find_last_of(',');
-                    if (pos != std::string::npos) {
-                        int index = std::stoi(m_readBuffer.substr(pos + 1));
-                        std::string msg;
-                        if (readSMS(index, msg)) {
-                            spdlog::debug("SMS index: {}, content: {}", index, msg);
-                            // Create Event here
-                        }
-                    }
-                }
-                m_readBuffer.clear();
+    std::string response;
+    readSerial(response);
+
+    if (response.find("+CMTI:") != std::string::npos) {
+        spdlog::info("New SMS received. UCR: {}", response);
+        // Extract message index (e.g., from "+CMTI: "SM",5")
+        size_t pos = response.find_last_of(',');
+        if (pos != std::string::npos) {
+            int index = std::stoi(response.substr(pos + 1));
+            std::string msg;
+            if (readSMS(index, msg)) {
+                spdlog::debug("SMS index: {}, content: {}", index, msg);
+                // Create Event here
             }
         }
-
     }
 }
 
@@ -127,4 +113,25 @@ int Sim800l::readSMS(int index, std::string& response) {
         return 0;
     }
     return 1;
+}
+
+int Sim800l::readSerial(std::string& response) {
+    char buf[512] = {0};
+    size_t start {std::string::npos};
+    size_t end {std::string::npos};
+    response.clear();
+    int bytes = read(m_serialPort, buf, sizeof(buf) - 1);
+    if (bytes > 0) {
+        while (end == std::string::npos) {
+            bytes = read(m_serialPort, buf, sizeof(buf) - 1);
+            buf[bytes] = '\0';
+            response += buf;
+            spdlog::debug("Read Buffer: {}", response);
+            start = response.find("\r\n");
+            if (start != std::string::npos) {
+                end =  response.find("\r\n", start + 1);
+            }
+        }
+    }
+    return 0;
 }
