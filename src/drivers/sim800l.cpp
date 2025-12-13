@@ -62,7 +62,7 @@ Sim800l::Sim800l(std::string device, int baudRate)
 
 void Sim800l::poll() {
     std::string response;
-    readSerial(response);
+    readSerialLine(response);
 
     if (response.find("+CMTI:") != std::string::npos) {
         spdlog::info("New SMS received. UCR: {}", response);
@@ -71,9 +71,11 @@ void Sim800l::poll() {
         if (pos != std::string::npos) {
             int index = std::stoi(response.substr(pos + 1));
             std::string msg;
-            if (readSMS(index, msg)) {
+            if (!readSMS(index, msg)) {
                 spdlog::debug("SMS index: {}, content: {}", index, msg);
                 // Create Event here
+            } else {
+                spdlog::error("Failed to read SMS Message");
             }
         }
     }
@@ -107,12 +109,12 @@ int Sim800l::readSMS(int index, std::string& response) {
 
     std::string sr;
     int success {1};
-    success = readSerial(sr);
+    success = readSerialLine(sr);
     response = sr;
     return success;
 }
 
-int Sim800l::readSerial(std::string& response) {
+int Sim800l::readSerialLine(std::string& response) {
     char buf[512] = {0};
     size_t start {std::string::npos};
     size_t end {std::string::npos};
