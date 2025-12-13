@@ -67,6 +67,7 @@ void Sim800l::poll() {
         buffer[bytes] = '\0';
         std::string response(buffer);
         m_readBuffer += response;
+        spdlog::debug("Read Buffer: {}", m_readBuffer);
         if (response.find("\n") != std::string::npos) {
             // Check for new SMS notification
             if (m_readBuffer.find("+CMTI:") != std::string::npos) {
