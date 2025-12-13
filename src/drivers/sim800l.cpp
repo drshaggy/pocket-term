@@ -70,7 +70,7 @@ void Sim800l::poll() {
 
         // Check for new SMS notification
         if (response.find("+CMTI:") != std::string::npos) {
-            spdlog::info("New SMS received: {}", response);
+            spdlog::info("New SMS received. Bytes: {}. Command: {}", bytes, response);
             // Extract message index (e.g., from "+CMTI: "SM",5")
             size_t pos = response.find_last_of(',');
             if (pos != std::string::npos) {
