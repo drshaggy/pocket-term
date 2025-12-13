@@ -68,18 +68,22 @@ void Sim800l::poll() {
         std::string response(buffer);
         m_readBuffer += response;
         spdlog::debug("Read Buffer: {}", m_readBuffer);
-        if (response.find("\n") != std::string::npos) {
-            // Check for new SMS notification
-            if (m_readBuffer.find("+CMTI:") != std::string::npos) {
-                spdlog::info("New SMS received. Bytes: {}. Command: {}", bytes, m_readBuffer);
-                // Extract message index (e.g., from "+CMTI: "SM",5")
-                size_t pos = m_readBuffer.find_last_of(',');
-                if (pos != std::string::npos) {
-                    int index = std::stoi(m_readBuffer.substr(pos + 1));
-                    std::string msg;
-                    if (readSMS(index, msg)) {
-                        spdlog::debug("SMS index: {}, content: {}", index, msg);
-                        // Create Event here
+        size_t start = m_readBuffer.find("\r\n");
+        if (start != std::string::npos) {
+            size_t end = m_readBuffer.find("\r\n", start + 1);
+            if (end != std::string::npos) {
+                // Check for new SMS notification
+                if (m_readBuffer.find("+CMTI:") != std::string::npos) {
+                    spdlog::info("New SMS received. Bytes: {}. Command: {}", bytes, m_readBuffer);
+                    // Extract message index (e.g., from "+CMTI: "SM",5")
+                    size_t pos = m_readBuffer.find_last_of(',');
+                    if (pos != std::string::npos) {
+                        int index = std::stoi(m_readBuffer.substr(pos + 1));
+                        std::string msg;
+                        if (readSMS(index, msg)) {
+                            spdlog::debug("SMS index: {}, content: {}", index, msg);
+                            // Create Event here
+                        }
                     }
                 }
                 m_readBuffer.clear();
