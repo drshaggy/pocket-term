@@ -20,6 +20,37 @@ Sim800l::Sim800l(std::string device, int baudRate)
         termios tty;
         if (tcgetattr(m_serialPort, &tty)!= 0) {
             spdlog::error("Error {} from tcgetattr: {}", errno, strerror(errno));
+        } else {
+            tty.c_cflag &= ~PARENB; //Disable Parity
+            tty.c_cflag |= CSTOPB; //One Stop Bit
+            tty.c_cflag &= ~CSIZE; //Clear size
+            tty.c_cflag |= CS8; //Set 8 bits size
+            tty.c_cflag &= ~CRTSCTS; //Disable hardware flow control
+            tty.c_cflag |= CREAD | CLOCAL; // Turn on READ & ignore ctrl lines (CLOCAL = 1)
+
+            tty.c_lflag &= ~ICANON; //Disable canonical mode
+            tty.c_lflag &= ~ECHO; // Disable echo
+            tty.c_lflag &= ~ECHOE; // Disable erasure
+            tty.c_lflag &= ~ECHONL; // Disable new-line echo
+            tty.c_lflag &= ~ISIG; // Disable interpretation of INTR, QUIT and SUSP
+
+            tty.c_iflag &= ~(IXON | IXOFF | IXANY); // Turn off s/w flow ctrl
+            tty.c_iflag &= ~(IGNBRK|BRKINT|PARMRK|ISTRIP|INLCR|IGNCR|ICRNL); // Disable any special handling of received bytes
+
+            tty.c_oflag &= ~OPOST; // Prevent special interpretation of output bytes (e.g. newline chars)
+            tty.c_oflag &= ~ONLCR; // Prevent conversion of newline to carriage return/line feed
+
+            tty.c_cc[VTIME] = 10;    // Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
+            tty.c_cc[VMIN] = 0;
+
+            // Set in/out baud rate to be 9600
+            cfsetispeed(&tty, B9600);
+            cfsetospeed(&tty, B9600);
+
+            // Save tty settings, also checking for error
+            if (tcsetattr(m_serialPort, TCSANOW, &tty) != 0) {
+                spdlog::error("Error {} from tcsetattr: {}", errno, strerror(errno));
+            }
         }
         if (checkConnection()) {
             spdlog::info("Connection to SIM800L established");
