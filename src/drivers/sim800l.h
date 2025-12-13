@@ -10,6 +10,7 @@ private:
     const std::string m_device;
     const int m_baudRate;
     int m_serialPort;
+    std::string m_readBuffer;
 public:
     Sim800l(std::string device, int baudRate);
     void end();
