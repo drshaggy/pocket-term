@@ -20,41 +20,41 @@ find_package(spdlog REQUIRED)
 
 # Source files
 set(SOURCES
-    main.cpp
-    os.cpp
-    logging.cpp
-    app_manager.cpp
-    event.cpp
-    ui/ui.cpp
-    ui/screen.cpp
-    utilities.cpp
-    drivers/event_source.cpp
-    drivers/cardkb.cpp
-    drivers/sim800l.cpp
-    drivers/display.cpp
-    drivers/tty_display.cpp
-    apps/app.cpp
-    apps/home.cpp
-    apps/launcher.cpp
+    src/main.cpp
+    src/core/os.cpp
+    src/core/logging.cpp
+    src/core/app_manager.cpp
+    src/core/event.cpp
+    src/core/time_utils.cpp
+    src/drivers/event_source.cpp
+    src/drivers/cardkb.cpp
+    src/drivers/sim800l.cpp
+    src/drivers/display.cpp
+    src/drivers/tty_display.cpp
+    src/ui/ui.cpp
+    src/ui/screen.cpp
+    src/apps/app.cpp
+    src/apps/home.cpp
+    src/apps/launcher.cpp
 )
 
 # Headers
 set(HEADERS
-    ui/ui.h
-    ui/screen.h
-    os.h
-    logging.h
-    app_manager.h
-    event.h
-    utilities.h
-    drivers/event_source.h
-    drivers/cardkb.h
-    drivers/sim800l.h
-    drivers/display.h
-    drivers/tty_display.h
-    apps/app.h
-    apps/home.h
-    apps/launcher.h
+    src/core/os.h
+    src/core/logging.h
+    src/core/app_manager.h
+    src/core/event.h
+    src/core/time_utils.h
+    src/drivers/event_source.h
+    src/drivers/cardkb.h
+    src/drivers/sim800l.h
+    src/drivers/display.h
+    src/drivers/tty_display.h
+    src/ui/ui.h
+    src/ui/screen.h
+    src/apps/app.h
+    src/apps/home.h
+    src/apps/launcher.h
 )
 
 # Create executable
