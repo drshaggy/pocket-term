@@ -54,7 +54,7 @@ Sim800l::Sim800l(std::string device, int baudRate)
         }
         if (checkConnection()) {
             spdlog::info("Connection to SIM800L established");
-            std::string cmd = "AT+CMGF=1" + "\r";
+            std::string cmd = "AT+CMGF=1\r";
             spdlog::debug("Command: {}", cmd);
             write(m_serialPort, cmd.c_str(), cmd.length());
             // read OK resp
