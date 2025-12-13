@@ -105,14 +105,11 @@ int Sim800l::readSMS(int index, std::string& response) {
 
     usleep(500000);
 
-    char readBuf [256] {0};
-    int n = read(m_serialPort, &readBuf, sizeof(readBuf));
-    if (n > 0) {
-        response = std::string(readBuf);
-        spdlog::debug("SIM800L Response: {}", response);
-        return 0;
-    }
-    return 1;
+    std::string sr;
+    int success {1};
+    success = readSerial(sr);
+    response = sr;
+    return success;
 }
 
 int Sim800l::readSerial(std::string& response) {
@@ -124,7 +121,7 @@ int Sim800l::readSerial(std::string& response) {
     if (bytes > 0) {
         while (end == std::string::npos) {
             bytes = read(m_serialPort, buf, sizeof(buf) - 1);
-            if (bytes <- 0) {
+            if (bytes <= 0) {
                 return 1;
             }
             buf[bytes] = '\0';
