@@ -127,9 +127,9 @@ int Sim800l::readSerial(std::string& response) {
             buf[bytes] = '\0';
             response += buf;
             spdlog::debug("Read Buffer: {}", response);
-            start = response.find("\r\n");
+            start = response.find("\r");
             if (start != std::string::npos) {
-                end =  response.find("\r\n", start + 1);
+                end =  response.find("\r", start + 1);
             }
         }
     }
