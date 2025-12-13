@@ -119,20 +119,17 @@ int Sim800l::readSerialLine(std::string& response) {
     size_t start {std::string::npos};
     size_t end {std::string::npos};
     response.clear();
-    int bytes = read(m_serialPort, buf, sizeof(buf) - 1);
-    if (bytes > 0) {
-        while (end == std::string::npos) {
-            bytes = read(m_serialPort, buf, sizeof(buf) - 1);
-            if (bytes <= 0) {
-                return 1;
-            }
-            buf[bytes] = '\0';
-            response += buf;
-            spdlog::debug("Read Buffer: {}", response);
-            start = response.find("\n");
-            if (start != std::string::npos) {
-                end =  response.find("\n", start + 1);
-            }
+    while (end == std::string::npos) {
+        int bytes = read(m_serialPort, buf, sizeof(buf) - 1);
+        if (bytes <= 0) {
+            return 1;
+        }
+        buf[bytes] = '\0';
+        response += buf;
+        spdlog::debug("Read Buffer: {}", response);
+        start = response.find("\n");
+        if (start != std::string::npos) {
+            end =  response.find("\n", start + 1);
         }
     }
     return 0;
