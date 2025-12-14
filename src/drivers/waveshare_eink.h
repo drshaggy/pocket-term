@@ -2,17 +2,21 @@
 #define WAVESHARE_EINK_H_
 
 #include "display.h"
-#include "../../external/waveshare/Config/DEV_Config.h"
+
+struct Cursor
+{
+    int x;
+    int y;
+};
 
 class WaveshareEink : public Display {
 private:
-    UBYTE* m_frameBuffer;
-    UDOUBLE m_displaySize;
-    uint16_t m_width;
-    uint16_t m_height;
-    uint16_t m_rotation;
+    Cursor m_cursor;
 public:
     WaveshareEink(bool verticalOrientation);
+    int println(const std::string& text) override;
+    int print(const std::string& text) override;
+    int printHighlighted(const std::string& text) override;
 };
 
 

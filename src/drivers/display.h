@@ -2,11 +2,17 @@
 #define DISPLAY_H_
 
 #include <string>
+#include "../../external/waveshare/Config/DEV_Config.h"
 
 class Display
 {
 protected:
     bool m_verticalOrientation;
+    UBYTE* m_frameBuffer;
+    UDOUBLE m_displaySize;
+    uint16_t m_width;
+    uint16_t m_height;
+    uint16_t m_rotation;
 public:
     Display(bool verticalOrientation);
     virtual ~Display() = default;

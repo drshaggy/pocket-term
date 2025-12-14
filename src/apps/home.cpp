@@ -13,6 +13,7 @@ int Home::initialise() {
     m_ui.print(getCurrentTime());
     m_ui.print("  ");
     m_ui.printHighlighted(getCurrentDate());
+    m_ui.update();
     return 0;
 }
 
