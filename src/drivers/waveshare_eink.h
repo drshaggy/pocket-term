@@ -11,6 +11,8 @@ struct Cursor
 
 class WaveshareEink : public Display {
 private:
+    UBYTE* m_prevBuffer;
+    UBYTE* m_frameBuffer;
     Cursor m_cursor;
 public:
     WaveshareEink(bool verticalOrientation);

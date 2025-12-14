@@ -29,6 +29,9 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         if((m_frameBuffer = (UBYTE *)malloc(m_displaySize)) == NULL) {
              spdlog::error("Failed to apply for black memory...\r\n");
         }
+        if((m_prevBuffer = (UBYTE *)malloc(m_displaySize)) == NULL) {
+             spdlog::error("Failed to apply for black memory...\r\n");
+        }
         printf("Paint_NewImage\r\n");
         Paint_NewImage(m_frameBuffer, m_width, m_height, 0, WHITE);
         Paint_SelectImage(m_frameBuffer);
@@ -69,7 +72,7 @@ int WaveshareEink::redraw() {
     }
     EPD_4in26_Display(m_frameBuffer);
     DEV_Delay_ms(2000);
-    m_prevBuffer = m_frameBuffer;
+    memcpy(m_prevBuffer, m_frameBuffer, m_displaySize);
     return 0;
 }
 
