@@ -5,7 +5,7 @@
 
 class WaveshareEink : public Display {
 public:
-	WaveshareEink(bool verticalOrientation);
+    WaveshareEink(bool verticalOrientation);
 };
 
 

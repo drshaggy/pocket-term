@@ -3,10 +3,6 @@
 Display::Display(bool verticalOrientation)
     : m_verticalOrientation(verticalOrientation) {};
 
-int Display::initialise() {
-    return 1;
-}
-
 int Display::redraw() {
     return 1;
 };

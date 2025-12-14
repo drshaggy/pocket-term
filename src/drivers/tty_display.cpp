@@ -9,13 +9,9 @@ using namespace std::chrono_literals;
 
 TtyDisplay::TtyDisplay(bool verticalOrientation) :
     Display(verticalOrientation)
-{};
-
-int TtyDisplay::initialise() {
-    std::this_thread::sleep_for(500ms);
+{
     spdlog::info("TtyDisplay Initialised");
-    return 0;
-}
+};
 
 int TtyDisplay::clear() {
     std::this_thread::sleep_for(500ms);

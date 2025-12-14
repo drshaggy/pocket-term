@@ -7,6 +7,8 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
     if(DEV_Module_Init() != 0) {
         spdlog::error("Failed to initlialise Waveshare Eink Display");
        //module doesnt load
+    } else {
+        spdlog::info("Waveshare Eink Device initialised");
     }
 
 }

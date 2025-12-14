@@ -5,9 +5,6 @@
 
 UI::UI() {
     m_display = std::make_unique<WaveshareEink>(true);
-    if (m_display->initialise()){
-        spdlog::error("Display Initialisation Failed");
-    }
 }
 
 void UI::print(const std::string& text){

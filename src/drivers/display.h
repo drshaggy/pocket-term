@@ -10,7 +10,6 @@ private:
 public:
     Display(bool verticalOrientation);
     virtual ~Display() = default;
-    virtual int initialise();
     virtual int redraw();
     virtual int clear();
     //text functions
