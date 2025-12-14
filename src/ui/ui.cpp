@@ -4,7 +4,7 @@
 #include <spdlog/spdlog.h>
 
 UI::UI() {
-    m_display = std::make_unique<WaveshareEink>(true);
+    m_display = std::make_unique<WaveshareEink>(false);
 }
 
 void UI::print(const std::string& text){
