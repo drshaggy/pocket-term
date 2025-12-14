@@ -7,7 +7,7 @@
 class TtyDisplay : public Display
 {
 public:
-    using Display::Display;
+    TtyDisplay(bool verticalOrientation);
     int initialise() override;
     int clear() override;
     int print(const std::string& text) override;

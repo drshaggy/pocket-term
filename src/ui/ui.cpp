@@ -4,7 +4,7 @@
 #include <spdlog/spdlog.h>
 
 UI::UI() {
-    m_display = std::make_unique<TtyDisplay>();
+    m_display = std::make_unique<TtyDisplay>(true);
     if (m_display->initialise()){
         spdlog::error("Display Initialisation Failed");
     }

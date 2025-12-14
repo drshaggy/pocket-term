@@ -4,7 +4,12 @@
 #include <iostream>
 #include <thread>
 
+
 using namespace std::chrono_literals;
+
+TtyDisplay::TtyDisplay(bool verticalOrientation) :
+    Display(verticalOrientation)
+{};
 
 int TtyDisplay::initialise() {
     std::this_thread::sleep_for(500ms);
