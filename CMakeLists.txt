@@ -67,7 +67,7 @@ set(HEADERS
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 # Define platform and GPIO for Waveshare
-target_compile_definitions(${PROJECT_NAME} PRIVATE RPI USE_BCM_2835_LIB)
+target_compile_definitions(${PROJECT_NAME} PRIVATE RPI USE_BCM2835_LIB)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE ${BCM2835_LIBRARY})
