@@ -21,13 +21,10 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
              spdlog::error("Failed to apply for black memory...\r\n");
         }
-        printf("Paint_NewImage\r\n");
-        Paint_NewImage(BlackImage, EPD_4in26_WIDTH, EPD_4in26_HEIGHT, 0, WHITE);
+        Paint_NewImage(BlackImage, EPD_4in26_WIDTH, EPD_4in26_HEIGHT, 0, BLACK);
         Paint_SelectImage(BlackImage);
-        Paint_Clear(WHITE);
-        Paint_DrawString_EN(10, 20, "Pocket Term", &Font12, WHITE, BLACK);
+        Paint_DrawString_EN(10, 20, "Pocket Term", &Font24, WHITE, BLACK);
         EPD_4in26_Display(BlackImage);
-        DEV_Delay_ms(2000);
         spdlog::info("Waveshare Eink Device initialised");
     }
 

@@ -22,6 +22,7 @@ find_package(spdlog REQUIRED)
 set(SOURCES
     external/waveshare/Config/DEV_Config.c
     external/waveshare/Fonts/font12.c
+    external/waveshare/Fonts/font24.c
     external/waveshare/GUI/GUI_Paint.c
     external/waveshare/GUI/GUI_BMPfile.c
     external/waveshare/EPD_4in26.c
