@@ -1,10 +1,10 @@
 #include "ui.h"
-#include "../drivers/tty_display.h"
+#include "../drivers/waveshare_eink.h"
 
 #include <spdlog/spdlog.h>
 
 UI::UI() {
-    m_display = std::make_unique<TtyDisplay>(true);
+    m_display = std::make_unique<WaveshareEink>(true);
     if (m_display->initialise()){
         spdlog::error("Display Initialisation Failed");
     }
