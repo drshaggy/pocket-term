@@ -50,7 +50,7 @@
 #include <unistd.h>
 #include <stdint.h>
 
-#include "DEV_Config.h"
+#include "../Config/DEV_Config.h"
 
 /*Bitmap file header   14bit*/
 typedef struct BMP_FILE_HEADER {
@@ -85,10 +85,19 @@ typedef struct RGB_QUAD {
 } __attribute__ ((packed)) BMPRGBQUAD;
 /**************************************** end ***********************************************/
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+	
 UBYTE GUI_ReadBmp(const char *path, UWORD Xstart, UWORD Ystart);
 UBYTE GUI_ReadBmp_4Gray(const char *path, UWORD Xstart, UWORD Ystart);
 UBYTE GUI_ReadBmp_16Gray(const char *path, UWORD Xstart, UWORD Ystart);
 UBYTE GUI_ReadBmp_RGB_4Color(const char *path, UWORD Xstart, UWORD Ystart);
 UBYTE GUI_ReadBmp_RGB_6Color(const char *path, UWORD Xstart, UWORD Ystart);
 UBYTE GUI_ReadBmp_RGB_7Color(const char *path, UWORD Xstart, UWORD Ystart);
+
+#ifdef __cplusplus
+    }
+#endif
+	
 #endif

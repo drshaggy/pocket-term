@@ -22,6 +22,7 @@ find_package(spdlog REQUIRED)
 set(SOURCES
     external/waveshare/Config/DEV_Config.c
     external/waveshare/GUI/GUI_Paint.c
+    external/waveshare/GUI/GUI_BMPfile.c
     external/waveshare/EPD_4in26.c
     src/main.cpp
     src/core/os.cpp
@@ -46,6 +47,7 @@ set(SOURCES
 set(HEADERS
     external/waveshare/Config/DEV_Config.h
     external/waveshare/GUI/GUI_Paint.h
+    external/waveshare/GUI/GUI_BMPfile.h
     external/waveshare/EPD_4in26.h
     src/core/os.h
     src/core/logging.h

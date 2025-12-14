@@ -2,6 +2,8 @@
 #include "../../external/waveshare/EPD_4in26.h"
 #include "../../external/waveshare/Config/DEV_Config.h"
 #include "../../external/waveshare/GUI/GUI_Paint.h"
+#include "../../external/waveshare/GUI/GUI_BMPfile.h"
+
 #include <spdlog/spdlog.h>
 
 WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrientation) {
@@ -18,10 +20,13 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
                              : (EPD_4in26_WIDTH / 8 + 1)) * EPD_4in26_HEIGHT;
         if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
              spdlog::error("Failed to apply for black memory...\r\n");
-         }
-         printf("Paint_NewImage\r\n");
-         Paint_NewImage(BlackImage, EPD_4in26_WIDTH, EPD_4in26_HEIGHT, 0, WHITE);
-
+        }
+        printf("Paint_NewImage\r\n");
+        Paint_NewImage(BlackImage, EPD_4in26_WIDTH, EPD_4in26_HEIGHT, 0, WHITE);
+        Paint_SelectImage(BlackImage);
+        Paint_Clear(WHITE);
+        GUI_ReadBmp("../../resources/PocketTermSplash.bmp", 10, 10);
+ 
 
         spdlog::info("Waveshare Eink Device initialised");
     }
