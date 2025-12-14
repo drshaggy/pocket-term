@@ -70,7 +70,7 @@
 #ifndef __GUI_PAINT_H
 #define __GUI_PAINT_H
 
-#include "DEV_Config.h"
+#include "../Config/DEV_Config.h"
 #include "../Fonts/fonts.h"
 
 /**
@@ -180,6 +180,10 @@ typedef struct {
 } PAINT_TIME;
 extern PAINT_TIME sPaint_time;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 //init and Clear
 void Paint_NewImage(UBYTE *image, UWORD Width, UWORD Height, UWORD Rotate, UWORD Color);
 void Paint_SelectImage(UBYTE *image);
@@ -208,6 +212,9 @@ void Paint_DrawTime(UWORD Xstart, UWORD Ystart, PAINT_TIME *pTime, sFONT* Font, 
 //pic
 void Paint_DrawBitMap(const unsigned char* image_buffer);
 
+#ifdef __cplusplus
+    }
+#endif
 
 #endif
 

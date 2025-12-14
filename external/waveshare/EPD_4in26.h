@@ -31,7 +31,7 @@
 #ifndef __EPD_4in26_H_
 #define __EPD_4in26_H_
 
-#include "../Config/DEV_Config.h"
+#include "Config/DEV_Config.h"
 
 // Display resolution
 #define EPD_4in26_WIDTH       800

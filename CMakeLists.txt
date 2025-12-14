@@ -21,7 +21,8 @@ find_package(spdlog REQUIRED)
 # Source files
 set(SOURCES
     external/waveshare/Config/DEV_Config.c
-    external/waveshare/e-Paper/EPD_4in26.c
+    external/waveshare/GUI/GUI_Paint.c
+    external/waveshare/EPD_4in26.c
     src/main.cpp
     src/core/os.cpp
     src/core/logging.cpp
@@ -44,7 +45,8 @@ set(SOURCES
 # Headers
 set(HEADERS
     external/waveshare/Config/DEV_Config.h
-    external/waveshare/e-Paper/EPD_4in26.h
+    external/waveshare/GUI/GUI_Paint.h
+    external/waveshare/EPD_4in26.h
     src/core/os.h
     src/core/logging.h
     src/core/app_manager.h

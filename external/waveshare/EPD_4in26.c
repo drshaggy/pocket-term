@@ -29,7 +29,7 @@
 #
 ******************************************************************************/
 #include "EPD_4in26.h"
-#include "../Config/Debug.h"
+#include "Config/Debug.h"
 
 const unsigned char LUT_DATA_4Gray[112] =    //112bytes
 {											
