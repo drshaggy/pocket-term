@@ -20,6 +20,8 @@ find_package(spdlog REQUIRED)
 
 # Source files
 set(SOURCES
+    external/waveshare/Config/DEV_config.c
+    external/waveshare/e-Paper/EPD_4in26.c
     src/main.cpp
     src/core/os.cpp
     src/core/logging.cpp
@@ -31,6 +33,7 @@ set(SOURCES
     src/drivers/sim800l.cpp
     src/drivers/display.cpp
     src/drivers/tty_display.cpp
+    src/drivers/waveshare_eink.cpp
     src/ui/ui.cpp
     src/ui/screen.cpp
     src/apps/app.cpp
@@ -40,6 +43,8 @@ set(SOURCES
 
 # Headers
 set(HEADERS
+    external/waveshare/Config/DEV_config.h
+    external/waveshare/e-Paper/EPD_4in26.h
     src/core/os.h
     src/core/logging.h
     src/core/app_manager.h
@@ -50,6 +55,7 @@ set(HEADERS
     src/drivers/sim800l.h
     src/drivers/display.h
     src/drivers/tty_display.h
+    src/drivers/waveshare_eink.h
     src/ui/ui.h
     src/ui/screen.h
     src/apps/app.h
