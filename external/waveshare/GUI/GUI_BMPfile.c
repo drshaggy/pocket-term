@@ -45,7 +45,6 @@
 
 #include "GUI_BMPfile.h"
 #include "GUI_Paint.h"
-#include "../Config/Debug.h"
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -64,7 +63,7 @@ UBYTE GUI_ReadBmp(const char *path, UWORD Xstart, UWORD Ystart)
 
     // Binary file open
     if((fp = fopen(path, "rb")) == NULL) {
-        Debug("Cann't open the file!\n");
+        printf("Can't open the file!\n");
         return 1;
     }
 
@@ -82,7 +81,7 @@ UBYTE GUI_ReadBmp(const char *path, UWORD Xstart, UWORD Ystart)
     // Determine if it is a monochrome bitmap
     int readbyte = bmpInfoHeader.biBitCount;
     if(readbyte != 1) {
-        Debug("the bmp Image is not a monochrome bitmap!\n");
+        printf("the bmp Image is not a monochrome bitmap!\n");
         return 1;
     }
 
@@ -148,7 +147,7 @@ UBYTE GUI_ReadBmp_4Gray(const char *path, UWORD Xstart, UWORD Ystart)
     
     // Binary file open
     if((fp = fopen(path, "rb")) == NULL) {
-        Debug("Cann't open the file!\n");
+        printf("Cann't open the file!\n");
         return 1;
     }
  
@@ -167,7 +166,7 @@ UBYTE GUI_ReadBmp_4Gray(const char *path, UWORD Xstart, UWORD Ystart)
     int readbyte = bmpInfoHeader.biBitCount;
     printf("biBitCount = %d\r\n",readbyte);
     if(readbyte != 4){
-        Debug("Bmp image is not a 4-color bitmap!\n");
+        printf("Bmp image is not a 4-color bitmap!\n");
         return 1;
     }
     // Read image data into the cache
@@ -213,7 +212,7 @@ UBYTE GUI_ReadBmp_16Gray(const char *path, UWORD Xstart, UWORD Ystart)
 
     // Binary file open
     if((fp = fopen(path, "rb")) == NULL) {
-        Debug("Cann't open the file!\n");
+        printf("Cann't open the file!\n");
         return 1;
     }
 
@@ -233,7 +232,7 @@ UBYTE GUI_ReadBmp_16Gray(const char *path, UWORD Xstart, UWORD Ystart)
     int readbyte = bmpInfoHeader.biBitCount;
     printf("biBitCount = %d\r\n",readbyte);
     if(readbyte != 4) {
-        Debug("Bmp image is not a 4-bit bitmap!\n");
+        printf("Bmp image is not a 4-bit bitmap!\n");
         return 1;
     }
 
@@ -294,7 +293,7 @@ UBYTE GUI_ReadBmp_RGB_7Color(const char *path, UWORD Xstart, UWORD Ystart)
     
     // Binary file open
     if((fp = fopen(path, "rb")) == NULL) {
-        Debug("Cann't open the file!\n");
+        printf("Cann't open the file!\n");
         return 1;
     }
 
@@ -311,7 +310,7 @@ UBYTE GUI_ReadBmp_RGB_7Color(const char *path, UWORD Xstart, UWORD Ystart)
     // Determine if it is a monochrome bitmap
     int readbyte = bmpInfoHeader.biBitCount;
     if(readbyte != 24){
-        Debug("Bmp image is not 24 bitmap!\n");
+        printf("Bmp image is not 24 bitmap!\n");
         return 1;
     }
     // Read image data into the cache
@@ -373,7 +372,7 @@ UBYTE GUI_ReadBmp_RGB_4Color(const char *path, UWORD Xstart, UWORD Ystart)
     
     // Binary file open
     if((fp = fopen(path, "rb")) == NULL) {
-        Debug("Cann't open the file!\n");
+        printf("Cann't open the file!\n");
         return 1;
     }
 
@@ -390,7 +389,7 @@ UBYTE GUI_ReadBmp_RGB_4Color(const char *path, UWORD Xstart, UWORD Ystart)
     // Determine if it is a monochrome bitmap
     int readbyte = bmpInfoHeader.biBitCount;
     if(readbyte != 24){
-        Debug("Bmp image is not 24 bitmap!\n");
+        printf("Bmp image is not 24 bitmap!\n");
         return 1;
     }
     // Read image data into the cache
@@ -455,7 +454,7 @@ UBYTE GUI_ReadBmp_RGB_6Color(const char *path, UWORD Xstart, UWORD Ystart)
     
     // Binary file open
     if((fp = fopen(path, "rb")) == NULL) {
-        Debug("Cann't open the file!\n");
+        printf("Cann't open the file!\n");
         return 1;
     }
 
@@ -472,7 +471,7 @@ UBYTE GUI_ReadBmp_RGB_6Color(const char *path, UWORD Xstart, UWORD Ystart)
     // Determine if it is a monochrome bitmap
     int readbyte = bmpInfoHeader.biBitCount;
     if(readbyte != 24){
-        Debug("Bmp image is not 24 bitmap!\n");
+        printf("Bmp image is not 24 bitmap!\n");
         return 1;
     }
     // Read image data into the cache
