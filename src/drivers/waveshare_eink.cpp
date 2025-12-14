@@ -17,9 +17,11 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         if (verticalOrientation) {
             m_width = EPD_4in26_HEIGHT;
             m_height = EPD_4in26_WIDTH;
+            m_rotation = ROTATE_90;
         } else {
             m_width = EPD_4in26_WIDTH;
             m_height = EPD_4in26_HEIGHT;
+            m_rotation = 0;
         }
         m_displaySize = ((m_width % 8 == 0)? (m_width / 8 )
                                     : (m_width / 8 + 1)) * m_height;
