@@ -66,6 +66,7 @@ int WaveshareEink::redraw() {
     }
     EPD_4in26_Display(m_frameBuffer);
     DEV_Delay_ms(2000);
+    m_prevBuffer = m_frameBuffer;
     return 0;
 }
 
