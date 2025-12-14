@@ -21,6 +21,7 @@ find_package(spdlog REQUIRED)
 # Source files
 set(SOURCES
     external/waveshare/Config/DEV_Config.c
+    external/waveshare/Fonts/font12.c
     external/waveshare/GUI/GUI_Paint.c
     external/waveshare/GUI/GUI_BMPfile.c
     external/waveshare/EPD_4in26.c
@@ -46,6 +47,7 @@ set(SOURCES
 # Headers
 set(HEADERS
     external/waveshare/Config/DEV_Config.h
+    external/waveshare/Fonts/fonts.h
     external/waveshare/GUI/GUI_Paint.h
     external/waveshare/GUI/GUI_BMPfile.h
     external/waveshare/EPD_4in26.h
