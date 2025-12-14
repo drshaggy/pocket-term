@@ -1,8 +1,6 @@
 #include "waveshare_eink.h"
 #include "../../external/waveshare/EPD_4in26.h"
-#include "../../external/waveshare/Config/DEV_Config.h"
 #include "../../external/waveshare/GUI/GUI_Paint.h"
-#include "../../external/waveshare/GUI/GUI_BMPfile.h"
 
 #include <spdlog/spdlog.h>
 
@@ -15,18 +13,24 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         EPD_4in26_Clear();
         DEV_Delay_ms(500);
 
-        UBYTE *BlackImage;
-        UDOUBLE Imagesize = ((EPD_4in26_WIDTH % 8 == 0)? (EPD_4in26_WIDTH / 8 )
-                             : (EPD_4in26_WIDTH / 8 + 1)) * EPD_4in26_HEIGHT;
-        if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
+        // Set framebuffer to display size
+        if (m_verticalOrientation) {
+            m_displaySize = ((EPD_4in26_HEIGHT % 8 == 0)? (EPD_4in26_HEIGHT / 8 )
+                                : (EPD_4in26_HEIGHT / 8 + 1)) * EPD_4in26_WIDTH;
+
+        } else {
+            m_displaySize = ((EPD_4in26_WIDTH % 8 == 0)? (EPD_4in26_WIDTH / 8 )
+                                : (EPD_4in26_WIDTH / 8 + 1)) * EPD_4in26_HEIGHT;
+        }
+        if((m_frameBuffer = (UBYTE *)malloc(m_displaySize)) == NULL) {
              spdlog::error("Failed to apply for black memory...\r\n");
         }
         printf("Paint_NewImage\r\n");
-        Paint_NewImage(BlackImage, EPD_4in26_WIDTH, EPD_4in26_HEIGHT, 0, WHITE);
-        Paint_SelectImage(BlackImage);
+        Paint_NewImage(m_frameBuffer, EPD_4in26_WIDTH, EPD_4in26_HEIGHT, 0, WHITE);
+        Paint_SelectImage(m_frameBuffer);
         Paint_Clear(WHITE);
         Paint_DrawString_EN(10, 20, "Pocket Term", &Font24, BLACK, WHITE);
-        EPD_4in26_Display(BlackImage);
+        EPD_4in26_Display(m_frameBuffer);
         DEV_Delay_ms(2000);
         spdlog::info("Waveshare Eink Device initialised");
     }

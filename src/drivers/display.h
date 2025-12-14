@@ -5,7 +5,7 @@
 
 class Display
 {
-private:
+protected:
     bool m_verticalOrientation;
 public:
     Display(bool verticalOrientation);
