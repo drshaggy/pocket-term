@@ -16,13 +16,12 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         DEV_Delay_ms(500);
 
         UBYTE *BlackImage;
-        UDOUBLE Imagesize = ((EPD_4in26_WIDTH % 8 == 0)? (EPD_4in26_WIDTH / 8 )
-                             : (EPD_4in26_WIDTH / 8 + 1)) * EPD_4in26_HEIGHT;
+        UDOUBLE Imagesize = ((EPD_4in26_HEIGHT % 8 == 0)? (EPD_4in26_HEIGHT / 8 )
+                             : (EPD_4in26_HEIGHT / 8 + 1)) * EPD_4in26_WIDTH;
         if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
              spdlog::error("Failed to apply for black memory...\r\n");
         }
-        printf("Paint_NewImage\r\n");
-        Paint_NewImage(BlackImage, EPD_4in26_WIDTH, EPD_4in26_HEIGHT, 0, WHITE);
+        Paint_NewImage(BlackImage, EPD_4in26_HEIGHT, EPD_4in26_WIDTH, ROTATE_90, WHITE);
         Paint_SelectImage(BlackImage);
         Paint_Clear(WHITE);
         if (GUI_ReadBmp("resources/PocketTermSplash.bmp", 0, 0) != 0) {
