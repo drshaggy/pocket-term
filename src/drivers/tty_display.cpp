@@ -6,10 +6,6 @@
 
 using namespace std::chrono_literals;
 
-TtyDisplay::TtyDisplay() :
-    Display()
-{};
-
 int TtyDisplay::initialise() {
     std::this_thread::sleep_for(500ms);
     spdlog::info("TtyDisplay Initialised");

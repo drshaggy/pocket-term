@@ -5,8 +5,10 @@
 
 class Display
 {
+private:
+    bool m_verticalOrientation;
 public:
-    Display();
+    Display(bool verticalOrientation);
     virtual ~Display() = default;
     virtual int initialise();
     virtual int redraw();

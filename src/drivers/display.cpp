@@ -1,7 +1,7 @@
 #include "display.h"
 
-Display::Display()
-{};
+Display::Display(bool verticalOrientation)
+    : m_verticalOrientation(verticalOrientation) {};
 
 int Display::initialise() {
     return 1;

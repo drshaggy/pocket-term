@@ -7,7 +7,7 @@
 class TtyDisplay : public Display
 {
 public:
-    TtyDisplay();
+    using Display::Display;
     int initialise() override;
     int clear() override;
     int print(const std::string& text) override;
