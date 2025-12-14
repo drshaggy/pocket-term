@@ -17,6 +17,8 @@ public:
     int println(const std::string& text) override;
     int print(const std::string& text) override;
     int printHighlighted(const std::string& text) override;
+    int redraw() override;
+    int clear() override;
 };
 
 

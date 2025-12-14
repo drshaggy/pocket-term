@@ -24,5 +24,5 @@ void UI::clear() {
 }
 
 void UI::update() {
-
+    m_display->redraw();
 }
