@@ -30,6 +30,7 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         Paint_NewImage(m_frameBuffer, m_width, m_height, 0, WHITE);
         Paint_SelectImage(m_frameBuffer);
         Paint_Clear(WHITE);
+        DEV_Delay_ms(2000);
         Paint_DrawString_EN(10, 20, "Pocket Term", &Font24, BLACK, WHITE);
         EPD_4in26_Display(m_frameBuffer);
         DEV_Delay_ms(2000);
