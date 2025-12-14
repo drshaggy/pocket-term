@@ -17,7 +17,7 @@ cd build
 
 # Configure and build
 echo "Running CMake..."
-cmake ..
+cmake -DCMAKE_BUILD_TYPE=Debug ..
 
 echo "Building..."
 cmake --build . 
