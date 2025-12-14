@@ -42,12 +42,14 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
 }
 
 int WaveshareEink::println(const std::string& text) {
+    Paint_SelectImage(m_frameBuffer);
     Paint_DrawString_EN(m_cursor.x, m_cursor.y, text.c_str(), &Font24, BLACK, WHITE);
     m_cursor.y += 20;
     return 0;
 }
 
 int WaveshareEink::print(const std::string& text) { 
+    Paint_SelectImage(m_frameBuffer);
     Paint_DrawString_EN(m_cursor.x, m_cursor.y, text.c_str(), &Font24, BLACK, WHITE);
     m_cursor.x += Font24.Width * text.length();
     return 0;
@@ -55,6 +57,7 @@ int WaveshareEink::print(const std::string& text) {
 }
 
 int WaveshareEink::printHighlighted(const std::string& text) {
+    Paint_SelectImage(m_frameBuffer);
     Paint_DrawString_EN(m_cursor.x, m_cursor.y, text.c_str(), &Font24, WHITE, BLACK);
     m_cursor.y += Font24.Height;
     return 0;
@@ -71,6 +74,7 @@ int WaveshareEink::redraw() {
 }
 
 int WaveshareEink::clear() {
+    Paint_SelectImage(m_frameBuffer);
     Paint_Clear(WHITE);
     EPD_4in26_Clear();
     DEV_Delay_ms(2000);
