@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(pocket-term VERSION 1.0.0 LANGUAGES CXX)
+project(pocket-term VERSION 1.0.0 LANGUAGES C CXX)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 23)
@@ -20,7 +20,7 @@ find_package(spdlog REQUIRED)
 
 # Source files
 set(SOURCES
-    external/waveshare/Config/DEV_config.c
+    external/waveshare/Config/DEV_Config.c
     external/waveshare/e-Paper/EPD_4in26.c
     src/main.cpp
     src/core/os.cpp
@@ -43,7 +43,7 @@ set(SOURCES
 
 # Headers
 set(HEADERS
-    external/waveshare/Config/DEV_config.h
+    external/waveshare/Config/DEV_Config.h
     external/waveshare/e-Paper/EPD_4in26.h
     src/core/os.h
     src/core/logging.h

@@ -56,6 +56,7 @@
 #include <string.h>
 #include "Debug.h"
 
+
 #ifdef RPI
     #ifdef USE_BCM2835_LIB
         #include <bcm2835.h>
@@ -82,6 +83,7 @@
 
 #endif
 
+
 /**
  * data
 **/
@@ -101,6 +103,10 @@ extern int EPD_MOSI_PIN;
 extern int EPD_SCLK_PIN;
 
 /*------------------------------------------------------------------------------------------------------*/
+#ifdef __cplusplus
+    extern "C" {
+#endif
+
 void DEV_Digital_Write(UWORD Pin, UBYTE Value);
 UBYTE DEV_Digital_Read(UWORD Pin);
 
@@ -115,5 +121,8 @@ UBYTE DEV_SPI_ReadData();
 UBYTE DEV_Module_Init(void);
 void DEV_Module_Exit(void);
 
+#ifdef __cplusplus
+    }
+#endif
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef WAVESHARE_EINK_H_
 #define WAVESHARE_EINK_H_
 
-#include "Display.h"
+#include "display.h"
 
 class WaveshareEink : public Display {
 public:

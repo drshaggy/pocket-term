@@ -37,6 +37,10 @@
 #define EPD_4in26_WIDTH       800
 #define EPD_4in26_HEIGHT      480
 
+#ifdef __cplusplus
+    extern "C" {
+#endif
+
 void EPD_4in26_Init(void);
 void EPD_4in26_Init_Fast(void);
 void EPD_4in26_Init_4GRAY(void);
@@ -48,5 +52,8 @@ void EPD_4in26_Display_Part(UBYTE *Image, UWORD x, UWORD y, UWORD w, UWORD l);
 void EPD_4in26_4GrayDisplay(UBYTE *Image);
 void EPD_4in26_Sleep(void);
 
+#ifdef __cplusplus
+	}
+#endif
 
 #endif
