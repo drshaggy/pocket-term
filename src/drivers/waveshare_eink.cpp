@@ -25,7 +25,7 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         Paint_NewImage(BlackImage, EPD_4in26_WIDTH, EPD_4in26_HEIGHT, 0, WHITE);
         Paint_SelectImage(BlackImage);
         Paint_Clear(WHITE);
-        if (GUI_ReadBmp("../../resources/PocketTermSplash.bmp", 10, 10) != 0) {
+        if (GUI_ReadBmp("resources/PocketTermSplash.bmp", 10, 10) != 0) {
             spdlog::error("Failed to read Splashscreen Bitmap");
         }
         spdlog::info("Waveshare Eink Device initialised");
