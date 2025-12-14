@@ -3,6 +3,10 @@
 
 #include "Display.h"
 
-class WavehareEink : Display{};
+class WaveshareEink : public Display {
+public:
+	WaveshareEink(bool verticalOrientation);
+};
+
 
 #endif // WAVESHARE_EINK_H_
