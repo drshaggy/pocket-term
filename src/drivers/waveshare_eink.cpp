@@ -27,7 +27,7 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
              spdlog::error("Failed to apply for black memory...\r\n");
         }
         printf("Paint_NewImage\r\n");
-        Paint_NewImage(m_frameBuffer, m_height, m_width, 0, WHITE);
+        Paint_NewImage(m_frameBuffer, m_height, m_width, m_rotation, WHITE);
         Paint_SelectImage(m_frameBuffer);
         Paint_Clear(WHITE);
         Paint_DrawString_EN(10, 20, "Pocket Term", &Font24, BLACK, WHITE);

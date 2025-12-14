@@ -10,6 +10,7 @@ private:
     UDOUBLE m_displaySize;
     uint16_t m_width;
     uint16_t m_height;
+    uint16_t m_rotation;
 public:
     WaveshareEink(bool verticalOrientation);
 };
