@@ -71,6 +71,7 @@ int WaveshareEink::redraw() {
 }
 
 int WaveshareEink::clear() {
+    Paint_Clear(WHITE);
     EPD_4in26_Clear();
     DEV_Delay_ms(500);
     return 0;
