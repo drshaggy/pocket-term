@@ -8,6 +8,7 @@ class Display
 {
 protected:
     bool m_verticalOrientation;
+    UBYTE* m_prevBuffer;
     UBYTE* m_frameBuffer;
     UDOUBLE m_displaySize;
     uint16_t m_width;
