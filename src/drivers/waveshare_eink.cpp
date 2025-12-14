@@ -14,19 +14,20 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         DEV_Delay_ms(500);
 
         // Set framebuffer to display size
-        if (m_verticalOrientation) {
-            m_displaySize = ((EPD_4in26_HEIGHT % 8 == 0)? (EPD_4in26_HEIGHT / 8 )
-                                : (EPD_4in26_HEIGHT / 8 + 1)) * EPD_4in26_WIDTH;
-
+        if (verticalOrientation) {
+            m_width = EPD_4in26_HEIGHT;
+            m_height = EPD_4in26_WIDTH;
         } else {
-            m_displaySize = ((EPD_4in26_WIDTH % 8 == 0)? (EPD_4in26_WIDTH / 8 )
-                                : (EPD_4in26_WIDTH / 8 + 1)) * EPD_4in26_HEIGHT;
+            m_width = EPD_4in26_WIDTH;
+            m_height = EPD_4in26_HEIGHT;
         }
+        m_displaySize = ((m_width % 8 == 0)? (m_width / 8 )
+                                    : (m_width / 8 + 1)) * m_height;
         if((m_frameBuffer = (UBYTE *)malloc(m_displaySize)) == NULL) {
              spdlog::error("Failed to apply for black memory...\r\n");
         }
         printf("Paint_NewImage\r\n");
-        Paint_NewImage(m_frameBuffer, EPD_4in26_WIDTH, EPD_4in26_HEIGHT, 0, WHITE);
+        Paint_NewImage(m_frameBuffer, m_height, m_width, 0, WHITE);
         Paint_SelectImage(m_frameBuffer);
         Paint_Clear(WHITE);
         Paint_DrawString_EN(10, 20, "Pocket Term", &Font24, BLACK, WHITE);

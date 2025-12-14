@@ -8,6 +8,8 @@ class WaveshareEink : public Display {
 private:
     UBYTE* m_frameBuffer;
     UDOUBLE m_displaySize;
+    uint16_t m_width;
+    uint16_t m_height;
 public:
     WaveshareEink(bool verticalOrientation);
 };
