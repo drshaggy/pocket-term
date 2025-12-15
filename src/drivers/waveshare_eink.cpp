@@ -67,7 +67,7 @@ int WaveshareEink::printHighlighted(const std::string& text) {
 }
 
 int WaveshareEink::redraw() { 
-    if (m_frameBuffer == m_prevBuffer) {
+    if (*m_frameBuffer == *m_prevBuffer) {
         return 1;
     }
     EPD_4in26_Display(m_frameBuffer);
