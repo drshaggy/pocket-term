@@ -18,7 +18,7 @@ int Home::initialise() {
 }
 
 int Home::processSpecificEvent(Event& e) {
-    spdlog::debug("Received Event type {}", e.type);
+    spdlog::debug("Received Event");
     switch(e.type) {
         case KEY_PRESS: {
             auto* keyData = static_cast<KeyEventData*>(e.data.get()); 
