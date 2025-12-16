@@ -32,7 +32,6 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         if((m_prevBuffer = (UBYTE *)malloc(m_displaySize)) == NULL) {
              spdlog::error("Failed to apply for black memory...\r\n");
         }
-        printf("Paint_NewImage\r\n");
         Paint_NewImage(m_frameBuffer, m_width, m_height, 0, WHITE);
         Paint_SelectImage(m_frameBuffer);
         Paint_Clear(WHITE);
@@ -48,6 +47,7 @@ int WaveshareEink::println(const std::string& text) {
     Paint_SelectImage(m_frameBuffer);
     Paint_DrawString_EN(m_cursor.x, m_cursor.y, text.c_str(), &Font24, BLACK, WHITE);
     m_cursor.y += 20;
+    m_cursor.x = 10;
     return 0;
 }
 
