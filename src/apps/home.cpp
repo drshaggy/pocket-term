@@ -18,6 +18,18 @@ int Home::initialise() {
 }
 
 int Home::processSpecificEvent(Event& e) {
+    switch(e.type) {
+        case KEY_PRESS: {
+            auto* keyData = static_cast<KeyEventData*>(e.data.get()); 
+            char key = keyData->getKey();
+            m_ui.print(std::string() + key);
+            m_ui.update();
+        }
+        case TICK: {
+            
+        }
+    }
     return 0;
+    
 }
 
