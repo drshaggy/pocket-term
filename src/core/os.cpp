@@ -47,6 +47,6 @@ void OS::cleanUp() {
 void OS::displayUpdateLoop() {
     while (m_running) {
         m_ui.update();
-        std::this_thread::sleep_for(500ms);
+        std::this_thread::sleep_for(10ms);
     }
 }
