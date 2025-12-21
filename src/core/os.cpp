@@ -14,7 +14,11 @@ OS::OS()
 
 
 void OS::run() {
-    while(true) {
+    m_running = true;
+
+    m_displayThread = std::thread(&OS::displayUpdateLoop, this);
+    
+    while(m_running) {
         //poll all the event sources
         m_keyboard.poll();
         m_gsm.poll();
@@ -27,12 +31,22 @@ void OS::run() {
                 .processNextEvent(std::move(m_eventQueue.front()));
             m_eventQueue.pop();
         }
-        m_appManager.getCurrentApp().updateUI();
         std::this_thread::sleep_for(10ms);
     }
 }
 
 void OS::cleanUp() {
+    m_running = false;
+    if (m_displayThread.joinable()) {
+        m_displayThread.join();
+    }
+    
     m_keyboard.end();
 }
 
+void OS::displayUpdateLoop() {
+    while (m_running) {
+        m_ui.update();
+        std::this_thread::sleep_for(500ms);
+    }
+}

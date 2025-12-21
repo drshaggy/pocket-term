@@ -2,6 +2,8 @@
 #define OS_H_
 
 #include <queue>
+#include <thread>
+#include <atomic>
 
 #include "app_manager.h"
 #include "event.h"
@@ -22,6 +24,9 @@ private:
     UI m_ui;
     AppManager m_appManager;
     void setupLogging();
+    std::thread m_displayThread;
+    std::atomic<bool> m_running;
+    void displayUpdateLoop();
 };
 
 #endif // OS_H_

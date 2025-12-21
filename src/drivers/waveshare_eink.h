@@ -2,6 +2,7 @@
 #define WAVESHARE_EINK_H_
 
 #include "display.h"
+#include <mutex>
 
 struct Cursor
 {
@@ -13,6 +14,7 @@ class WaveshareEink : public Display {
 private:
     UBYTE* m_prevBuffer;
     UBYTE* m_frameBuffer;
+    std::mutex m_bufferMutex;
     Cursor m_cursor;
 public:
     WaveshareEink(bool verticalOrientation);
