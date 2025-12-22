@@ -10,6 +10,6 @@ Input::Input() : Actor()
 }
 
 void Input::actorCore() {
-    spdlog::debug("Input Loop Running");
-    std::this_thread::sleep_for(20ms);
+    spdlog::debug("Actor {} Running", getActorId());
+    std::this_thread::sleep_for(200ms);
 }

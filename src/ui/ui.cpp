@@ -15,7 +15,7 @@ UI::UI() : Actor()  {
 }
 
 void UI::actorCore() {
-        spdlog::debug("UI loop Running");
+    spdlog::debug("Actor {} Running", getActorId());
         std::this_thread::sleep_for(1000ms);
 }
 

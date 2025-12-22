@@ -12,20 +12,21 @@
 #include "../drivers/cardkb.h"
 #include "../drivers/sim800l.h"
 
-class OS : Actor
+class OS : public Actor
 {
+    using Enqueuer = size_t;
 public:
-    OS();
-    ~OS();
-    OS(const bool simulateHardware);
+    virtual ~OS();
+    OS(const bool simulateHardware = true);
     void run();
 private:
+    bool m_running;
     std::queue<Event> m_eventQueue;
     const bool m_simulateHardware;
     //Sim800l m_gsm;
     //CardKB m_keyboard; //Change to a vector of input devices OR event creators
-    std::unique_ptr<Input> m_input;
-    std::unique_ptr<UI> m_ui;
+    Enqueuer m_input;
+    Enqueuer m_ui;
     //AppManager m_appManager;
     void setupLogging();
     void displayUpdateLoop();

@@ -2,8 +2,11 @@
 
 #include <spdlog/spdlog.h>
 
+std::atomic<size_t> Actor::s_nextActorId{1};
+
 Actor::Actor()
-    : m_running { false }
+    : m_actorId(s_nextActorId.fetch_add(1)),
+      m_running { false }
 {
     
 }
@@ -18,8 +21,10 @@ Actor::~Actor()
 }
 
 void Actor::startActorLoop() {
-    m_running = true;
-    m_actorThread = std::thread(&Actor::actorLoop, this); 
+    if (!m_running) {
+        m_running = true;
+        m_actorThread = std::thread(&Actor::actorLoop, this); 
+    }
 }
 
 void Actor::actorLoop() {

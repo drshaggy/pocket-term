@@ -13,10 +13,9 @@ auto main(int argc, char *argv[]) -> int {
             break;
         }
     }
-    
-    OS os(simulateHardware);
+    std::unique_ptr<OS> os = launchActor<OS>();
 
-    os.run();
+    os->run();
 
     return 0;
 }
