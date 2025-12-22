@@ -27,6 +27,7 @@ set(SOURCES
     external/waveshare/GUI/GUI_BMPfile.c
     external/waveshare/EPD_4in26.c
     src/main.cpp
+    src/core/actor.cpp
     src/core/os.cpp
     src/core/logging.cpp
     src/core/app_manager.cpp
@@ -38,6 +39,7 @@ set(SOURCES
     src/drivers/display.cpp
     src/drivers/tty_display.cpp
     src/drivers/waveshare_eink.cpp
+    src/input/input.cpp
     src/ui/ui.cpp
     src/ui/screen.cpp
     src/apps/app.cpp
@@ -52,6 +54,7 @@ set(HEADERS
     external/waveshare/GUI/GUI_Paint.h
     external/waveshare/GUI/GUI_BMPfile.h
     external/waveshare/EPD_4in26.h
+    src/core/actor.h
     src/core/os.h
     src/core/logging.h
     src/core/app_manager.h
@@ -63,6 +66,7 @@ set(HEADERS
     src/drivers/display.h
     src/drivers/tty_display.h
     src/drivers/waveshare_eink.h
+    src/input/input.h
     src/ui/ui.h
     src/ui/screen.h
     src/apps/app.h

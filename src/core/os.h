@@ -2,30 +2,32 @@
 #define OS_H_
 
 #include <queue>
-#include <thread>
-#include <atomic>
+#include <memory>
 
+#include "actor.h"
 #include "app_manager.h"
 #include "event.h"
 #include "../ui/ui.h"
+#include "../input/input.h"
 #include "../drivers/cardkb.h"
 #include "../drivers/sim800l.h"
 
-class OS
+class OS : Actor
 {
 public:
     OS();
+    ~OS();
+    OS(const bool simulateHardware);
     void run();
-    void cleanUp();
 private:
     std::queue<Event> m_eventQueue;
-    Sim800l m_gsm;
-    CardKB m_keyboard; //Change to a vector of input devices OR event creators
-    UI m_ui;
-    AppManager m_appManager;
+    const bool m_simulateHardware;
+    //Sim800l m_gsm;
+    //CardKB m_keyboard; //Change to a vector of input devices OR event creators
+    std::unique_ptr<Input> m_input;
+    std::unique_ptr<UI> m_ui;
+    //AppManager m_appManager;
     void setupLogging();
-    std::thread m_displayThread;
-    std::atomic<bool> m_running;
     void displayUpdateLoop();
 };
 

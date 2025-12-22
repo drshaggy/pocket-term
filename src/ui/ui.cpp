@@ -1,10 +1,22 @@
 #include "ui.h"
 #include "../drivers/waveshare_eink.h"
+#include "../drivers/tty_display.h"
 
 #include <spdlog/spdlog.h>
 
-UI::UI() {
-    m_display = std::make_unique<WaveshareEink>(false);
+using namespace std::chrono_literals;
+
+UI::UI() : Actor()  {
+    if (false) {
+        m_display = std::make_unique<WaveshareEink>(false);
+    } else {
+        m_display = std::make_unique<TtyDisplay>(false);
+    }
+}
+
+void UI::actorCore() {
+        spdlog::debug("UI loop Running");
+        std::this_thread::sleep_for(1000ms);
 }
 
 void UI::print(const std::string& text){
