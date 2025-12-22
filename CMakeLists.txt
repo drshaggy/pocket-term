@@ -45,6 +45,7 @@ set(SOURCES
     src/apps/app.cpp
     src/apps/home.cpp
     src/apps/launcher.cpp
+    src/apps/terminal.cpp
 )
 
 # Headers
@@ -72,6 +73,7 @@ set(HEADERS
     src/apps/app.h
     src/apps/home.h
     src/apps/launcher.h
+    src/apps/terminal.h
 )
 
 # Create executable
