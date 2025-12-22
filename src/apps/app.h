@@ -1,7 +1,7 @@
 #ifndef APP_H_
 #define APP_H_
 
-#include "../core/event.h"
+#include "../core/message.h"
 
 class AppManager;
 class UI;
@@ -15,8 +15,8 @@ public:
     App(AppManager& appManager, UI& ui);
     virtual ~App() = default;
     virtual int initialise();
-    int processNextEvent(Event e);
-    virtual int processSpecificEvent(Event& e);
+    int processNextMessage(Message e);
+    virtual int processSpecificMessage(Message& e);
     void updateUI();
 };
 

@@ -8,7 +8,7 @@ class Launcher : public App
 public:
     using App::App;
     int initialise() override;
-    int processSpecificEvent(Event& e) override;
+    int processSpecificMessage(Message& e) override;
 };
 
 

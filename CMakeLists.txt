@@ -31,9 +31,9 @@ set(SOURCES
     src/core/os.cpp
     src/core/logging.cpp
     src/core/app_manager.cpp
-    src/core/event.cpp
+    src/core/message.cpp
     src/core/time_utils.cpp
-    src/drivers/event_source.cpp
+    src/drivers/message_source.cpp
     src/drivers/cardkb.cpp
     src/drivers/sim800l.cpp
     src/drivers/display.cpp
@@ -58,9 +58,9 @@ set(HEADERS
     src/core/os.h
     src/core/logging.h
     src/core/app_manager.h
-    src/core/event.h
+    src/core/message.h
     src/core/time_utils.h
-    src/drivers/event_source.h
+    src/drivers/message_source.h
     src/drivers/cardkb.h
     src/drivers/sim800l.h
     src/drivers/display.h

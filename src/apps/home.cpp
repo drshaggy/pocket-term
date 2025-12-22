@@ -17,11 +17,11 @@ int Home::initialise() {
     return 0;
 }
 
-int Home::processSpecificEvent(Event& e) {
-    spdlog::debug("Received Event");
+int Home::processSpecificMessage(Message& e) {
+    spdlog::debug("Received Message");
     switch(e.type) {
         case KEY_PRESS: {
-            auto* keyData = static_cast<KeyEventData*>(e.data.get()); 
+            auto* keyData = static_cast<KeyMessageData*>(e.data.get()); 
             char key = keyData->getKey();
             m_ui.print(std::string() + key);
             m_ui.update();

@@ -6,7 +6,7 @@
 
 #include "actor.h"
 #include "app_manager.h"
-#include "event.h"
+#include "message.h"
 #include "../ui/ui.h"
 #include "../input/input.h"
 #include "../drivers/cardkb.h"
@@ -21,10 +21,10 @@ public:
     void run();
 private:
     bool m_running;
-    std::queue<Event> m_eventQueue;
+    std::queue<Message> m_messageQueue;
     const bool m_simulateHardware;
     //Sim800l m_gsm;
-    //CardKB m_keyboard; //Change to a vector of input devices OR event creators
+    //CardKB m_keyboard; //Change to a vector of input devices OR message creators
     Enqueuer m_input;
     Enqueuer m_ui;
     //AppManager m_appManager;

@@ -1,13 +1,14 @@
 #ifndef ACTOR_H_
 #define ACTOR_H_
 
+#include "message.h"
+
 #include <queue>
 #include <thread>
 #include <atomic>
 #include <memory>
 #include <map>
 
-class Message {};
 
 class Actor
 {

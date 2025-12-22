@@ -7,9 +7,9 @@ int Launcher::initialise(){
     return 0;
 }
 
-int Launcher::processSpecificEvent(Event& e){
+int Launcher::processSpecificMessage(Message& e){
     if (e.type == KEY_PRESS) {
-        char key = static_cast<KeyEventData&>(*e.data).getKey();
+        char key = static_cast<KeyMessageData&>(*e.data).getKey();
         //clear screen on escape
         if (key == '\x1b') {
             m_ui.clear();

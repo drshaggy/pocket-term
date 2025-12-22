@@ -11,10 +11,10 @@ int App::initialise(){
     return 1;
 }
 
-//Event gets moved in to this function by design, tying the event lifetime to this functions  scope
-int App::processNextEvent(Event e){
+//Message gets moved in to this function by design, tying the message lifetime to this functions  scope
+int App::processNextMessage(Message e){
     if (e.type == KEY_PRESS) {
-        char key = static_cast<KeyEventData&>(*e.data).getKey();
+        char key = static_cast<KeyMessageData&>(*e.data).getKey();
         //clear screen on escape
         if (key == '\x1b') {
             m_appManager.switchToApp(HOME);
@@ -23,12 +23,12 @@ int App::processNextEvent(Event e){
         }
         return 0;
     }
-    processSpecificEvent(e);
+    processSpecificMessage(e);
     return 0;
 }
 
-// pass event by reference as unique pointer
-int App::processSpecificEvent([[maybe_unused]]Event& e){
+// pass message by reference as unique pointer
+int App::processSpecificMessage([[maybe_unused]]Message& e){
     return 1;
 }
 

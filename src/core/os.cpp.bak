@@ -18,17 +18,17 @@ void OS::run() {
     m_running = true;
 
     while(m_running) {
-        //poll all the event sources
+        //poll all the message sources
         m_keyboard.poll();
         m_gsm.poll();
-        if (m_keyboard.hasEvents()) {
-            m_eventQueue.push(m_keyboard.getNextEvent());
+        if (m_keyboard.hasMessages()) {
+            m_messageQueue.push(m_keyboard.getNextMessage());
         }
-        if (!m_eventQueue.empty()) {
+        if (!m_messageQueue.empty()) {
             m_appManager
                 .getCurrentApp()
-                .processNextEvent(std::move(m_eventQueue.front()));
-            m_eventQueue.pop();
+                .processNextMessage(std::move(m_messageQueue.front()));
+            m_messageQueue.pop();
         }
         std::this_thread::sleep_for(10ms);
     }
