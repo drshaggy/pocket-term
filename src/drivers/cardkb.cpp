@@ -35,6 +35,7 @@ void CardKB::poll() {
     if (buf[0]) {
         Event e = Event::createKeyEvent(buf[0], 0);
         m_eventQueue.push(std::move(e));
+        spdlog::debug("Key {} pressed", buf[0]);
     }
 }
 
