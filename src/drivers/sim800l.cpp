@@ -37,8 +37,8 @@ Sim800l::Sim800l(std::string device, int baudRate)
             tty.c_iflag &= ~(IXON | IXOFF | IXANY); // Turn off s/w flow ctrl
             tty.c_iflag &= ~(IGNBRK|BRKINT|PARMRK|ISTRIP|INLCR|IGNCR|ICRNL); // Disable any special handling of received bytes
 
-            tty.c_oflag &= ~OPOST; // Prevent special interpretation of output bytes (e.g. newline chars)
-            tty.c_oflag &= ~ONLCR; // Prevent conversion of newline to carriage return/line feed
+            tty.c_oflag &= ~OPOST; // Prmessage special interpretation of output bytes (e.g. newline chars)
+            tty.c_oflag &= ~ONLCR; // Prmessage conversion of newline to carriage return/line feed
 
             tty.c_cc[VTIME] = 10;    // Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
             tty.c_cc[VMIN] = 0;
@@ -78,7 +78,7 @@ void Sim800l::poll() {
             std::string msg;
             if (!readSMS(index, msg)) {
                 spdlog::debug("SMS index: {}, content: {}", index, msg);
-                // Create Event here
+                // Create Message here
             } else {
                 spdlog::error("Failed to read SMS Message");
             }

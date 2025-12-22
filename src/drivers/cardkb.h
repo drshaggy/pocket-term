@@ -2,9 +2,9 @@
 #define CARDKB_H_
 
 #include <bcm2835.h>
-#include "event_source.h"
+#include "message_source.h"
 
-class CardKB : public EventSource
+class CardKB : public MessageSource
 {
 private:
     char m_buf[256];

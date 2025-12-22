@@ -26,15 +26,15 @@ int CardKB::read() {
     return m_buf[0];
 }
 
-// override EventSource.poll
+// override MessageSource.poll
 void CardKB::poll() {
     char buf[256];
     buf[0] = 0;
     uint32_t len = 1;
     bcm2835_i2c_read(buf, len);
     if (buf[0]) {
-        Event e = Event::createKeyEvent(buf[0], 0);
-        m_eventQueue.push(std::move(e));
+        Message e = Message::createKeyMessage(buf[0], 0);
+        m_messageQueue.push(std::move(e));
         spdlog::debug("Key {} pressed", buf[0]);
     }
 }

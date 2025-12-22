@@ -1,11 +1,11 @@
 #ifndef SIM800L_H_
 #define SIM800L_H_
 
-#include "event_source.h"
+#include "message_source.h"
 
 #include <string>
 
-class Sim800l : EventSource{
+class Sim800l : MessageSource{
 private:
     const std::string m_device;
     const int m_baudRate;
