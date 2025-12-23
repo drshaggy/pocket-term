@@ -9,7 +9,7 @@ using namespace std::chrono_literals;
 Input::Input()
     : Actor()
 {
-    if (false) {
+    if (true) {
         m_keyboard = std::make_unique<CardKB>(uint8_t(0x5f));
     } else {
         m_keyboard = std::make_unique<Keyboard>();
