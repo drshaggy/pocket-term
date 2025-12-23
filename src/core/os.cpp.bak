@@ -1,42 +1,42 @@
-#include "os.h"
-#include "actor.h"
+// #include "os.h"
+// #include "actor.h"
 
-#include <thread>
+// #include <thread>
 
-using namespace std::chrono_literals;
-//
-OS::OS()
-    : m_gsm(Sim800l("/dev/serial0", 9600)),
-      m_keyboard(CardKB(uint8_t(0x5f))),
-      m_ui(launchActor<UI>()),
-      m_appManager(m_ui)
-{
-}
+// using namespace std::chrono_literals;
+// //
+// OS::OS()
+//     : m_gsm(Sim800l("/dev/serial0", 9600)),
+//       m_keyboard(CardKB(uint8_t(0x5f))),
+//       m_ui(launchActor<UI>()),
+//       m_appManager(m_ui)
+// {
+// }
 
 
-void OS::run() {
-    m_running = true;
+// void OS::run() {
+//     m_running = true;
 
-    while(m_running) {
-        //poll all the message sources
-        m_keyboard.poll();
-        m_gsm.poll();
-        if (m_keyboard.hasMessages()) {
-            m_messageQueue.push(m_keyboard.getNextMessage());
-        }
-        if (!m_messageQueue.empty()) {
-            m_appManager
-                .getCurrentApp()
-                .processNextMessage(std::move(m_messageQueue.front()));
-            m_messageQueue.pop();
-        }
-        std::this_thread::sleep_for(10ms);
-    }
-}
+//     while(m_running) {
+//         //poll all the message sources
+//         m_keyboard.poll();
+//         m_gsm.poll();
+//         if (m_keyboard.hasMessages()) {
+//             m_messageQueue.push(m_keyboard.getNextMessage());
+//         }
+//         if (!m_messageQueue.empty()) {
+//             m_appManager
+//                 .getCurrentApp()
+//                 .processNextMessage(std::move(m_messageQueue.front()));
+//             m_messageQueue.pop();
+//         }
+//         std::this_thread::sleep_for(10ms);
+//     }
+// }
 
-void OS::cleanUp() {
-    m_running = false;
+// void OS::cleanUp() {
+//     m_running = false;
     
-    m_keyboard.end();
-}
+//     m_keyboard.end();
+// }
 

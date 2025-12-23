@@ -21,8 +21,23 @@ OS::~OS() {
 void OS::run() {
     m_running = true;
     while(m_running) {
-        spdlog::debug("Actor {} Running", getActorId());
-        std::this_thread::sleep_for(100ms);
+        auto m = dequeue();
+        if (m) {
+            handleMessage(*m);
+        }
+        std::this_thread::sleep_for(10ms);
     }
 }
 
+void OS::handleMessage(Message& m) {
+    if (m.type == KEY_PRESS) {
+        char key = static_cast<KeyMessageData&>(*m.data).getKey();
+        spdlog::debug("Key {} received in OS by message", key);
+        //clear screen on escape
+        // if (key == '\x1b') {
+        //     m_appManager.switchToApp(HOME);
+        // } else {
+        //     m_ui.print(std::string(1, key));
+        // }
+    }
+}

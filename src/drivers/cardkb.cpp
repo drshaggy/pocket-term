@@ -1,4 +1,5 @@
 #include "cardkb.h"
+#include "../core/message.h"
 #include <spdlog/spdlog.h>
 
 CardKB::CardKB(uint8_t address) : m_address(address)
@@ -19,7 +20,9 @@ CardKB::CardKB(uint8_t address) : m_address(address)
     }
 };
 
-int CardKB::read() {
+CardKB::~CardKB() {}
+
+char CardKB::read() {
     m_buf[0] = 0;
     uint32_t len = 1;
     bcm2835_i2c_read(m_buf, len);
@@ -34,11 +37,11 @@ void CardKB::poll() {
     bcm2835_i2c_read(buf, len);
     if (buf[0]) {
         Message e = Message::createKeyMessage(buf[0], 0);
-        m_messageQueue.push(std::move(e));
+        //m_messageQueue.push(std::move(e));
         spdlog::debug("Key {} pressed", buf[0]);
     }
 }
 
-void CardKB::end() {
+void CardKB::cleanUp() {
     bcm2835_i2c_end();
 }

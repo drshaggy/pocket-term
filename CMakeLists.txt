@@ -34,6 +34,7 @@ set(SOURCES
     src/core/message.cpp
     src/core/time_utils.cpp
     src/drivers/message_source.cpp
+    src/drivers/keyboard.cpp
     src/drivers/cardkb.cpp
     src/drivers/sim800l.cpp
     src/drivers/display.cpp
@@ -41,6 +42,7 @@ set(SOURCES
     src/drivers/waveshare_eink.cpp
     src/input/input.cpp
     src/ui/ui.cpp
+    src/ui/widget.cpp
     src/ui/screen.cpp
     src/apps/app.cpp
     src/apps/home.cpp
@@ -62,6 +64,7 @@ set(HEADERS
     src/core/message.h
     src/core/time_utils.h
     src/drivers/message_source.h
+    src/drivers/keyboard.h
     src/drivers/cardkb.h
     src/drivers/sim800l.h
     src/drivers/display.h
@@ -69,6 +72,7 @@ set(HEADERS
     src/drivers/waveshare_eink.h
     src/input/input.h
     src/ui/ui.h
+    src/ui/widget.h
     src/ui/screen.h
     src/apps/app.h
     src/apps/home.h

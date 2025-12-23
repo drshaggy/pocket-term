@@ -6,7 +6,9 @@
 
 using namespace std::chrono_literals;
 
-UI::UI() : Actor()  {
+UI::UI()
+    : Actor()
+{
     if (false) {
         m_display = std::make_unique<WaveshareEink>(false);
     } else {
@@ -15,7 +17,6 @@ UI::UI() : Actor()  {
 }
 
 void UI::actorCore() {
-    spdlog::debug("Actor {} Running", getActorId());
         std::this_thread::sleep_for(1000ms);
 }
 

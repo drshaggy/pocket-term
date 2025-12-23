@@ -14,19 +14,20 @@
 
 class OS : public Actor
 {
-    using Enqueuer = size_t;
 public:
     virtual ~OS();
     OS(const bool simulateHardware = true);
     void run();
+protected:
+    virtual void handleMessage(Message& message) override;
 private:
     bool m_running;
     std::queue<Message> m_messageQueue;
     const bool m_simulateHardware;
     //Sim800l m_gsm;
     //CardKB m_keyboard; //Change to a vector of input devices OR message creators
-    Enqueuer m_input;
-    Enqueuer m_ui;
+    size_t m_input;
+    size_t m_ui;
     //AppManager m_appManager;
     void setupLogging();
     void displayUpdateLoop();
