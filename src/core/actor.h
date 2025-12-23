@@ -44,7 +44,7 @@ protected:
     }
     
     void sendMessageToParent(Message& message);
-    void sendMessage(size_t actorId, Message message);
+    void sendMessageToChild(size_t actorId, Message& message);
 public:
     Actor();
     ~Actor();

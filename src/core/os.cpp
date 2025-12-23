@@ -33,6 +33,8 @@ void OS::handleMessage(Message& m) {
     if (m.type == KEY_PRESS) {
         char key = static_cast<KeyMessageData&>(*m.data).getKey();
         spdlog::debug("Key {} received in OS by message", key);
+        Message msg = Message::createAckMessage(true);
+        sendMessageToChild(m_input, msg);
         //clear screen on escape
         // if (key == '\x1b') {
         //     m_appManager.switchToApp(HOME);

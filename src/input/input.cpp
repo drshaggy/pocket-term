@@ -28,4 +28,8 @@ void Input::actorCore() {
     }
 }
 
-void Input::handleMessage(Message& message) {}
+void Input::handleMessage(Message& message) {
+    if (message.type == ACKNOWLEDGE) {
+        spdlog::debug("Ack Received");
+    }
+}

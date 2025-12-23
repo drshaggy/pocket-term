@@ -56,6 +56,12 @@ void Actor::sendMessageToParent(Message& message) {
     m_parent->enqueue(std::move(message));
 }
 
+void Actor::sendMessageToChild(size_t id, Message& message) {
+    if (m_nestedActors.contains(id)) {
+        m_nestedActors[id]->enqueue(std::move(message));
+    }
+}
+
 void Actor::enqueue(Message message) {
     m_messageQueue.push(std::move(message));
 }

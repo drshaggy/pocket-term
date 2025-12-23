@@ -7,6 +7,7 @@
 enum MessageType {
 	KEY_PRESS,
 	TICK,
+ ACKNOWLEDGE
 };
 
 class MessageData {
@@ -25,10 +26,19 @@ public:
     char getKey() {return m_key;}
 };
 
+class AcknowledgeMessageData : public MessageData {
+private:
+    bool m_success;
+public:
+    AcknowledgeMessageData(bool success) : m_success(success) {}
+    bool isSuccess() {return m_success;}
+};
+
 struct Message {
     MessageType type;
     std::unique_ptr<MessageData> data;
     static Message createKeyMessage(char key, uint32_t ts);
+    static Message createAckMessage(bool success);
 
     Message() = default;
     Message(Message&&) = default;
