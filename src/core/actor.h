@@ -8,56 +8,85 @@
 #include <atomic>
 #include <memory>
 #include <map>
+#include <mutex>
 
+class Enqueuer
+{
+private:
+    std::queue<Message>& m_queue;
+    std::mutex& m_mutex;
+public:
+    Enqueuer(std::queue<Message>& queue, std::mutex& mutex)
+        : m_queue(queue), m_mutex(mutex) {}
+    Enqueuer(const Enqueuer& other)
+        : m_queue(other.m_queue), m_mutex(other.m_mutex) {}
+    void enqueue(Message message) {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        m_queue.push(std::move(message));
+    }
+};
 
 class Actor
 {
     template<typename ActorType>
-    friend std::unique_ptr<ActorType> launchActor();
+    friend std::unique_ptr<ActorType> launchRootActor();
 private:
+    //ID
     size_t m_actorId;
     Actor* m_parent;
     static std::atomic<size_t> s_nextActorId;
-    std::thread m_actorThread;
+    //Nested 
     std::map<size_t, std::unique_ptr<Actor>> m_nestedActors;
+    //Thread
+    std::atomic<bool> m_running;
+    std::thread m_actorThread;
+    //Queue
     std::queue<Message> m_messageQueue;
     std::mutex m_queueMutex;
-    void actorLoop();
-protected:
-    std::atomic<bool> m_running;
+    Enqueuer m_selfEnqueuer;
+    Enqueuer m_callerEnqueuer;
     
-    std::optional<Message> dequeue();
+    void actor();
+    virtual void setUp() {}
+    virtual void cleanUp() {}
     virtual void handleMessage(Message& message);
-    virtual void actorCore();
-    void setParent(Actor* actor) {m_parent = actor;}
+    void actorCore();
+protected:
+    void launchActor();
+    void launchActorUnthreaded();
+    virtual void doActorCore();
+    std::optional<Message> dequeue();
+    void sendMessageToCaller(Message& message);
     
     template<typename ActorType, typename... Args>
-    size_t launchNestedActor(Args&&... args) {
-        auto nested = std::make_unique<ActorType>(std::forward<Args>(args)...);
-        nested->setParent(this);
+    Enqueuer launchNestedActor(Actor& caller, Args&&... args) {
+        auto nested = std::make_unique<ActorType>(caller, std::forward<Args>(args)...);
         size_t nestedId = nested->getActorId();
 
-        nested->startActorLoop();
+        nested->launchActor();
 
         m_nestedActors[nestedId] = std::move(nested);
-        return nestedId;
+        return m_nestedActors[nestedId]->getSelfEnqueuer();
     }
-    
-    void sendMessageToParent(Message& message);
-    void sendMessageToChild(size_t actorId, Message& message);
 public:
     Actor();
+    Actor(Actor& parent);
     ~Actor();
-    void startActorLoop();
     size_t getActorId() {return m_actorId;};
+    Enqueuer& getSelfEnqueuer() {return m_selfEnqueuer;};
+    Enqueuer& getCallerEnqueuer() {return m_callerEnqueuer;};
     void enqueue(Message message);
 };
 
+void sendMessage(Enqueuer enqueuer, Message& message);
+
 template<typename ActorType>
-std::unique_ptr<ActorType> launchActor() {
+std::unique_ptr<ActorType> launchRootActor() {
     auto actor = std::make_unique<ActorType>();
-    actor->startActorLoop();
+    //bypass threading for root actor
+    actor->launchActorUnthreaded();
     return actor;
 }
+
 
 #endif // ACTOR_H_

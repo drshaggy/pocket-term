@@ -6,8 +6,8 @@
 
 using namespace std::chrono_literals;
 
-UI::UI()
-    : Actor()
+UI::UI(Actor& caller)
+    : Actor(caller)
 {
     if (false) {
         m_display = std::make_unique<WaveshareEink>(false);
@@ -16,8 +16,14 @@ UI::UI()
     }
 }
 
-void UI::actorCore() {
+void UI::doActorCore() {
         std::this_thread::sleep_for(1000ms);
+}
+
+void UI::handleMessage(Message& message) {
+    if (message.type == SCREEN) {
+       m_currentScreen = static_cast<ScreenMessageData&>(*message.data).getScreen();
+    }
 }
 
 void UI::print(const std::string& text){

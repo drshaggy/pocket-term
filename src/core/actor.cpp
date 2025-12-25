@@ -6,10 +6,17 @@ std::atomic<size_t> Actor::s_nextActorId{1};
 
 Actor::Actor()
     : m_actorId(s_nextActorId.fetch_add(1)),
-      m_running { false }
-{
-    
-}
+      m_running { false },
+      m_selfEnqueuer(m_messageQueue, m_queueMutex),
+      m_callerEnqueuer(m_messageQueue, m_queueMutex) //use own queuer for paerent as root. 
+{}
+
+Actor::Actor(Actor& parent)
+    : m_actorId(s_nextActorId.fetch_add(1)),
+      m_running { false },
+      m_selfEnqueuer(m_messageQueue, m_queueMutex),
+      m_callerEnqueuer(parent.getSelfEnqueuer())
+{}
 
 Actor::~Actor()
 {
@@ -20,22 +27,38 @@ Actor::~Actor()
     }
 }
 
-
-void Actor::startActorLoop() {
+void Actor::launchActorUnthreaded() {
     if (!m_running) {
         m_running = true;
-        m_actorThread = std::thread(&Actor::actorLoop, this); 
+        actor();
     }
 }
 
-void Actor::actorLoop() {
+void Actor::launchActor() {
+    if (!m_running) {
+        m_running = true;
+        m_actorThread = std::thread(&Actor::actor, this); 
+    }
+}
+
+void Actor::actor() {
+    setUp();
+    actorCore();
+    cleanUp();
+}
+
+void Actor::actorCore() {
     while( m_running ) {
         auto msg = dequeue();
         if (msg) {
             handleMessage(*msg);
         }
-        actorCore();
+        doActorCore();
     }
+}
+
+void Actor::doActorCore() {
+    //abstract
 }
 
 std::optional<Message> Actor::dequeue() {
@@ -48,19 +71,11 @@ std::optional<Message> Actor::dequeue() {
     return m;
 }
 
-void Actor::actorCore() {
-   // abstract 
+
+void Actor::sendMessageToCaller(Message& message) {
+    sendMessage(m_callerEnqueuer, message);
 }
 
-void Actor::sendMessageToParent(Message& message) {
-    m_parent->enqueue(std::move(message));
-}
-
-void Actor::sendMessageToChild(size_t id, Message& message) {
-    if (m_nestedActors.contains(id)) {
-        m_nestedActors[id]->enqueue(std::move(message));
-    }
-}
 
 void Actor::enqueue(Message message) {
     m_messageQueue.push(std::move(message));
@@ -68,4 +83,8 @@ void Actor::enqueue(Message message) {
 
 void Actor::handleMessage([[maybe_unused]]Message& message) {
     
+}
+
+void sendMessage(Enqueuer e, Message& m) {
+    e.enqueue(std::move(m));
 }

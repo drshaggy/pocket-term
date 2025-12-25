@@ -1,5 +1,4 @@
 #include "launcher.h"
-#include "../ui/ui.h"
 #include <spdlog/spdlog.h>
 
 int Launcher::initialise(){
@@ -12,9 +11,9 @@ int Launcher::processSpecificMessage(Message& e){
         char key = static_cast<KeyMessageData&>(*e.data).getKey();
         //clear screen on escape
         if (key == '\x1b') {
-            m_ui.clear();
+            //m_ui.clear();
         } else {
-            m_ui.print(std::string(1, key));
+            //m_ui.print(std::string(1, key));
         }
     }
     return 0;

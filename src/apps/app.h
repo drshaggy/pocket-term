@@ -2,22 +2,24 @@
 #define APP_H_
 
 #include "../core/message.h"
+#include "../core/actor.h"
 
 class AppManager;
 class UI;
 
-class App
+class App : public Actor
 {
 protected:
-    AppManager& m_appManager;
-    UI& m_ui;
+    Enqueuer m_ui;
 public:
-    App(AppManager& appManager, UI& ui);
+    App(Actor& caller, Enqueuer ui);
     virtual ~App() = default;
     virtual int initialise();
     int processNextMessage(Message e);
     virtual int processSpecificMessage(Message& e);
     void updateUI();
+    
+    virtual void handleMessage(Message& e);
 };
 
 int switchApp(std::unique_ptr<App> newApp); //do we use a map to hold installed apps that are registered? and use this is restore an app if required

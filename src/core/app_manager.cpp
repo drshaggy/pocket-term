@@ -1,25 +1,25 @@
 #include <memory>
 
-#include "../ui/ui.h"
+#include "actor.h"
 #include "app_manager.h"
 #include "../apps/home.h"
-#include "../apps/launcher.h"
 #include "../apps/app.h"
 
-AppManager::AppManager(UI& ui)
-    : m_ui(ui),
+AppManager::AppManager(Actor& caller, Enqueuer ui)
+    : Actor(caller),
+      m_ui(ui),
       m_currentApp(HOME)
 {
-    m_installedApps[HOME] = [this](UI& ui){return std::make_unique<Home>(*this, ui);};
-    m_installedApps[LAUNCHER] = [this](UI& ui){return std::make_unique<Launcher>(*this, ui);};
+    // m_installedApps[HOME] = [this](Enqueuer ui){return std::make_unique<Home>(*this, ui);};
+    // m_installedApps[LAUNCHER] = [this](Enqueuer ui){return std::make_unique<Launcher>(*this, ui);};
 
     launchApp(HOME);
 };
 
 void AppManager::launchApp(Apps appId) {
-     m_runningApps[appId] = m_installedApps[appId](m_ui);
-     m_runningApps[appId]->initialise();
-     m_currentApp = appId;
+     //m_runningApps[appId] = m_installedApps[appId](m_ui);
+     //m_runningApps[appId]->initialise();
+     //m_currentApp = appId;
 }
 
 void AppManager::closeApp(Apps appId) {

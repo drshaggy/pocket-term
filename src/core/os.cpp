@@ -1,31 +1,29 @@
 #include "os.h"
+#include "../apps/home.h"
+#include "../input/input.h"
+#include "../ui/ui.h"
 
 #include <spdlog/spdlog.h>
 
 using namespace std::chrono_literals;
 //
-OS::OS(const bool simulateHardware)
-    : m_running {false},
-      m_simulateHardware(simulateHardware),
-      m_input(launchNestedActor<Input>()),
-      m_ui(launchNestedActor<UI>())
+OS::OS()
+    : Actor(),
+      m_input(launchNestedActor<Input>(*this)),
+      m_ui(launchNestedActor<UI>(*this)),
+      m_currentApp(launchNestedActor<Home>(*this, m_ui))
+      
 {
     spdlog::info("PocketTerm OS Starting");
 }
 
-OS::~OS() {
-    m_running = false;
-}
-
-
 void OS::run() {
-    m_running = true;
-    while(m_running) {
+    while(true) {
         auto m = dequeue();
         if (m) {
             handleMessage(*m);
         }
-        std::this_thread::sleep_for(10ms);
+        doActorCore();
     }
 }
 
@@ -34,7 +32,7 @@ void OS::handleMessage(Message& m) {
         char key = static_cast<KeyMessageData&>(*m.data).getKey();
         spdlog::debug("Key {} received in OS by message", key);
         Message msg = Message::createAckMessage(true);
-        sendMessageToChild(m_input, msg);
+        sendMessage(m_input, msg);
         //clear screen on escape
         // if (key == '\x1b') {
         //     m_appManager.switchToApp(HOME);
@@ -42,4 +40,9 @@ void OS::handleMessage(Message& m) {
         //     m_ui.print(std::string(1, key));
         // }
     }
+}
+
+
+void OS::doActorCore() {
+    std::this_thread::sleep_for(10ms);
 }

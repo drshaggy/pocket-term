@@ -1,13 +1,16 @@
 #ifndef MESSAGE_H_
 #define MESSAGE_H_
 
+#include "../ui/screen.h"
+
 #include <cstdint>
 #include <memory>
 
 enum MessageType {
 	KEY_PRESS,
 	TICK,
- ACKNOWLEDGE
+ ACKNOWLEDGE,
+ SCREEN
 };
 
 class MessageData {
@@ -34,11 +37,20 @@ public:
     bool isSuccess() {return m_success;}
 };
 
+class ScreenMessageData : public MessageData {
+private:
+    Screen m_screen;
+public:
+    ScreenMessageData(Screen screen) : m_screen(screen) {}
+    Screen getScreen() {return m_screen;}
+};
+
 struct Message {
     MessageType type;
     std::unique_ptr<MessageData> data;
     static Message createKeyMessage(char key, uint32_t ts);
     static Message createAckMessage(bool success);
+    static Message createScreenMessage(Screen screen);
 
     Message() = default;
     Message(Message&&) = default;

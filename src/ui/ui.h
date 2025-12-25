@@ -11,15 +11,19 @@ class UI : public Actor
 {
 private:
     std::unique_ptr<Display> m_display;
+    Screen m_currentScreen;
+protected:
+    virtual void doActorCore() override;
+    virtual void handleMessage(Message& message) override;
 public:
     UI();
+    UI(Actor& caller);
     virtual ~UI() = default;
     void print(const std::string& text);
     void printHighlighted(const std::string& text);
     void println(const std::string& text);
     void clear();
     void update();
-    virtual void actorCore() override;
 };
 
 #endif // UI_H_
