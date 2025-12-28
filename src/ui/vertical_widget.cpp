@@ -11,7 +11,12 @@ void VerticalWidget::render(Display* display, const uint8_t& x, const uint8_t& y
 }
 
 std::unique_ptr<Widget> VerticalWidget::clone() {
-    return std::make_unique<VerticalWidget>();
+    std::unique_ptr<VerticalWidget> clone = std::make_unique<VerticalWidget>();
+    for (const auto& widget : m_widgets) {
+        std::unique_ptr<Widget> cloned = widget->clone();
+        clone->add(cloned);
+    }
+    return clone;
 }
 
 void VerticalWidget::add(std::unique_ptr<Widget>& widget) {
