@@ -21,7 +21,6 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         
         EPD_4in26_Init();
         EPD_4in26_Clear();
-        DEV_Delay_ms(500);
 
         // Set framebuffer to display size
         m_displaySize = ((m_width % 8 == 0)? (m_width / 8 )
@@ -35,7 +34,6 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         Paint_NewImage(m_frameBuffer, m_width, m_height, 0, WHITE);
         Paint_SelectImage(m_frameBuffer);
         Paint_Clear(WHITE);
-        DEV_Delay_ms(2000);
         //println("Pocket Term");
         refresh();
         spdlog::info("Waveshare Eink Device initialised");
@@ -75,7 +73,6 @@ void WaveshareEink::refresh() {
         return;
     }
     EPD_4in26_Display(m_frameBuffer);
-    DEV_Delay_ms(2000);
     memcpy(m_prevBuffer, m_frameBuffer, m_displaySize);
 }
 
@@ -84,7 +81,6 @@ int WaveshareEink::clear() {
     Paint_SelectImage(m_frameBuffer);
     Paint_Clear(WHITE);
     EPD_4in26_Clear();
-    DEV_Delay_ms(2000);
     return 0;
 }
 
