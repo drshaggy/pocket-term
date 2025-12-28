@@ -42,7 +42,7 @@ void UI::handleMessage(Message& message) {
     Actor::handleMessage(message);
     if (message.type == SCREEN) {
         {
-            std::lock_guard<std::mutex> locl(m_screenMutex);
+            std::lock_guard<std::mutex> lock(m_screenMutex);
             m_currentScreen = static_cast<ScreenMessageData&>(*message.data).getScreen();
             m_pendingUpdate = true;
         } //release lock

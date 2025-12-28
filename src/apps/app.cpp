@@ -1,11 +1,14 @@
 #include "app.h"
 #include "../core/message.h"
 
+#include <spdlog/spdlog.h>
 
 App::App(Actor& caller)
     : Actor(caller),
       m_currentScreen{Screen(uint8_t(800), uint8_t(480))} 
-{};
+{
+    subscribe(KEY_PRESS);
+};
 
 int App::initialise(){
     return 1;
@@ -16,9 +19,8 @@ void App::handleMessage(Message& m){
         char key = static_cast<KeyMessageData&>(*m.data).getKey();
         //clear screen on escape
         if (key == '\x1b') {
+            spdlog::debug("Escape Pressed");
             // m_appManager.switchToApp(HOME);
-        } else {
-            //m_ui.print(std::string(1, key));
         }
     }
     processSpecificMessage(m);

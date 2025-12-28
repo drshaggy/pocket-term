@@ -5,10 +5,12 @@
 
 class Home : public App
 {
+private:
+    std::string input;
 public:
     Home(Actor& caller);
     int initialise() override;
-    int processSpecificMessage(Message& e) override;
+    int processSpecificMessage(Message& m) override;
 };
 
 #endif // HOME_H_
