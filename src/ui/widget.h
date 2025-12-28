@@ -9,7 +9,7 @@ class Widget
 {
 public:
     virtual ~Widget() = default;
-    virtual void render([[maybe_unused]]Display* display) const {}
+    virtual void render([[maybe_unused]]Display* display) const = 0;
     virtual std::unique_ptr<Widget> clone() = 0;
 };
 
