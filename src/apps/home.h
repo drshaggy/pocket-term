@@ -6,7 +6,7 @@
 class Home : public App
 {
 private:
-    std::string input;
+    std::string input = "";
 public:
     Home(Actor& caller);
     int initialise() override;

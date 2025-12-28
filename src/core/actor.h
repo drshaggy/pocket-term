@@ -83,7 +83,7 @@ public:
     void enqueue(Message message);
 };
 
-void sendMessage(Enqueuer enqueuer, Message& message);
+void sendMessage(Enqueuer enqueuer, const Message& message);
 
 template<typename ActorType>
 std::unique_ptr<ActorType> launchRootActor() {

@@ -110,6 +110,7 @@ void Actor::addToSubs(MessageType messageType, Enqueuer enqueuer) {
     m_subscriptions[messageType].add(enqueuer); 
 }
 
-void sendMessage(Enqueuer e, Message& m) {
-    e.enqueue(std::move(m));
+void sendMessage(Enqueuer e, const Message& m) {
+    Message copy = m;
+    e.enqueue(copy);
 }

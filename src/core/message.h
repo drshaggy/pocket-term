@@ -68,18 +68,14 @@ public:
 class Message {
 public:
     MessageType type;
-    std::unique_ptr<MessageData> data;
+    std::shared_ptr<MessageData> data;
     Message() = default;
-    Message(Message&&) = default;
-    Message& operator=(Message&&) = default;
-    Message(const Message&) = delete;
-    Message& operator=(const Message&) = delete;
 };
 
 template <typename TMessageData, typename... Args>
 static Message createMessage(Args&&... args) {
     Message m;
-    m.data = std::make_unique<TMessageData>(std::forward<Args>(args)...);
+    m.data = std::make_shared<TMessageData>(std::forward<Args>(args)...);
     m.type = m.data->getMessageType();
     return m;
 }
