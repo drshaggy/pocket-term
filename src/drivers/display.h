@@ -18,7 +18,7 @@ protected:
 public:
     Display(bool verticalOrientation);
     virtual ~Display() = default;
-    virtual int draw([[maybe_unused]]Screen& screen) {return 1;}
+    int draw(Screen& screen);
     virtual int redraw();
     virtual int clear();
     //text functions

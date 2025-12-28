@@ -12,7 +12,6 @@ public:
     int print(const std::string& text) override;
     int printHighlighted(const std::string& text) override;
     int println(const std::string& text) override;
-    virtual int draw(Screen& screen) override;
     virtual void drawText(const std::string& text) override;
 };
 

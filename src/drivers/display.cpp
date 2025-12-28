@@ -1,7 +1,15 @@
 #include "display.h"
+#include <spdlog/spdlog.h>
+#include "../ui/screen.h"
 
 Display::Display(bool verticalOrientation)
     : m_verticalOrientation(verticalOrientation) {};
+
+int Display::draw(Screen& screen) {
+    spdlog::debug("Attempting to draw on tty display");
+    screen.render(this);
+    return 0;
+}
 
 int Display::redraw() {
     return 1;

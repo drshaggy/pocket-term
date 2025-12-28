@@ -43,6 +43,9 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
 
 }
 
+
+
+
 int WaveshareEink::println(const std::string& text) {
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     Paint_SelectImage(m_frameBuffer);
@@ -90,6 +93,7 @@ int WaveshareEink::clear() {
 }
 
 void WaveshareEink::drawText(const std::string& text) {
+    spdlog::debug("draw Text at {} {}", m_cursor.x, m_cursor.y);
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     Paint_SelectImage(m_frameBuffer);
     Paint_DrawString_EN(m_cursor.x, m_cursor.y, text.c_str(), &Font24, BLACK, WHITE);

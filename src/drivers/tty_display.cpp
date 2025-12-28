@@ -14,13 +14,6 @@ TtyDisplay::TtyDisplay(bool verticalOrientation) :
     spdlog::info("TtyDisplay Initialised");
 };
 
-
-int TtyDisplay::draw(Screen& screen) {
-    spdlog::debug("Attempting to draw on tty display");
-    screen.render(this);
-    return 0;
-}
-
 int TtyDisplay::clear() {
     std::this_thread::sleep_for(500ms);
 
