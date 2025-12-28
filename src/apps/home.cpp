@@ -3,6 +3,9 @@
 #include "../ui/screen.h"
 
 #include <spdlog/spdlog.h>
+#include <thread>
+
+using namespace std::chrono_literals;
 
 Home::Home(Actor& caller)
     : App(caller)
@@ -10,6 +13,7 @@ Home::Home(Actor& caller)
     spdlog::info("Home App Initilialised");
     std::unique_ptr<Widget> text = std::make_unique<TextWidget>("Hello World", false);
     m_currentScreen.setRootWidget(std::move(text));
+    std::this_thread::sleep_for(5000ms);
     updateUI();
 }
 
