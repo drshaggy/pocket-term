@@ -1,5 +1,6 @@
 #include "home.h"
 #include "../ui/text_widget.h"
+#include "../ui/vertical_widget.h"
 #include "../ui/screen.h"
 
 #include <spdlog/spdlog.h>
@@ -12,6 +13,10 @@ Home::Home(Actor& caller)
 { 
     spdlog::info("Home App Initilialised");
     std::unique_ptr<Widget> text = std::make_unique<TextWidget>("Hello World", false);
+    std::unique_ptr<Widget> text2 = std::make_unique<TextWidget>("New line", false);
+    std::unique_ptr<VerticalWidget> vert = std::make_unique<VerticalWidget>();
+    vert->add(text);
+    vert->add(text);
     m_currentScreen.setRootWidget(std::move(text));
     std::this_thread::sleep_for(5000ms);
     updateUI();

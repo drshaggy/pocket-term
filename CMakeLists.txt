@@ -44,6 +44,7 @@ set(SOURCES
     src/input/input.cpp
     src/ui/ui.cpp
     src/ui/widget.cpp
+    src/ui/vertical_widget.cpp
     src/ui/text_widget.cpp
     src/ui/screen.cpp
     src/apps/app.cpp
@@ -77,6 +78,7 @@ set(HEADERS
     src/ui/ui.h
     src/ui/widget.h
     src/ui/text_widget.h
+    src/ui/vertical_widget.h
     src/ui/screen.h
     src/apps/app.h
     src/apps/home.h
