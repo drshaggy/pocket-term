@@ -36,7 +36,7 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         Paint_SelectImage(m_frameBuffer);
         Paint_Clear(WHITE);
         DEV_Delay_ms(2000);
-        println("Pocket Term");
+        //println("Pocket Term");
         redraw();
         spdlog::info("Waveshare Eink Device initialised");
     }
