@@ -87,8 +87,15 @@ set(HEADERS
 # Create executable
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
-# Define platform and GPIO for Waveshare
-target_compile_definitions(${PROJECT_NAME} PRIVATE RPI USE_BCM2835_LIB)
+# Detect actual Raspberry Pi (ARM processor + Linux OS)
+if((CMAKE_SYSTEM_PROCESSOR MATCHES "arm" OR CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
+    AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    message(STATUS "Building for Raspberry Pi with BCM2835 support")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE RPI USE_BCM2835_LIB)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${BCM2835_LIBRARY})
+else()
+    message(STATUS "Building in simulation mode")
+endif()
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE ${BCM2835_LIBRARY})
