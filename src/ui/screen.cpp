@@ -4,8 +4,13 @@ Screen::Screen(uint8_t width, uint8_t height)
 	: m_width{width}, m_height{height}
 {};
 
-Screen::Screen(const Screen& other) {
-    m_rootWidget = other.m_rootWidget->clone();
+Screen::Screen(const Screen& other)
+    : m_width(other.m_width),
+      m_height(other.m_height)
+{
+    if (other.m_rootWidget) {
+        m_rootWidget = other.m_rootWidget->clone();
+    }
 }
 
 Screen& Screen::operator=(const Screen& other) {
