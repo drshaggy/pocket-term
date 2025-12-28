@@ -1,6 +1,7 @@
 #ifndef ACTOR_H_
 #define ACTOR_H_
 
+#include "enqueuer.h"
 #include "message.h"
 
 #include <queue>
@@ -10,20 +11,18 @@
 #include <map>
 #include <mutex>
 
-class Enqueuer
+
+class Subscription
 {
 private:
-    std::queue<Message>& m_queue;
-    std::mutex& m_mutex;
+    MessageType m_messageType;
+    std::vector<Enqueuer> m_subscribers;
 public:
-    Enqueuer(std::queue<Message>& queue, std::mutex& mutex)
-        : m_queue(queue), m_mutex(mutex) {}
-    Enqueuer(const Enqueuer& other)
-        : m_queue(other.m_queue), m_mutex(other.m_mutex) {}
-    void enqueue(Message message) {
-        std::lock_guard<std::mutex> lock(m_mutex);
-        m_queue.push(std::move(message));
-    }
+    Subscription() {}
+    Subscription(MessageType messageType) : m_messageType(messageType) {}
+    MessageType getMessageType() {return m_messageType;}
+    const std::vector<Enqueuer>& getSubscribers() const {return m_subscribers;}
+    void add(Enqueuer enqueuer) {m_subscribers.push_back(enqueuer);}
 };
 
 class Actor
@@ -45,13 +44,19 @@ private:
     std::mutex m_queueMutex;
     Enqueuer m_selfEnqueuer;
     Enqueuer m_callerEnqueuer;
+    std::map<MessageType, Subscription> m_subscriptions;
     
     void actor();
     virtual void setUp() {}
     virtual void cleanUp() {}
-    virtual void handleMessage(Message& message);
     void actorCore();
+    void addToSubs(MessageType messageType, Enqueuer enqueuer);
 protected:
+    virtual void handleMessage(Message& message);
+    void subscribe(MessageType messageType) {
+        Message m = createMessage<SubscribeMessageData>(messageType, m_selfEnqueuer);
+        sendMessageToCaller(m);
+    }
     void launchActor();
     void launchActorUnthreaded();
     virtual void doActorCore();

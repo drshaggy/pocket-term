@@ -3,6 +3,7 @@
 
 #include "../drivers/display.h"
 #include "../core/actor.h"
+#include "screen.h"
 
 #include <string>
 #include <memory>
@@ -13,6 +14,7 @@ private:
     std::unique_ptr<Display> m_display;
     Screen m_currentScreen;
 protected:
+    virtual void setUp() override;
     virtual void doActorCore() override;
     virtual void handleMessage(Message& message) override;
 public:

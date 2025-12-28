@@ -1,9 +1,17 @@
 #include "home.h"
-
-#include "../core/time_utils.h"
-#include "../ui/ui.h"
+#include "../ui/text_widget.h"
+#include "../ui/screen.h"
 
 #include <spdlog/spdlog.h>
+
+Home::Home(Actor& caller)
+    : App(caller)
+{ 
+    spdlog::info("Home App Initilialised");
+    std::unique_ptr<Widget> text = std::make_unique<TextWidget>("Hello World", false);
+    m_currentScreen.setRootWidget(std::move(text));
+    updateUI();
+}
 
 int Home::initialise() {
     spdlog::info("Home App Initilialised");

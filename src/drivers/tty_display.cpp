@@ -1,4 +1,5 @@
 #include "tty_display.h"
+#include "../ui/screen.h"
 
 #include <spdlog/spdlog.h>
 #include <iostream>
@@ -13,11 +14,22 @@ TtyDisplay::TtyDisplay(bool verticalOrientation) :
     spdlog::info("TtyDisplay Initialised");
 };
 
+
+int TtyDisplay::draw(Screen& screen) {
+    spdlog::debug("Attempting to draw on tty display");
+    screen.render(this);
+    return 0;
+}
+
 int TtyDisplay::clear() {
     std::this_thread::sleep_for(500ms);
 
     std::cout << "\033[2J\033[H" << std::flush;
     return 0;
+}
+
+void TtyDisplay::drawText(const std::string& text) {
+   std::cout << text << std::endl; 
 }
 
 int TtyDisplay::print(const std::string& text) {
@@ -37,3 +49,4 @@ int TtyDisplay::println(const std::string& text) {
     std::cout << text << std::endl;
     return 0;
 }
+

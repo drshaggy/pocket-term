@@ -1,8 +1,10 @@
 #include "app.h"
+#include "../core/message.h"
 
-App::App(Actor& caller, Enqueuer ui)
+
+App::App(Actor& caller)
     : Actor(caller),
-      m_ui{ui}
+      m_currentScreen{Screen(uint8_t(800), uint8_t(480))} 
 {};
 
 int App::initialise(){
@@ -29,4 +31,6 @@ int App::processSpecificMessage([[maybe_unused]]Message& m){
 
 void App::updateUI(){
    //m_ui.update();
+    Message m = createMessage<ScreenMessageData>(m_currentScreen);
+    sendMessageToCaller(m);
 }

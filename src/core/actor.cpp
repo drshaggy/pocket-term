@@ -78,11 +78,36 @@ void Actor::sendMessageToCaller(Message& message) {
 
 
 void Actor::enqueue(Message message) {
+    std::lock_guard<std::mutex> lock(m_queueMutex);
     m_messageQueue.push(std::move(message));
 }
 
-void Actor::handleMessage([[maybe_unused]]Message& message) {
+void Actor::handleMessage(Message& message) {
+    spdlog::debug("Actor handleMessage Called");
+    if (message.type == SUBSCRIBE) {
+        SubscribeMessageData data = static_cast<SubscribeMessageData&>(*message.data); 
+        MessageType t = data.getMessageType();
+        Enqueuer e = data.getEnqueuer();
+        addToSubs(t, e);
+        spdlog::debug("Something Subscribed to something");
+    }
+    for (const auto& [messageType, subscription] : m_subscriptions) {
+        if (message.type == messageType) {
+            for (const auto& enqueuer : subscription.getSubscribers()) {
+                sendMessage(enqueuer, message);
+                spdlog::debug("Sending {} message to child", static_cast<int>(messageType));
+                return;
+            }
+        } 
+    }
     
+}
+
+void Actor::addToSubs(MessageType messageType, Enqueuer enqueuer) {
+    if (!m_subscriptions.contains(messageType)) {
+        m_subscriptions[messageType] = Subscription(messageType);
+    }
+    m_subscriptions[messageType].add(enqueuer); 
 }
 
 void sendMessage(Enqueuer e, Message& m) {

@@ -1,6 +1,8 @@
 #include "ui.h"
 #include "../drivers/waveshare_eink.h"
 #include "../drivers/tty_display.h"
+#include "../config.h"
+#include "../core/message.h"
 
 #include <spdlog/spdlog.h>
 
@@ -9,11 +11,15 @@ using namespace std::chrono_literals;
 UI::UI(Actor& caller)
     : Actor(caller)
 {
-    if (false) {
-        m_display = std::make_unique<WaveshareEink>(false);
-    } else {
+    if (SIMULATE_HARDWARE) {
         m_display = std::make_unique<TtyDisplay>(false);
+    } else {
+        m_display = std::make_unique<WaveshareEink>(false);
     }
+}
+
+void UI::setUp() {
+    subscribe(SCREEN);
 }
 
 void UI::doActorCore() {
@@ -21,8 +27,11 @@ void UI::doActorCore() {
 }
 
 void UI::handleMessage(Message& message) {
+    spdlog::debug("UI handleMessage Called");
+    Actor::handleMessage(message);
     if (message.type == SCREEN) {
        m_currentScreen = static_cast<ScreenMessageData&>(*message.data).getScreen();
+       update();
     }
 }
 
@@ -43,5 +52,5 @@ void UI::clear() {
 }
 
 void UI::update() {
-    m_display->redraw();
+    m_display->draw(m_currentScreen);
 }

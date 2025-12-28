@@ -3,6 +3,8 @@
 
 #include "../core/message.h"
 #include "../core/actor.h"
+#include "../ui/screen.h"
+
 
 class AppManager;
 class UI;
@@ -10,9 +12,9 @@ class UI;
 class App : public Actor
 {
 protected:
-    Enqueuer m_ui;
+    Screen m_currentScreen;
 public:
-    App(Actor& caller, Enqueuer ui);
+    App(Actor& caller);
     virtual ~App() = default;
     virtual int initialise();
     int processNextMessage(Message e);

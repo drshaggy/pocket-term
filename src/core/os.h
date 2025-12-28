@@ -11,10 +11,10 @@ class OS : public Actor
 public:
     virtual ~OS() = default;
     OS();
-    void run();
 protected:
     virtual void handleMessage(Message& message) override;
     virtual void doActorCore() override;
+    virtual void setUp() override;
 private:
     std::queue<Message> m_messageQueue;
     //Sim800l m_gsm;

@@ -31,6 +31,7 @@ set(SOURCES
     src/core/os.cpp
     src/core/logging.cpp
     src/core/app_manager.cpp
+    src/core/enqueuer.cpp
     src/core/message.cpp
     src/core/time_utils.cpp
     src/drivers/message_source.cpp
@@ -43,6 +44,7 @@ set(SOURCES
     src/input/input.cpp
     src/ui/ui.cpp
     src/ui/widget.cpp
+    src/ui/text_widget.cpp
     src/ui/screen.cpp
     src/apps/app.cpp
     src/apps/home.cpp
@@ -61,6 +63,7 @@ set(HEADERS
     src/core/os.h
     src/core/logging.h
     src/core/app_manager.h
+    src/core/enqueuer.h
     src/core/message.h
     src/core/time_utils.h
     src/drivers/message_source.h
@@ -73,6 +76,7 @@ set(HEADERS
     src/input/input.h
     src/ui/ui.h
     src/ui/widget.h
+    src/ui/text_widget.h
     src/ui/screen.h
     src/apps/app.h
     src/apps/home.h

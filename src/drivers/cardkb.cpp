@@ -36,7 +36,7 @@ void CardKB::poll() {
     uint32_t len = 1;
     bcm2835_i2c_read(buf, len);
     if (buf[0]) {
-        Message e = Message::createKeyMessage(buf[0], 0);
+        Message e = createMessage<KeyMessageData>(buf[0], 0);
         //m_messageQueue.push(std::move(e));
         spdlog::debug("Key {} pressed", buf[0]);
     }
