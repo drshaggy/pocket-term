@@ -28,5 +28,7 @@ Screen& Screen::operator=(const Screen& other) {
 }
 
 void Screen::render(Display* display) {
-   m_rootWidget->render(display, 0, 0);
+    if (m_rootWidget) {
+        m_rootWidget->render(display, 0, 0);
+    }
 }

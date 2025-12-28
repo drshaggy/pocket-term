@@ -16,8 +16,8 @@ Home::Home(Actor& caller)
     std::unique_ptr<Widget> text2 = std::make_unique<TextWidget>("New line", false);
     std::unique_ptr<VerticalWidget> vert = std::make_unique<VerticalWidget>();
     vert->add(text);
-    vert->add(text);
-    m_currentScreen.setRootWidget(std::move(text));
+    vert->add(text2);
+    m_currentScreen.setRootWidget(std::move(vert));
     std::this_thread::sleep_for(5000ms);
     updateUI();
 }
