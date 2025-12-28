@@ -89,7 +89,7 @@ int WaveshareEink::clear() {
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     Paint_SelectImage(m_frameBuffer);
     Paint_Clear(WHITE);
-    EPD_4in26_Clear();
+    //EPD_4in26_Clear();
     return 0;
 }
 
@@ -97,7 +97,6 @@ void WaveshareEink::drawText(const std::string& text, const uint8_t& x, const ui
     spdlog::debug("draw Text at {} {}", x, y);
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     Paint_SelectImage(m_frameBuffer);
-    Paint_Clear(WHITE);
     Paint_DrawString_EN(x, y, text.c_str(), &Font24, BLACK, WHITE);
     //m_cursor.x += Font24.Width * text.length();
 }

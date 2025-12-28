@@ -7,6 +7,7 @@ Display::Display(bool verticalOrientation)
 
 int Display::draw(Screen& screen) {
     spdlog::debug("Attempting to draw on tty display");
+    clear();
     screen.render(this);
     return 0;
 }
