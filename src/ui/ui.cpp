@@ -16,6 +16,17 @@ UI::UI(Actor& caller)
     } else {
         m_display = std::make_unique<WaveshareEink>(false);
     }
+    m_displayUpdateRunning = true;
+    m_displayUpdateThread = std::thread(&UI::displayThreadLoop, this);
+}
+
+UI::~UI()
+{
+    m_displayUpdateRunning = false;  
+    m_screenChanged.notify_one();
+    if (m_displayUpdateThread.joinable()) {
+        m_displayUpdateThread.join();
+    }
 }
 
 void UI::setUp() {
@@ -23,35 +34,45 @@ void UI::setUp() {
 }
 
 void UI::doActorCore() {
-        std::this_thread::sleep_for(1000ms);
+        std::this_thread::sleep_for(100ms);
 }
 
 void UI::handleMessage(Message& message) {
     spdlog::debug("UI handleMessage Called");
     Actor::handleMessage(message);
     if (message.type == SCREEN) {
-       m_currentScreen = static_cast<ScreenMessageData&>(*message.data).getScreen();
-       update();
+        {
+            std::lock_guard<std::mutex> locl(m_screenMutex);
+            m_currentScreen = static_cast<ScreenMessageData&>(*message.data).getScreen();
+            m_pendingUpdate = true;
+        } //release lock
+        m_screenChanged.notify_one();
     }
-}
-
-void UI::print(const std::string& text){
-    m_display->print(text);
-}
-
-void UI::printHighlighted(const std::string& text){
-    m_display->printHighlighted(text);
-}
-
-void UI::println(const std::string& text){
-    m_display->println(text);
 }
 
 void UI::clear() {
     m_display->clear();
 }
 
-void UI::update() {
-    m_display->draw(m_currentScreen);
-    m_display->redraw();
+void UI::update(Screen& screen) {
+        m_display->draw(screen);
+        m_display->refresh();
+}
+
+void UI::displayThreadLoop() {
+    while (m_displayUpdateRunning) {
+       Screen screenToDisplay;
+       {
+           std::unique_lock<std::mutex> lock(m_screenMutex);
+           m_screenChanged.wait(lock, [this] {
+               return !m_displayUpdateRunning || m_pendingUpdate;
+           });
+
+           if (!m_displayUpdateRunning) break;
+
+           screenToDisplay = m_currentScreen;
+           m_pendingUpdate = false;
+       } //release lock
+       update(screenToDisplay);
+    }
 }

@@ -37,7 +37,7 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         Paint_Clear(WHITE);
         DEV_Delay_ms(2000);
         //println("Pocket Term");
-        redraw();
+        refresh();
         spdlog::info("Waveshare Eink Device initialised");
     }
 
@@ -69,15 +69,14 @@ int WaveshareEink::printHighlighted(const std::string& text) {
     return 0;
 }
 
-int WaveshareEink::redraw() { 
+void WaveshareEink::refresh() { 
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     if (memcmp(m_frameBuffer, m_prevBuffer, m_displaySize) == 0) {
-        return 1;
+        return;
     }
     EPD_4in26_Display(m_frameBuffer);
     DEV_Delay_ms(2000);
     memcpy(m_prevBuffer, m_frameBuffer, m_displaySize);
-    return 0;
 }
 
 int WaveshareEink::clear() {

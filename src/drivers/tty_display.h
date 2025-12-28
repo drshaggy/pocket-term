@@ -13,6 +13,7 @@ public:
     int printHighlighted(const std::string& text) override;
     int println(const std::string& text) override;
     virtual void drawText(const std::string& text) override;
+    virtual void refresh() override {};
 };
 
 #endif // TTY_DISPLAY_H_

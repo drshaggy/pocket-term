@@ -22,7 +22,7 @@ public:
     int print(const std::string& text) override;
     int printHighlighted(const std::string& text) override;
     virtual void drawText(const std::string& text) override;
-    int redraw() override;
+    virtual void refresh() override;
     int clear() override;
 };
 

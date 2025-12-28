@@ -19,7 +19,7 @@ public:
     Display(bool verticalOrientation);
     virtual ~Display() = default;
     int draw(Screen& screen);
-    virtual int redraw();
+    virtual void refresh() = 0;
     virtual int clear();
     //text functions
     virtual int print(const std::string& text);

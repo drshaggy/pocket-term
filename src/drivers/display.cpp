@@ -11,10 +11,6 @@ int Display::draw(Screen& screen) {
     return 0;
 }
 
-int Display::redraw() {
-    return 1;
-};
-
 int Display::clear() {
     return 1;
 };

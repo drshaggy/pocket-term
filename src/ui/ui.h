@@ -5,7 +5,6 @@
 #include "../core/actor.h"
 #include "screen.h"
 
-#include <string>
 #include <memory>
 
 class UI : public Actor
@@ -13,6 +12,12 @@ class UI : public Actor
 private:
     std::unique_ptr<Display> m_display;
     Screen m_currentScreen;
+    std::mutex m_screenMutex;
+    bool m_pendingUpdate = false;
+    std::condition_variable m_screenChanged;
+    std::atomic<bool> m_displayUpdateRunning;
+    std::thread m_displayUpdateThread;
+    void displayThreadLoop();
 protected:
     virtual void setUp() override;
     virtual void doActorCore() override;
@@ -20,12 +25,9 @@ protected:
 public:
     UI();
     UI(Actor& caller);
-    virtual ~UI() = default;
-    void print(const std::string& text);
-    void printHighlighted(const std::string& text);
-    void println(const std::string& text);
+    virtual ~UI();
     void clear();
-    void update();
+    void update(Screen& screen);
 };
 
 #endif // UI_H_
