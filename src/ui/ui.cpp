@@ -53,4 +53,5 @@ void UI::clear() {
 
 void UI::update() {
     m_display->draw(m_currentScreen);
+    m_display->redraw();
 }
