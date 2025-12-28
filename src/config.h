@@ -7,8 +7,9 @@
 constexpr bool SIMULATE_HARDWARE = false;
 #else
 constexpr bool SIMULATE_HARDWARE = true;
+#endif
+
 constexpr uint8_t SEGMENT_HEIGHT = 20;
 constexpr uint8_t SEGMENT_WIDTH = 20;
-#endif
 
 #endif // CONFIG_H_
