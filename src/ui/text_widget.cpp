@@ -6,8 +6,8 @@ TextWidget::TextWidget(std::string text, bool isHighlighted)
       m_isHighlighted(isHighlighted)
 {}
 
-void TextWidget::render(Display* display) const {
-    display->drawText(m_text);
+void TextWidget::render(Display* display, const uint8_t& x, const uint8_t& y) const {
+    display->drawText(m_text, x, y);
 }
 
 std::unique_ptr<Widget> TextWidget::clone() {

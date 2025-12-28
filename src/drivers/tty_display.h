@@ -12,7 +12,7 @@ public:
     int print(const std::string& text) override;
     int printHighlighted(const std::string& text) override;
     int println(const std::string& text) override;
-    virtual void drawText(const std::string& text) override;
+    virtual void drawText(const std::string& text, const uint8_t& x, const uint8_t& y) override;
     virtual void refresh() override {};
 };
 

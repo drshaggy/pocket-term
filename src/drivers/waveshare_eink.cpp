@@ -84,11 +84,11 @@ int WaveshareEink::clear() {
     return 0;
 }
 
-void WaveshareEink::drawText(const std::string& text) {
-    spdlog::debug("draw Text at {} {}", m_cursor.x, m_cursor.y);
+void WaveshareEink::drawText(const std::string& text, const uint8_t& x, const uint8_t& y) {
+    spdlog::debug("draw Text at {} {}", x, y);
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     Paint_SelectImage(m_frameBuffer);
     Paint_Clear(WHITE);
-    Paint_DrawString_EN(10, 10, text.c_str(), &Font24, BLACK, WHITE);
+    Paint_DrawString_EN(x, y, text.c_str(), &Font24, BLACK, WHITE);
     //m_cursor.x += Font24.Width * text.length();
 }

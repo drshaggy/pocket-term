@@ -13,7 +13,7 @@ private:
 public:
     TextWidget(std::string text, bool isHighlighted);
     std::string getText() {return m_text;}
-    virtual void render(Display* display) const override;
+    virtual void render(Display* display, const uint8_t& x, const uint8_t& y) const override;
     virtual std::unique_ptr<Widget> clone() override;
 };
 

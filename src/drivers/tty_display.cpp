@@ -21,7 +21,7 @@ int TtyDisplay::clear() {
     return 0;
 }
 
-void TtyDisplay::drawText(const std::string& text) {
+void TtyDisplay::drawText(const std::string& text, const uint8_t& x, const uint8_t& y) {
    std::cout << text << std::endl; 
 }
 
