@@ -6,6 +6,10 @@
 #include "screen.h"
 
 #include <memory>
+#include <mutex>
+#include <condition_variable>
+#include <thread>
+#include <atomic>
 
 class UI : public Actor
 {
