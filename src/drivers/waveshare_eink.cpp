@@ -19,7 +19,7 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
             m_rotation = 0;
         }
         
-        EPD_4in26_Init();
+        EPD_4in26_Init_Fast();
         EPD_4in26_Clear();
 
         // Set framebuffer to display size
@@ -68,6 +68,15 @@ int WaveshareEink::printHighlighted(const std::string& text) {
 }
 
 void WaveshareEink::refresh() { 
+    std::lock_guard<std::mutex> lock(m_bufferMutex);
+    if (memcmp(m_frameBuffer, m_prevBuffer, m_displaySize) == 0) {
+        return;
+    }
+    EPD_4in26_Display_Fast(m_frameBuffer);
+    memcpy(m_prevBuffer, m_frameBuffer, m_displaySize);
+}
+
+void WaveshareEink::refreshPartial() {
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     if (memcmp(m_frameBuffer, m_prevBuffer, m_displaySize) == 0) {
         return;
