@@ -3,7 +3,6 @@
 #include "../drivers/tty_display.h"
 #include "../config.h"
 #include "../core/message.h"
-#include "text_widget.h"
 
 
 #include <memory>
@@ -22,8 +21,6 @@ UI::UI(Actor& caller)
     m_displayUpdateRunning = true;
     m_displayUpdateThread = std::thread(&UI::displayThreadLoop, this);
 
-    std::unique_ptr<Widget> text = std::make_unique<TextWidget>("STATUS BAR", true);
-    m_statusBar.setRootWidget(std::move(text));
     if (m_display->isReady()) 
         updateStatusBar();
     

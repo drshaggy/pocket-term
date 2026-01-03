@@ -14,7 +14,7 @@ private:
 public:
 	StatusBar() = default;
 	StatusBar(uint8_t width, uint8_t height);
-	void setRootWidget(std::unique_ptr<Widget> widget) {m_rootWidget = std::move(widget);}
+	void setRootWidget(std::unique_ptr<Widget>& widget) {m_rootWidget = std::move(widget);}
 	void render(Display* display);
 };
 
