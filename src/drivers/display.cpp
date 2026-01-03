@@ -8,7 +8,7 @@ Display::Display(bool verticalOrientation)
 
 int Display::draw(Screen& screen) {
     spdlog::debug("Attempting to draw screen on display");
-    clear();
+    //clear();
     screen.render(this);
     return 0;
 }
