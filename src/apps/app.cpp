@@ -6,7 +6,7 @@
 
 App::App(Actor& caller)
     : Actor(caller),
-      m_currentScreen{Screen(uint8_t(SCREEN_WIDTH), uint8_t(SCREEN_HEIGHT - SEGMENT_HEIGHT))} 
+      m_currentScreen{Screen(SCREEN_WIDTH, SCREEN_HEIGHT - SEGMENT_HEIGHT)} 
 {
     subscribe(KEY_PRESS);
 };

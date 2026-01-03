@@ -48,6 +48,7 @@ set(SOURCES
     src/ui/text_widget.cpp
     src/ui/input_widget.cpp
     src/ui/screen.cpp
+    src/ui/status_bar.cpp
     src/apps/app.cpp
     src/apps/home.cpp
     src/apps/launcher.cpp
@@ -82,6 +83,7 @@ set(HEADERS
     src/ui/input_widget.h
     src/ui/vertical_widget.h
     src/ui/screen.h
+    src/ui/status_bar.h
     src/apps/app.h
     src/apps/home.h
     src/apps/launcher.h

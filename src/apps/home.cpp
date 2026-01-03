@@ -12,7 +12,9 @@ using namespace std::chrono_literals;
 Home::Home(Actor& caller)
     : App(caller)
 { 
-    spdlog::info("Home App Initilialised");
+    spdlog::info("Initialising Home App...");
+
+    
     std::unique_ptr<Widget> text = std::make_unique<TextWidget>("Hello World", false);
     std::unique_ptr<Widget> text2 = std::make_unique<TextWidget>("New line", false);
     std::unique_ptr<Widget> input1 = std::make_unique<InputWidget>("Type here", false);
@@ -23,6 +25,7 @@ Home::Home(Actor& caller)
     m_currentScreen.setRootWidget(std::move(vert));
     std::this_thread::sleep_for(5000ms);
     updateUI();
+    spdlog::info("Home App Initilialised");
 }
 
 int Home::initialise() {

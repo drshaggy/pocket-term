@@ -4,6 +4,7 @@
 #include "../drivers/display.h"
 #include "../core/actor.h"
 #include "screen.h"
+#include "status_bar.h"
 
 #include <memory>
 #include <mutex>
@@ -15,6 +16,7 @@ class UI : public Actor
 {
 private:
     std::unique_ptr<Display> m_display;
+    StatusBar m_statusBar;
     Screen m_currentScreen;
     std::mutex m_screenMutex;
     bool m_pendingUpdate = false;
@@ -22,7 +24,9 @@ private:
     std::atomic<bool> m_displayUpdateRunning;
     std::thread m_displayUpdateThread;
     void displayThreadLoop();
-protected:
+    void updateStatusBar();
+    void update(Screen& screen);
+    void clear();
     virtual void setUp() override;
     virtual void doActorCore() override;
     virtual void handleMessage(Message& message) override;
@@ -30,8 +34,6 @@ public:
     UI();
     UI(Actor& caller);
     virtual ~UI();
-    void clear();
-    void update(Screen& screen);
 };
 
 #endif // UI_H_

@@ -6,6 +6,7 @@
 #include <string>
 
 class Screen;
+class StatusBar;
 
 class Display
 {
@@ -19,6 +20,7 @@ public:
     Display(bool verticalOrientation);
     virtual ~Display() = default;
     int draw(Screen& screen);
+    int draw(StatusBar& statusBar);
     virtual void refresh() = 0;
     virtual int clear();
     //text functions

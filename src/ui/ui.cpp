@@ -3,7 +3,10 @@
 #include "../drivers/tty_display.h"
 #include "../config.h"
 #include "../core/message.h"
+#include "text_widget.h"
 
+
+#include <memory>
 #include <spdlog/spdlog.h>
 
 using namespace std::chrono_literals;
@@ -18,6 +21,9 @@ UI::UI(Actor& caller)
     }
     m_displayUpdateRunning = true;
     m_displayUpdateThread = std::thread(&UI::displayThreadLoop, this);
+
+    std::unique_ptr<Widget> text = std::make_unique<TextWidget>("STATUS BAR", true);
+    m_statusBar.setRootWidget(std::move(text));
 }
 
 UI::~UI()
@@ -55,8 +61,13 @@ void UI::clear() {
 }
 
 void UI::update(Screen& screen) {
-        m_display->draw(screen);
-        m_display->refresh();
+    m_display->draw(screen);
+    m_display->refresh();
+}
+
+void UI::updateStatusBar() {
+    m_display->draw(m_statusBar);
+    m_display->refresh();
 }
 
 void UI::displayThreadLoop() {
