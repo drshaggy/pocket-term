@@ -20,7 +20,7 @@ UI::UI(Actor& caller)
     }
     m_displayUpdateRunning = true;
     m_displayUpdateThread = std::thread(&UI::displayThreadLoop, this);
-
+    m_statusBar = StatusBar(SCREEN_WIDTH, SCREEN_HEIGHT);
     if (m_display->isReady()) 
         updateStatusBar();
     
@@ -66,9 +66,9 @@ void UI::update(Screen& screen) {
 }
 
 void UI::updateStatusBar() {
-    m_statusBar.updateTime();
-    m_display->draw(m_statusBar);
-    m_display->refresh();
+        m_statusBar.updateTime();
+        m_display->draw(m_statusBar);
+        m_display->refresh();
 }
 
 void UI::displayThreadLoop() {
