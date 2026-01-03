@@ -43,6 +43,7 @@ void UI::setUp() {
 
 void UI::doActorCore() {
         std::this_thread::sleep_for(1000ms);
+        m_pendingUpdate = true;
         m_screenChanged.notify_one();
 }
 
