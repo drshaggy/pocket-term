@@ -46,7 +46,10 @@ void TimeWidget::updateTime() {
 
 void TimeWidget::updateThreadLoop() {
     while (m_running) {
-        updateTime(); 
+        updateTime();
+        if (m_display) {
+            render(m_display, 0, 0);
+        }
         for (int i = 0; i < 60 && m_running; ++i) {
             std::this_thread::sleep_for(1000ms);
         }
