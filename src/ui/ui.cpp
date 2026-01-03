@@ -42,19 +42,22 @@ void UI::setUp() {
 }
 
 void UI::doActorCore() {
-        std::this_thread::sleep_for(100ms);
+        std::this_thread::sleep_for(1000ms);
+        m_screenChanged.notify_one();
 }
 
 void UI::handleMessage(Message& message) {
     spdlog::debug("UI handleMessage Called");
     Actor::handleMessage(message);
-    if (message.type == SCREEN) {
-        {
-            std::lock_guard<std::mutex> lock(m_screenMutex);
-            m_currentScreen = static_cast<ScreenMessageData&>(*message.data).getScreen();
-            m_pendingUpdate = true;
-        } //release lock
-        m_screenChanged.notify_one();
+    switch(message.type) {
+        case SCREEN: {
+            {
+                std::lock_guard<std::mutex> lock(m_screenMutex);
+                m_currentScreen = static_cast<ScreenMessageData&>(*message.data).getScreen();
+                m_pendingUpdate = true;
+            } //release lock
+            m_screenChanged.notify_one();
+        } 
     }
 }
 
@@ -64,12 +67,10 @@ void UI::clear() {
 
 void UI::update(Screen& screen) {
     m_display->draw(screen);
-    m_display->refresh();
 }
 
 void UI::updateStatusBar() {
     m_display->draw(m_statusBar);
-    m_display->refresh();
 }
 
 void UI::displayThreadLoop() {
@@ -88,5 +89,6 @@ void UI::displayThreadLoop() {
        } //release lock
        update(screenToDisplay);
        updateStatusBar();
+       m_display->refresh();
     }
 }
