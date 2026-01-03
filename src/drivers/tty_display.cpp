@@ -11,6 +11,7 @@ using namespace std::chrono_literals;
 TtyDisplay::TtyDisplay(bool verticalOrientation) :
     Display(verticalOrientation)
 {
+    m_ready = true;
     spdlog::info("TtyDisplay Initialised");
 };
 

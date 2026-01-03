@@ -16,9 +16,11 @@ protected:
     uint16_t m_width;
     uint16_t m_height;
     uint16_t m_rotation;
+    bool m_ready = false;
 public:
     Display(bool verticalOrientation);
     virtual ~Display() = default;
+    bool isReady() const {return m_ready;}
     int draw(Screen& screen);
     int draw(StatusBar& statusBar);
     virtual void refresh() = 0;

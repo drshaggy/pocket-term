@@ -9,6 +9,7 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         spdlog::error("Failed to initlialise Waveshare Eink Display");
        //module doesnt load
     } else {
+        spdlog::info("Initiliasing Waveshare Eink Display...");
         m_cursor.x = 10;
         m_cursor.y = 20;
         m_width = EPD_4in26_WIDTH;
@@ -36,6 +37,7 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
         Paint_Clear(WHITE);
         //println("Pocket Term");
         refresh();
+        m_ready = true;
         spdlog::info("Waveshare Eink Device initialised");
     }
 
