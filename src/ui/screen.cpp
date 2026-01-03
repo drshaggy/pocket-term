@@ -1,4 +1,5 @@
 #include "screen.h"
+#include "../config.h"
 
 Screen::Screen(uint8_t width, uint8_t height)
 	: m_width{width}, m_height{height}
@@ -29,6 +30,6 @@ Screen& Screen::operator=(const Screen& other) {
 
 void Screen::render(Display* display) {
     if (m_rootWidget) {
-        m_rootWidget->render(display, 0, 0);
+        m_rootWidget->render(display, 0, SEGMENT_HEIGHT);
     }
 }

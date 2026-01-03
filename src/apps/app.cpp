@@ -1,11 +1,12 @@
 #include "app.h"
 #include "../core/message.h"
+#include "../config.h"
 
 #include <spdlog/spdlog.h>
 
 App::App(Actor& caller)
     : Actor(caller),
-      m_currentScreen{Screen(uint8_t(800), uint8_t(480))} 
+      m_currentScreen{Screen(uint8_t(SCREEN_WIDTH), uint8_t(SCREEN_HEIGHT - SEGMENT_HEIGHT))} 
 {
     subscribe(KEY_PRESS);
 };
