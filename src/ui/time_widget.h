@@ -3,18 +3,26 @@
 
 #include "widget.h"
 #include <string>
+#include <mutex>
+#include <thread>
+#include <atomic>
+
 
 class TimeWidget : public Widget
 {
 private:
 	std::string m_time;
+	mutable std::mutex m_timeMutex;
+	std::thread m_updateThread;
+	std::atomic<bool> m_running{false};
 	bool m_isHighlighted;
 public:
 	TimeWidget(bool isHighlighted = false);
-	std::string getText() const {return m_time;}
+	~TimeWidget();
 	virtual void render(Display* display, const uint8_t& x, const uint8_t& y) const override;
 	virtual std::unique_ptr<Widget> clone() override;
 	void updateTime();
+	void updateThreadLoop();
 };
 
 
