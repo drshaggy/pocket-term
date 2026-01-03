@@ -24,6 +24,7 @@ UI::UI(Actor& caller)
 
     std::unique_ptr<Widget> text = std::make_unique<TextWidget>("STATUS BAR", true);
     m_statusBar.setRootWidget(std::move(text));
+    updateStatusBar();
 }
 
 UI::~UI()
