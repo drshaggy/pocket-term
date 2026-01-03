@@ -17,6 +17,9 @@ void StatusBar::render(Display* display) {
     }
 }
 
-void StatusBar::updateTime() {
-   m_timeWidget->updateTime(); 
+void StatusBar::renderTime(Display* display) {
+    if (m_timeWidget) {
+        m_timeWidget->updateTime(); 
+        m_timeWidget->render(display, 0, 0);
+    }
 }

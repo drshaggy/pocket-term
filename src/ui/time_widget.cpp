@@ -23,7 +23,6 @@ TimeWidget::~TimeWidget()
     }
 }
 
-
 void TimeWidget::render(Display* display, const uint8_t& x, const uint8_t& y) const {
     std::string timeCopy;
     {
