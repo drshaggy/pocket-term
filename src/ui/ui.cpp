@@ -66,6 +66,7 @@ void UI::update(Screen& screen) {
 }
 
 void UI::updateStatusBar() {
+    m_statusBar.updateTime();
     m_display->draw(m_statusBar);
     m_display->refresh();
 }

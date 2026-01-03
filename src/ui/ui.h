@@ -17,6 +17,11 @@ class UI : public Actor
 private:
     std::unique_ptr<Display> m_display;
     StatusBar m_statusBar;
+    std::mutex m_statusMutex;
+
+    void updateStatusBar();
+
+    //async screen
     Screen m_currentScreen;
     std::mutex m_screenMutex;
     bool m_pendingUpdate = false;
@@ -24,9 +29,10 @@ private:
     std::atomic<bool> m_displayUpdateRunning;
     std::thread m_displayUpdateThread;
     void displayThreadLoop();
-    void updateStatusBar();
+    
     void update(Screen& screen);
     void clear();
+    
     virtual void setUp() override;
     virtual void doActorCore() override;
     virtual void handleMessage(Message& message) override;
