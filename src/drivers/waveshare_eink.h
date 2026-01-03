@@ -21,7 +21,7 @@ public:
     int println(const std::string& text) override;
     int print(const std::string& text) override;
     int printHighlighted(const std::string& text) override;
-    virtual void drawText(const std::string& text, const uint8_t& x, const uint8_t& y) override;
+    virtual void drawText(const std::string& text, const uint8_t& x, const uint8_t& y, bool isHighlighted = false) override;
     virtual void refresh() override;
     void refreshPartial();
     int clear() override;

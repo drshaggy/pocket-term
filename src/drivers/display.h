@@ -30,7 +30,7 @@ public:
     virtual int printHighlighted(const std::string& text);
     virtual int println(const std::string& text);
     //widget functions
-    virtual void drawText(const std::string& text, const uint8_t& x, const uint8_t& y) = 0;
+    virtual void drawText(const std::string& text, const uint8_t& x, const uint8_t& y, bool isHighlighted = false) = 0;
 };
 
 #endif // DISPLAY_H_
