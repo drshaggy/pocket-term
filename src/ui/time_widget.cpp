@@ -2,6 +2,8 @@
 #include "../drivers/display.h"
 
 #include <chrono>
+#include <spdlog/spdlog.h>
+
 using namespace std::chrono_literals;
 
 TimeWidget::TimeWidget(bool isHighlighted)
@@ -39,6 +41,7 @@ void TimeWidget::updateTime() {
     auto now = std::chrono::system_clock::now();
     std::lock_guard<std::mutex> lock(m_timeMutex);
     m_time = std::format("{:%H:%M}", now);
+    spdlog::debug("Time widget updated with {}", m_time);
 }
 
 void TimeWidget::updateThreadLoop() {
