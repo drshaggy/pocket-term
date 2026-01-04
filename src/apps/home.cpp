@@ -22,6 +22,7 @@ Home::Home(Actor& caller)
     std::this_thread::sleep_for(5000ms);
     updateUI();
     subscribe(DOWN_KEY_PRESS);
+    subscribe(UP_KEY_PRESS);
     spdlog::info("Home App Initilialised");
 }
 
@@ -33,11 +34,18 @@ void Home::handleMessage(Message& m) {
     spdlog::debug("Home Received Message type");
     switch(m.type) {
         case DOWN_KEY_PRESS: {
-            spdlog::debug("Down Arrow Pressed");
             if(m_selectedApp < m_appList.size()-1) {
                 m_selectedApp += 1;
             } else {
                 m_selectedApp = 0;
+            }
+            break;
+        }
+        case UP_KEY_PRESS: {
+            if(m_selectedApp > 0) {
+                m_selectedApp -= 1;
+            } else {
+                m_selectedApp = m_appList.size()-1;
             }
             break;
         }
