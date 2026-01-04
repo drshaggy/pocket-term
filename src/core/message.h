@@ -3,18 +3,11 @@
 
 #include "enqueuer.h"
 #include "../ui/screen.h"
+#include "../enums.h"
 
 #include <cstdint>
 #include <memory>
 
-
-enum MessageType {
-	KEY_PRESS,
-	TICK,
- ACKNOWLEDGE,
- SCREEN,
- SUBSCRIBE
-};
 
 class MessageData {
 protected:
@@ -64,6 +57,11 @@ public:
     MessageType getMessageType() {return m_messageType;}
 };
     
+class SpecialKeyMessageData : public MessageData {
+public:
+    SpecialKeyMessageData(MessageType specialKey)
+        : MessageData(specialKey) {}
+};
 
 class Message {
 public:

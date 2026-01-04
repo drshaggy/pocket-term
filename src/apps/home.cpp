@@ -28,31 +28,20 @@ int Home::initialise() {
     return 0;
 }
 
-int Home::processSpecificMessage(Message& m) {
-    spdlog::debug("Received Message");
+void Home::handleMessage(Message& m) {
+    spdlog::debug("Home Received Message");
     switch(m.type) {
-        case KEY_PRESS: {
-            auto* keyData = static_cast<KeyMessageData*>(m.data.get()); 
-            char key = keyData->getKey();
-            if (key == '\xB6') {
-                spdlog::debug("Down Arrow Pressed");
-                if(m_selectedApp < m_appList.size()-1) {
-                    m_selectedApp += 1;
-                } else {
-                    m_selectedApp = 0;
-                }
+        case DOWN_KEY_PRESS: {
+            spdlog::debug("Down Arrow Pressed");
+            if(m_selectedApp < m_appList.size()-1) {
+                m_selectedApp += 1;
             } else {
-                input += key;
-                std::unique_ptr<Widget> text = std::make_unique<TextWidget>(input, false);
-                m_currentScreen.setRootWidget(std::move(text));
-                updateUI();
+                m_selectedApp = 0;
             }
         }
         default: {
             
         }
     }
-    return 0;
-    
 }
 

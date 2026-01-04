@@ -21,7 +21,7 @@ public:
     virtual int processSpecificMessage(Message& e);
     void updateUI();
     
-    virtual void handleMessage(Message& e);
+    virtual void handleMessage(Message& message) override;
 };
 
 int switchApp(std::unique_ptr<App> newApp); //do we use a map to hold installed apps that are registered? and use this is restore an app if required

@@ -12,7 +12,7 @@ private:
 public:
     Home(Actor& caller);
     int initialise() override;
-    int processSpecificMessage(Message& m) override;
+    virtual void handleMessage(Message& message) override;
 };
 
 #endif // HOME_H_

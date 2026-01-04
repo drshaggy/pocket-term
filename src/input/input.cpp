@@ -1,5 +1,6 @@
 #include "input.h"
 #include "../config.h"
+#include "../enums.h"
 
 #include "../drivers/cardkb.h"
 #include <spdlog/spdlog.h>
@@ -22,9 +23,14 @@ void Input::doActorCore() {
     input[0] = m_keyboard->read();
     std::this_thread::sleep_for(20ms);
     if (input[0]) {
-        Message m = createMessage<KeyMessageData>(input[0], 0);
+        Message m;
+        switch (input[0]) {
+            case '\xB6': 
+                m = createMessage<SpecialKeyMessageData>(DOWN_KEY_PRESS);
+            default:
+                m = createMessage<KeyMessageData>(input[0], 0);
+        }
         sendMessageToCaller(m);
-        spdlog::debug("Key {} pressed in input actor", input);
     }
 }
 
