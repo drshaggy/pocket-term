@@ -10,7 +10,7 @@ private:
     std::vector<std::string> m_appList{"Home", "Updater", "Calculator"};
 public:
     Launcher(Actor& caller);
-    int processSpecificMessage(Message& e) override;
+    virtual void handleMessage(Message& message) override;
 };
 
 

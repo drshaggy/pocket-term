@@ -19,16 +19,28 @@ Launcher::Launcher(Actor& caller) : App(caller, "launcher")
     
 }
 
-
-int Launcher::processSpecificMessage(Message& e){
-    if (e.type == KEY_PRESS) {
-        char key = static_cast<KeyMessageData&>(*e.data).getKey();
-        //clear screen on escape
-        if (key == '\x1b') {
-            //m_ui.clear();
-        } else {
-            //m_ui.print(std::string(1, key));
+void Launcher::handleMessage(Message& m) {
+    App::handleMessage(m);
+    m_logger->debug("Launcher Received Message type {}", static_cast<int>(m.type));
+    switch(m.type) {
+        case DOWN_KEY_PRESS: {
+            if(m_selectedApp < m_appList.size()-1) {
+                m_selectedApp += 1;
+            } else {
+                m_selectedApp = 0;
+            }
+            break;
+        }
+        case UP_KEY_PRESS: {
+            if(m_selectedApp > 0) {
+                m_selectedApp -= 1;
+            } else {
+                m_selectedApp = m_appList.size()-1;
+            }
+            break;
+        }
+        default: {
+            break;
         }
     }
-    return 0;
 }
