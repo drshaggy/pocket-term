@@ -20,7 +20,6 @@ void AppManager::handleMessage(Message& message) {
             sendMessageToCaller(message);
             break;
         default:
-            sendMessageToCaller(message);
             break;
     }
 }
