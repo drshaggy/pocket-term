@@ -6,7 +6,7 @@
 #include "../apps/app.h"
 
 AppManager::AppManager(Actor& caller, Enqueuer ui)
-    : Actor(caller),
+    : Actor(caller, "app_manager"),
       m_ui(ui),
       m_currentApp(HOME)
 {

@@ -1,18 +1,16 @@
 #include "home.h"
-#include "../ui/text_widget.h"
 #include "../ui/list_widget.h"
 #include "../ui/vertical_widget.h"
 #include "../ui/screen.h"
 
-#include <spdlog/spdlog.h>
 #include <thread>
 
 using namespace std::chrono_literals;
 
 Home::Home(Actor& caller)
-    : App(caller)
+    : App(caller, "home")
 { 
-    spdlog::info("Initialising Home App...");
+    m_logger->info("Initialising Home App...");
 
     
     std::unique_ptr<Widget> list = std::make_unique<ListWidget>(m_appList, m_selectedApp);
@@ -23,7 +21,7 @@ Home::Home(Actor& caller)
     updateUI();
     subscribe(DOWN_KEY_PRESS);
     subscribe(UP_KEY_PRESS);
-    spdlog::info("Home App Initilialised");
+    m_logger->info("Home App Initilialised");
 }
 
 int Home::initialise() {
@@ -31,7 +29,7 @@ int Home::initialise() {
 }
 
 void Home::handleMessage(Message& m) {
-    spdlog::debug("Home Received Message type");
+    m_logger->debug("Home Received Message type");
     switch(m.type) {
         case DOWN_KEY_PRESS: {
             if(m_selectedApp < m_appList.size()-1) {

@@ -11,7 +11,7 @@
 using namespace std::chrono_literals;
 
 UI::UI(Actor& caller)
-    : Actor(caller)
+    : Actor(caller, "ui")
 {
     if (SIMULATE_HARDWARE) {
         m_display = std::make_unique<TtyDisplay>(false);

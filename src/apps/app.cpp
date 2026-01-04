@@ -4,8 +4,8 @@
 
 #include <spdlog/spdlog.h>
 
-App::App(Actor& caller)
-    : Actor(caller),
+App::App(Actor& caller, const std::string appName)
+    : Actor(caller, appName),
       m_currentScreen{Screen(SCREEN_WIDTH, SCREEN_HEIGHT - SEGMENT_HEIGHT)} 
 {
     subscribe(KEY_PRESS);

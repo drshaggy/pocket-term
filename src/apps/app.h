@@ -14,7 +14,7 @@ class App : public Actor
 protected:
     Screen m_currentScreen;
 public:
-    App(Actor& caller);
+    App(Actor& caller, const std::string appName);
     virtual ~App() = default;
     virtual int initialise();
     int processNextMessage(Message e);

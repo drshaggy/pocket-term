@@ -4,6 +4,7 @@
 #include "enqueuer.h"
 #include "message.h"
 
+#include <spdlog/spdlog.h>
 #include <queue>
 #include <thread>
 #include <atomic>
@@ -32,7 +33,7 @@ class Actor
 private:
     //ID
     size_t m_actorId;
-    Actor* m_parent;
+    Actor* m_caller;
     static std::atomic<size_t> s_nextActorId;
     //Nested 
     std::map<size_t, std::unique_ptr<Actor>> m_nestedActors;
@@ -52,6 +53,9 @@ private:
     void actorCore();
     void addToSubs(MessageType messageType, Enqueuer enqueuer);
 protected:
+    const std::string m_actorName;
+    std::shared_ptr<spdlog::logger> m_logger;
+    void initLogger(const std::string& name);
     virtual void handleMessage(Message& message);
     void subscribe(MessageType messageType) {
         Message m = createMessage<SubscribeMessageData>(messageType, m_selfEnqueuer);
@@ -74,8 +78,8 @@ protected:
         return m_nestedActors[nestedId]->getSelfEnqueuer();
     }
 public:
-    Actor();
-    Actor(Actor& parent);
+    Actor(const std::string actorName);
+    Actor(Actor& caller, const std::string actorName);
     ~Actor();
     size_t getActorId() {return m_actorId;};
     Enqueuer& getSelfEnqueuer() {return m_selfEnqueuer;};

@@ -8,7 +8,7 @@
 using namespace std::chrono_literals;
 
 Input::Input(Actor& caller)
-    : Actor(caller)
+    : Actor(caller, "input")
 {
     if (SIMULATE_HARDWARE) {
         m_keyboard = std::make_unique<Keyboard>();

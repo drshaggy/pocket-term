@@ -24,3 +24,22 @@ void setupLogging() {
       // CRITICAL: Force flush on every log message
       spdlog::flush_on(spdlog::level::trace);
 }
+
+std::shared_ptr<spdlog::logger> createLogger(const std::string& name) {
+    auto existing = spdlog::get(name); 
+    if (existing) {
+        return existing;
+    }
+    auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(
+        "/var/log/pocket-term.log", 1024 * 1024 * 5, 3);
+    auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+
+    std::vector<spdlog::sink_ptr> sinks {file_sink, console_sink};
+    auto logger = std::make_shared<spdlog::logger>(name, sinks.begin(), sinks.end());
+
+    logger->set_level(spdlog::level::debug);
+    logger->flush_on(spdlog::level::trace);
+
+    spdlog::register_logger(logger);
+    return logger;
+}

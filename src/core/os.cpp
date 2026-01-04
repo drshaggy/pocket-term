@@ -8,7 +8,7 @@
 using namespace std::chrono_literals;
 //
 OS::OS()
-    : Actor()   
+    : Actor("os")   
 {
     spdlog::info("PocketTerm OS Starting");
 }

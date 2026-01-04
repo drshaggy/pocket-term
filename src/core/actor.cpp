@@ -1,21 +1,26 @@
 #include "actor.h"
+#include "logging.h"
 
 #include <spdlog/spdlog.h>
 
 std::atomic<size_t> Actor::s_nextActorId{1};
 
-Actor::Actor()
+Actor::Actor(const std::string actorName)
     : m_actorId(s_nextActorId.fetch_add(1)),
       m_running { false },
       m_selfEnqueuer(m_messageQueue, m_queueMutex),
-      m_callerEnqueuer(m_messageQueue, m_queueMutex) //use own queuer for paerent as root. 
+      m_callerEnqueuer(m_messageQueue, m_queueMutex), //use own queuer for paerent as root.
+      m_actorName(actorName),
+      m_logger(createLogger(actorName))
 {}
 
-Actor::Actor(Actor& parent)
+
+Actor::Actor(Actor& caller, const std::string actorName)
     : m_actorId(s_nextActorId.fetch_add(1)),
       m_running { false },
       m_selfEnqueuer(m_messageQueue, m_queueMutex),
-      m_callerEnqueuer(parent.getSelfEnqueuer())
+      m_callerEnqueuer(caller.getSelfEnqueuer()),
+      m_actorName(actorName)
 {}
 
 Actor::~Actor()
@@ -110,7 +115,9 @@ void Actor::addToSubs(MessageType messageType, Enqueuer enqueuer) {
     m_subscriptions[messageType].add(enqueuer); 
 }
 
+
 void sendMessage(Enqueuer e, const Message& m) {
     Message copy = m;
     e.enqueue(copy);
 }
+
