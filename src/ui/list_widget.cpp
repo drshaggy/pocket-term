@@ -2,7 +2,9 @@
 #include "../drivers/display.h"
 #include "../config.h"
 
-ListWidget::ListWidget(std::vector<std::string> items) : m_items(items) {}
+ListWidget::ListWidget(std::vector<std::string>& items, uint8_t& selectedItem)
+    : m_items(items),
+      m_selectedItem(selectedItem) {}
 
 void ListWidget::render(Display* display, const uint16_t& x, const uint16_t& y) const {
     uint16_t offset{0};
@@ -15,5 +17,5 @@ void ListWidget::render(Display* display, const uint16_t& x, const uint16_t& y) 
 }
 
 std::unique_ptr<Widget> ListWidget::clone() {
-    return std::make_unique<ListWidget>(m_items);
+    return std::make_unique<ListWidget>(m_items, m_selectedItem);
 }

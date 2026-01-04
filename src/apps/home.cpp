@@ -14,8 +14,8 @@ Home::Home(Actor& caller)
 { 
     spdlog::info("Initialising Home App...");
 
-    std::vector<std::string> appList{"Messages", "Phone", "Calculator"};
-    std::unique_ptr<Widget> list = std::make_unique<ListWidget>(appList);
+    
+    std::unique_ptr<Widget> list = std::make_unique<ListWidget>(m_appList, m_selectedApp);
     std::unique_ptr<VerticalWidget> vert = std::make_unique<VerticalWidget>();
     vert->add(list);
     m_currentScreen.setRootWidget(std::move(vert));
@@ -42,12 +42,19 @@ int Home::processSpecificMessage(Message& m) {
         case KEY_PRESS: {
             auto* keyData = static_cast<KeyMessageData*>(m.data.get()); 
             char key = keyData->getKey();
-            input += key;
-            std::unique_ptr<Widget> text = std::make_unique<TextWidget>(input, false);
-            m_currentScreen.setRootWidget(std::move(text));
-            updateUI();
-            //m_ui.print(std::string() + key);
-            //m_ui.update();
+            if (key == '0xB6') {
+                spdlog::debug("Down Arrow Pressed");
+                if(m_selectedApp < m_appList.size()) {
+                    m_selectedApp += 1;
+                } else {
+                    m_selectedApp = 0;
+                }
+            } else {
+                input += key;
+                std::unique_ptr<Widget> text = std::make_unique<TextWidget>(input, false);
+                m_currentScreen.setRootWidget(std::move(text));
+                updateUI();
+            }
         }
         case TICK: {
             
