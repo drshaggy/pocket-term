@@ -14,7 +14,7 @@ public:
 	BoxWidget(const uint16_t width,
 			  const uint16_t height,
 			  const bool hasBorder = true,
-			  const bool isFilled = false);
+			  const bool isFilled = true);
 	virtual void render(Display* display, const uint16_t& x, const uint16_t& y) const override;
 	virtual std::unique_ptr<Widget> clone() override;
 

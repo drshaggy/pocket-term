@@ -36,7 +36,7 @@ int Home::processSpecificMessage(Message& m) {
             char key = keyData->getKey();
             if (key == '\xB6') {
                 spdlog::debug("Down Arrow Pressed");
-                if(m_selectedApp < m_appList.size()) {
+                if(m_selectedApp < m_appList.size()-1) {
                     m_selectedApp += 1;
                 } else {
                     m_selectedApp = 0;
