@@ -18,15 +18,15 @@ Input::Input(Actor& caller)
 }
 
 void Input::doActorCore() {
-    char input[256];
+    unsigned char input[256];
     input[0] = 0;
     input[0] = m_keyboard->read();
     std::this_thread::sleep_for(20ms);
     if (input[0]) {
         Message m;
-        spdlog::debug("Input: {}, is Down? {}", input[0], input[0] == '\xB6');
+        spdlog::debug("Input: 0x{:02X}, is Down? {}", input[0], input[0] == 0xB6);
         switch (input[0]) {
-            case '\xB6': 
+            case 0xB6: 
                 spdlog::debug("Running Down Case");
                 m = createMessage<SpecialKeyMessageData>(DOWN_KEY_PRESS);
                 break;
