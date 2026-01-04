@@ -29,9 +29,11 @@ void Input::doActorCore() {
             case '\xB6': 
                 spdlog::debug("Running Down Case");
                 m = createMessage<SpecialKeyMessageData>(DOWN_KEY_PRESS);
+                break;
             default:
                 spdlog::debug("Running Default Case");
                 m = createMessage<KeyMessageData>(input[0], 0);
+                break;
         }
         sendMessageToCaller(m);
     }

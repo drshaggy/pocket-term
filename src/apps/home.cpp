@@ -30,7 +30,7 @@ int Home::initialise() {
 }
 
 void Home::handleMessage(Message& m) {
-    spdlog::debug("Home Received Message");
+    spdlog::debug("Home Received Message type");
     switch(m.type) {
         case DOWN_KEY_PRESS: {
             spdlog::debug("Down Arrow Pressed");
@@ -39,9 +39,10 @@ void Home::handleMessage(Message& m) {
             } else {
                 m_selectedApp = 0;
             }
+            break;
         }
         default: {
-            
+            break;
         }
     }
 }
