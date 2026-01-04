@@ -24,6 +24,7 @@ public:
     MessageType getMessageType() {return m_messageType;}
     const std::vector<Enqueuer>& getSubscribers() const {return m_subscribers;}
     void add(Enqueuer enqueuer) {m_subscribers.push_back(enqueuer);}
+    void remove(Enqueuer enqueuer);
 };
 
 class Actor

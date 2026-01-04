@@ -16,7 +16,7 @@ private:
     UBYTE* m_frameBuffer;
     std::mutex m_bufferMutex;
     Cursor m_cursor;
-    void clearWindow(const uint16_t& x, const uint16_t& y, const uint16_t& width, const uint16_t& height);
+    void clearWindow(const uint16_t& x, const uint16_t& y, const uint16_t& width, const  uint16_t& height);
 public:
     WaveshareEink(bool verticalOrientation);
     virtual void drawText(const std::string& text, const uint16_t& x, const uint16_t& y, bool isHighlighted = false) override;

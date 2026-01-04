@@ -1,6 +1,8 @@
 #include "actor.h"
 #include "logging.h"
 
+#include <vector>
+
 std::atomic<size_t> Actor::s_nextActorId{1};
 
 Actor::Actor(const std::string actorName)
@@ -138,8 +140,8 @@ void Actor::addToSubs(MessageType messageType, Enqueuer enqueuer) {
 }
 
 void Actor::removeFromSubs(Enqueuer enqueuer) {
-    for (const auto& subscription : m_subscriptions) {
-         
+    for (auto& subscription : m_subscriptions) {
+        subscription.second.remove(enqueuer);
     }
 }
 
@@ -148,3 +150,9 @@ void sendMessage(Enqueuer e, const Message& m) {
     e.enqueue(copy);
 }
 
+void Subscription::remove(Enqueuer enqueuer) {
+    std::erase_if(
+        m_subscribers,
+        [&enqueuer](const Enqueuer& subscriber) {return enqueuer.isEqual(subscriber);}
+    );
+}

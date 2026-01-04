@@ -14,6 +14,11 @@ private:
     std::mutex* m_mutex;
 public:
     Enqueuer() = default;
+    Enqueuer& operator=(const Enqueuer& other);
+    Enqueuer(Enqueuer&& other) noexcept = default;
+    Enqueuer& operator=(Enqueuer&& other) noexcept = default;
+    ~Enqueuer() = default;
+
     Enqueuer(std::queue<Message>& queue, std::mutex& mutex, size_t& id);
     Enqueuer(const Enqueuer& other);
     void enqueue(Message message);
