@@ -119,7 +119,6 @@ void Actor::handleMessage(Message& message) {
             for (const auto& enqueuer : subscription.getSubscribers()) {
                 sendMessage(enqueuer, message);
                 m_logger->debug("Sending {} message to child", static_cast<int>(messageType));
-                return;
             }
         } 
     }
