@@ -24,8 +24,8 @@ void Input::doActorCore() {
     std::this_thread::sleep_for(20ms);
     if (input[0]) {
         Message m;
+        spdlog::debug("Input: {}, is Down? {}", input[0], input[0] == '\xB6');
         switch (input[0]) {
-            spdlog::debug("Input: {}, is Down? {}", input[0], input[0] == '\xB6');
             case '\xB6': 
                 m = createMessage<SpecialKeyMessageData>(DOWN_KEY_PRESS);
             default:
