@@ -87,8 +87,6 @@ void Actor::enqueue(Message message) {
 }
 
 void Actor::handleMessage(Message& message) {
-    m_logger->debug("Actor handleMessage Called");
-
     // handles specific messages
     switch (message.type) {
         case SUBSCRIBE: {
@@ -100,11 +98,11 @@ void Actor::handleMessage(Message& message) {
             break;
         }
         case CLOSE: {
+            m_logger->info("Stopping {} Actor", m_actorName);
             for (const auto& enqueuer : m_nestedEnqueuers) {
                 sendMessage(enqueuer, message);
-                m_running = false;
-                m_logger->info("Closing {} Actor", m_actorName);
             }
+            m_running = false;
             break; 
         }
             
