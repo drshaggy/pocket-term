@@ -1,6 +1,7 @@
 #include "actor.h"
 #include "app_manager.h"
 #include "../apps/home.h"
+#include "../apps/launcher.h"
 #include "../apps/app.h"
 
 AppManager::AppManager(Actor& caller)
@@ -10,6 +11,7 @@ AppManager::AppManager(Actor& caller)
     // m_installedApps[LAUNCHER] = [this](Enqueuer ui){return std::make_unique<Launcher>(*this, ui);};
     subscribe(DOWN_KEY_PRESS);
     subscribe(UP_KEY_PRESS);
+    subscribe(ESCAPE_KEY_PRESS);
     launchApp<Home>();
 };
 
@@ -19,16 +21,20 @@ void AppManager::handleMessage(Message& message) {
         case SCREEN:
             sendMessageToCaller(message);
             break;
+        case ESCAPE_KEY_PRESS:
+            switchToApp();
         default:
             break;
     }
 }
 
-void AppManager::closeApp(Apps appId) {
+void AppManager::closeApp() {
+    Message m = createMessage<SpecialKeyMessageData>(CLOSE);
+    sendMessage(m_currentApp, m);
 }
 
-void AppManager::switchToApp(Apps appId) {
-    //m_lastApp = m_currentApp;
-    //m_currentApp = appId;
+void AppManager::switchToApp() {
+    closeApp();
+    launchApp<Launcher>();
 }
 

@@ -45,6 +45,7 @@ private:
     std::mutex m_queueMutex;
     Enqueuer m_selfEnqueuer;
     Enqueuer m_callerEnqueuer;
+    std::vector<Enqueuer> m_nestedEnqueuers;
     std::map<MessageType, Subscription> m_subscriptions;
     
     void actor();
@@ -75,6 +76,7 @@ protected:
         nested->launchActor();
 
         m_nestedActors[nestedId] = std::move(nested);
+        m_nestedEnqueuers.push_back(m_nestedActors[nestedId]->getSelfEnqueuer());
         return m_nestedActors[nestedId]->getSelfEnqueuer();
     }
 public:

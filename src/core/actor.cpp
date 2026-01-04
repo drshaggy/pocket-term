@@ -88,13 +88,32 @@ void Actor::enqueue(Message message) {
 
 void Actor::handleMessage(Message& message) {
     m_logger->debug("Actor handleMessage Called");
-    if (message.type == SUBSCRIBE) {
-        SubscribeMessageData data = static_cast<SubscribeMessageData&>(*message.data); 
-        MessageType t = data.getMessageType();
-        Enqueuer e = data.getEnqueuer();
-        addToSubs(t, e);
-        m_logger->debug("{} Subscribed to something", m_actorName);
+
+    // handles specific messages
+    switch (message.type) {
+        case SUBSCRIBE: {
+            SubscribeMessageData data = static_cast<SubscribeMessageData&>(*message.data); 
+            MessageType t = data.getMessageType();
+            Enqueuer e = data.getEnqueuer();
+            addToSubs(t, e);
+            m_logger->debug("{} Subscribed to {}", m_actorName, static_cast<int>(t));
+            break;
+        }
+        case CLOSE: {
+            for (const auto& enqueuer : m_nestedEnqueuers) {
+                sendMessage(enqueuer, message);
+                m_running = false;
+                m_logger->info("Closing {} Actor", m_actorName);
+            }
+            break; 
+        }
+            
+        default:
+            break;
     }
+    
+
+    //handles routing to children 
     for (const auto& [messageType, subscription] : m_subscriptions) {
         if (message.type == messageType) {
             for (const auto& enqueuer : subscription.getSubscribers()) {

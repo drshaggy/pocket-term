@@ -18,8 +18,8 @@ public:
     void launchApp() {
         m_currentApp = launchNestedActor<AppType>(*this);
     }
-    void closeApp(Apps appId);
-    void switchToApp(Apps appId);
+    void closeApp();
+    void switchToApp();
 private:
     Enqueuer m_currentApp;
     Enqueuer m_lastApp;

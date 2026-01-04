@@ -5,9 +5,11 @@
 
 class Launcher : public App
 {
+private:
+    uint8_t m_selectedApp {0};
+    std::vector<std::string> m_appList{"Home", "Updater", "Calculator"};
 public:
-    using App::App;
-    int initialise() override;
+    Launcher(Actor& caller);
     int processSpecificMessage(Message& e) override;
 };
 

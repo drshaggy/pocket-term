@@ -11,7 +11,6 @@ private:
     std::vector<std::string> m_appList{"Messages", "Phone", "Calculator"};
 public:
     Home(Actor& caller);
-    int initialise() override;
     virtual void handleMessage(Message& message) override;
 };
 

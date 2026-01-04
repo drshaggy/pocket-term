@@ -9,6 +9,7 @@ enum Apps {
 };
 
 enum MessageType {
+	CLOSE,
 	KEY_PRESS,
 	DOWN_KEY_PRESS,
 	UP_KEY_PRESS,
