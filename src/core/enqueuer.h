@@ -9,13 +9,15 @@ class Message;
 class Enqueuer
 {
 private:
+    size_t* m_id;
     std::queue<Message>* m_queue;
     std::mutex* m_mutex;
 public:
     Enqueuer() = default;
-    Enqueuer(std::queue<Message>& queue, std::mutex& mutex);
+    Enqueuer(std::queue<Message>& queue, std::mutex& mutex, size_t& id);
     Enqueuer(const Enqueuer& other);
     void enqueue(Message message);
+    bool isEqual(Enqueuer other);
 };
 
 #endif // ENQUEUER_H_

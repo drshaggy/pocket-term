@@ -6,8 +6,8 @@ std::atomic<size_t> Actor::s_nextActorId{1};
 Actor::Actor(const std::string actorName)
     : m_actorId(s_nextActorId.fetch_add(1)),
       m_running { false },
-      m_selfEnqueuer(m_messageQueue, m_queueMutex),
-      m_callerEnqueuer(m_messageQueue, m_queueMutex), //use own queuer for paerent as root.
+      m_selfEnqueuer(m_messageQueue, m_queueMutex, m_actorId),
+      m_callerEnqueuer(m_messageQueue, m_queueMutex, m_actorId), //use own queuer for paerent as root.
       m_actorName(actorName),
       m_logger(createLogger(actorName))
 {}
@@ -16,7 +16,7 @@ Actor::Actor(const std::string actorName)
 Actor::Actor(Actor& caller, const std::string actorName)
     : m_actorId(s_nextActorId.fetch_add(1)),
       m_running { false },
-      m_selfEnqueuer(m_messageQueue, m_queueMutex),
+      m_selfEnqueuer(m_messageQueue, m_queueMutex, m_actorId),
       m_callerEnqueuer(caller.getSelfEnqueuer()),
       m_actorName(actorName),
       m_logger(createLogger(actorName))
@@ -105,6 +105,11 @@ void Actor::handleMessage(Message& message) {
             m_running = false;
             break; 
         }
+        case UNSUBSCRIBE: {
+            UnsubscribeMessageData data = static_cast<UnsubscribeMessageData&>(*message.data); 
+            Enqueuer e = data.getEnqueuer();
+            removeFromSubs(e);
+        }
             
         default:
             break;
@@ -132,6 +137,11 @@ void Actor::addToSubs(MessageType messageType, Enqueuer enqueuer) {
     m_subscriptions[messageType].add(enqueuer); 
 }
 
+void Actor::removeFromSubs(Enqueuer enqueuer) {
+    for (const auto& subscription : m_subscriptions) {
+         
+    }
+}
 
 void sendMessage(Enqueuer e, const Message& m) {
     Message copy = m;

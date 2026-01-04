@@ -53,13 +53,20 @@ private:
     virtual void cleanUp() {}
     void actorCore();
     void addToSubs(MessageType messageType, Enqueuer enqueuer);
+    void removeFromSubs(Enqueuer enqueuer);
 protected:
     const std::string m_actorName;
     std::shared_ptr<spdlog::logger> m_logger;
     void initLogger(const std::string& name);
     virtual void handleMessage(Message& message);
     void subscribe(MessageType messageType) {
+
+
         Message m = createMessage<SubscribeMessageData>(messageType, m_selfEnqueuer);
+        sendMessageToCaller(m);
+    }
+    void unsubscribeAll() {
+        Message m = createMessage<UnsubscribeMessageData>(m_selfEnqueuer);
         sendMessageToCaller(m);
     }
     void launchActor();

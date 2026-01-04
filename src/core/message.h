@@ -57,6 +57,14 @@ public:
     MessageType getMessageType() {return m_messageType;}
 };
     
+class UnsubscribeMessageData : public MessageData {
+private:
+    Enqueuer m_enqueuer;
+public:
+    UnsubscribeMessageData(Enqueuer e) : MessageData(UNSUBSCRIBE), m_enqueuer(e) {}
+    Enqueuer getEnqueuer() { return m_enqueuer;};
+};
+
 class SpecialKeyMessageData : public MessageData {
 public:
     SpecialKeyMessageData(MessageType specialKey)

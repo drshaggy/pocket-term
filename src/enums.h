@@ -22,7 +22,8 @@ enum MessageType {
 	TICK,
 	ACKNOWLEDGE,
 	SCREEN,
-	SUBSCRIBE
+	SUBSCRIBE,
+	UNSUBSCRIBE
 };
 
 #endif // ENUMS_H_

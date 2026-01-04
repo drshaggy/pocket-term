@@ -6,7 +6,6 @@
 
 
 #include <memory>
-#include <spdlog/spdlog.h>
 
 using namespace std::chrono_literals;
 
@@ -48,7 +47,7 @@ void UI::doActorCore() {
 }
 
 void UI::handleMessage(Message& message) {
-    spdlog::debug("UI handleMessage Called");
+    m_logger->debug("UI handleMessage Called");
     Actor::handleMessage(message);
     switch(message.type) {
         case SCREEN: {
