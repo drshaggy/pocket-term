@@ -13,8 +13,8 @@ private:
 	uint16_t m_width;
 	uint16_t m_height;
 	std::unique_ptr<TextWidget> m_titleWidget;
-	std::unique_ptr<BoxWidget> m_boxWidget;
 	std::unique_ptr<TimeWidget> m_timeWidget;
+	std::unique_ptr<BoxWidget> m_boxWidget;
 	Display* m_display;
 public:
 	StatusBar() = default;

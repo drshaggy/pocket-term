@@ -12,7 +12,7 @@ StatusBar::StatusBar(uint16_t width, uint16_t height)
 
 void StatusBar::render(Display* display) { 
     if (m_boxWidget) {
-        m_boxWidget->render(display, 0, 0);
+        m_boxWidget->render(display, 0, 1);
     }
     if (m_titleWidget) {
         m_titleWidget->render(display, 0, 0);
