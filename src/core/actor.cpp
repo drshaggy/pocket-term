@@ -114,6 +114,8 @@ void Actor::handleMessage(Message& message) {
     //handles routing to children 
     for (const auto& [messageType, subscription] : m_subscriptions) {
         if (message.type == messageType) {
+            m_logger->debug("Sending message type {} to {} nested actors",
+                static_cast<int>(messageType), subscription.getSubscribers().size());
             for (const auto& enqueuer : subscription.getSubscribers()) {
                 sendMessage(enqueuer, message);
                 m_logger->debug("Sending {} message to child", static_cast<int>(messageType));
