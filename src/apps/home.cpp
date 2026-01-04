@@ -42,7 +42,7 @@ int Home::processSpecificMessage(Message& m) {
         case KEY_PRESS: {
             auto* keyData = static_cast<KeyMessageData*>(m.data.get()); 
             char key = keyData->getKey();
-            if (key == '0xB6') {
+            if (key == '\xB6') {
                 spdlog::debug("Down Arrow Pressed");
                 if(m_selectedApp < m_appList.size()) {
                     m_selectedApp += 1;
