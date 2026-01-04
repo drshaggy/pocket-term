@@ -47,6 +47,7 @@ set(SOURCES
     src/ui/vertical_widget.cpp
     src/ui/text_widget.cpp
     src/ui/time_widget.cpp
+    src/ui/list_widget.cpp
     src/ui/input_widget.cpp
     src/ui/box_widget.cpp
     src/ui/screen.cpp
@@ -84,6 +85,7 @@ set(HEADERS
     src/ui/text_widget.h
     src/ui/input_widget.h
     src/ui/time_widget.h
+    src/ui/list_widget.h
     src/ui/box_widget.h
     src/ui/vertical_widget.h
     src/ui/screen.h

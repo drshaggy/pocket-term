@@ -1,6 +1,6 @@
 #include "home.h"
 #include "../ui/text_widget.h"
-#include "../ui/input_widget.h"
+#include "../ui/list_widget.h"
 #include "../ui/vertical_widget.h"
 #include "../ui/screen.h"
 
@@ -14,14 +14,10 @@ Home::Home(Actor& caller)
 { 
     spdlog::info("Initialising Home App...");
 
-    
-    std::unique_ptr<Widget> text = std::make_unique<TextWidget>("Hello World", false);
-    std::unique_ptr<Widget> text2 = std::make_unique<TextWidget>("New line", false);
-    std::unique_ptr<Widget> input1 = std::make_unique<InputWidget>("Type here", false);
+    std::vector<std::string> appList{"Messages", "Phone", "Calculator"};
+    std::unique_ptr<Widget> list = std::make_unique<ListWidget>(appList);
     std::unique_ptr<VerticalWidget> vert = std::make_unique<VerticalWidget>();
-    vert->add(text);
-    vert->add(text2);
-    vert->add(input1);
+    vert->add(list);
     m_currentScreen.setRootWidget(std::move(vert));
     std::this_thread::sleep_for(5000ms);
     updateUI();
