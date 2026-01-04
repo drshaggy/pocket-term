@@ -25,12 +25,9 @@ public:
     int draw(StatusBar& statusBar);
     virtual void refresh() = 0;
     virtual int clear();
-    //text functions
-    virtual int print(const std::string& text);
-    virtual int printHighlighted(const std::string& text);
-    virtual int println(const std::string& text);
     //widget functions
     virtual void drawText(const std::string& text, const uint8_t& x, const uint8_t& y, bool isHighlighted = false) = 0;
+    virtual void drawBox(const uint8_t& width, const uint8_t& height, const bool hasBorder, const bool isFilled, const uint8_t& x, const uint8_t& y) = 0; 
 };
 
 #endif // DISPLAY_H_

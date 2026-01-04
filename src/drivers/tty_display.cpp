@@ -22,25 +22,10 @@ int TtyDisplay::clear() {
     return 0;
 }
 
-void TtyDisplay::drawText(const std::string& text, const uint8_t& x, const uint8_t& y, bool isHighlighted = false) {
+void TtyDisplay::drawText(const std::string& text, const uint8_t& x, const uint8_t& y, bool isHighlighted) {
    std::cout << text << std::endl; 
 }
 
-int TtyDisplay::print(const std::string& text) {
-    std::this_thread::sleep_for(500ms);
-    std::cout << text << std::flush;
-    return 0;
-}
-
-int TtyDisplay::printHighlighted(const std::string& text) {
-    std::this_thread::sleep_for(500ms);
-    std::cout << "\033[7m" + text + "\033[0m" << std::flush;
-    return 0;
-}
-
-int TtyDisplay::println(const std::string& text) {
-    std::this_thread::sleep_for(500ms);
-    std::cout << text << std::endl;
-    return 0;
-}
-
+void TtyDisplay::drawBox(const uint8_t& width, const uint8_t& height, const bool hasBorder, const bool isFilled, const uint8_t& x, const uint8_t& y) {
+    spdlog::debug("draw Box at {} {}", x, y);
+} 

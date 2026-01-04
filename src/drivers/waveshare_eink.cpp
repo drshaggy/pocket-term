@@ -43,31 +43,6 @@ WaveshareEink::WaveshareEink(bool verticalOrientation) : Display(verticalOrienta
 
 }
 
-int WaveshareEink::println(const std::string& text) {
-    std::lock_guard<std::mutex> lock(m_bufferMutex);
-    Paint_SelectImage(m_frameBuffer);
-    Paint_DrawString_EN(m_cursor.x, m_cursor.y, text.c_str(), &Font24, BLACK, WHITE);
-    m_cursor.y += 20;
-    m_cursor.x = 10;
-    return 0;
-}
-
-int WaveshareEink::print(const std::string& text) { 
-    std::lock_guard<std::mutex> lock(m_bufferMutex);
-    Paint_SelectImage(m_frameBuffer);
-    Paint_DrawString_EN(m_cursor.x, m_cursor.y, text.c_str(), &Font24, BLACK, WHITE);
-    m_cursor.x += Font24.Width * text.length();
-    return 0;
-    
-}
-
-int WaveshareEink::printHighlighted(const std::string& text) {
-    std::lock_guard<std::mutex> lock(m_bufferMutex);
-    Paint_SelectImage(m_frameBuffer);
-    Paint_DrawString_EN(m_cursor.x, m_cursor.y, text.c_str(), &Font24, WHITE, BLACK);
-    m_cursor.y += Font24.Height;
-    return 0;
-}
 
 void WaveshareEink::refresh() { 
     std::lock_guard<std::mutex> lock(m_bufferMutex);
@@ -106,3 +81,10 @@ void WaveshareEink::drawText(const std::string& text, const uint8_t& x, const ui
     }
     //m_cursor.x += Font24.Width * text.length();
 }
+
+void WaveshareEink::drawBox(const uint8_t& width, const uint8_t& height, const bool hasBorder, const bool isFilled, const uint8_t& x, const uint8_t& y) {
+    spdlog::debug("draw Box at {} {}", x, y);
+    std::lock_guard<std::mutex> lock(m_bufferMutex);
+    Paint_SelectImage(m_frameBuffer);
+    Paint_DrawRectangle(x, y, x + width, y + height, BLACK, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+} 

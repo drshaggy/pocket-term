@@ -11,7 +11,6 @@
 class TimeWidget : public Widget
 {
 private:
-	Display* m_display;
 	std::string m_time;
 	mutable std::mutex m_timeMutex;
 	std::thread m_updateThread;
@@ -20,7 +19,6 @@ private:
 public:
 	TimeWidget(bool isHighlighted = false);
 	~TimeWidget();
-	void registerDisplay(Display* display) {m_display = display;}
 	virtual void render(Display* display, const uint8_t& x, const uint8_t& y) const override;
 	virtual std::unique_ptr<Widget> clone() override;
 	void updateTime();
