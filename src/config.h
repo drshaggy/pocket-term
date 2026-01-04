@@ -12,7 +12,7 @@ constexpr bool SIMULATE_HARDWARE = true;
 constexpr uint16_t SCREEN_HEIGHT = 480;
 constexpr uint16_t SCREEN_WIDTH = 800;
 
-constexpr uint16_t SEGMENT_HEIGHT = 20;
-constexpr uint16_t SEGMENT_WIDTH = 20;
+constexpr uint16_t SEGMENT_HEIGHT = 24;
+constexpr uint16_t SEGMENT_WIDTH = 17;
 
 #endif // CONFIG_H_
