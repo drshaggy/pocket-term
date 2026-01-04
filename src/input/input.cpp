@@ -27,8 +27,10 @@ void Input::doActorCore() {
         spdlog::debug("Input: {}, is Down? {}", input[0], input[0] == '\xB6');
         switch (input[0]) {
             case '\xB6': 
+                spdlog::debug("Running Down Case");
                 m = createMessage<SpecialKeyMessageData>(DOWN_KEY_PRESS);
             default:
+                spdlog::debug("Running Default Case");
                 m = createMessage<KeyMessageData>(input[0], 0);
         }
         sendMessageToCaller(m);

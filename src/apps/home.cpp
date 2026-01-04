@@ -21,6 +21,7 @@ Home::Home(Actor& caller)
     m_currentScreen.setRootWidget(std::move(vert));
     std::this_thread::sleep_for(5000ms);
     updateUI();
+    subscribe(DOWN_KEY_PRESS);
     spdlog::info("Home App Initilialised");
 }
 
