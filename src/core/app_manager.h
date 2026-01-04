@@ -13,6 +13,7 @@ class AppManager : public Actor
 {
 public:
     AppManager(Actor& caller);
+    virtual void handleMessage(Message& message) override;
     template<typename AppType>
     void launchApp() {
         m_currentApp = launchNestedActor<AppType>(*this);

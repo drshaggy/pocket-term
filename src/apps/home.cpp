@@ -29,6 +29,7 @@ int Home::initialise() {
 }
 
 void Home::handleMessage(Message& m) {
+    App::handleMessage(m);
     m_logger->debug("Home Received Message type");
     switch(m.type) {
         case DOWN_KEY_PRESS: {

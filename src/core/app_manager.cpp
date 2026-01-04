@@ -13,6 +13,17 @@ AppManager::AppManager(Actor& caller)
     launchApp<Home>();
 };
 
+void AppManager::handleMessage(Message& message) {
+    Actor::handleMessage(message);
+    switch(message.type) {
+        case SCREEN:
+            sendMessageToCaller(message);
+            break;
+        default:
+            sendMessageToCaller(message);
+            break;
+    }
+}
 
 void AppManager::closeApp(Apps appId) {
 }
