@@ -1,6 +1,7 @@
 #include "waveshare_eink.h"
 #include "../../external/waveshare/EPD_4in26.h"
 #include "../../external/waveshare/GUI/GUI_Paint.h"
+#include "../config.h"
 
 #include <spdlog/spdlog.h>
 
@@ -70,8 +71,18 @@ int WaveshareEink::clear() {
     return 0;
 }
 
+void WaveshareEink::clearWindow(const uint16_t& x,
+                                const uint16_t& y,
+                                const uint16_t& width,
+                                const uint16_t& height) {
+    std::lock_guard<std::mutex> lock(m_bufferMutex);
+    Paint_SelectImage(m_frameBuffer);
+    Paint_ClearWindows(x, y, x + width, y + height, WHITE); 
+}
+
 void WaveshareEink::drawText(const std::string& text, const uint16_t& x, const uint16_t& y, bool isHighlighted) {
     spdlog::debug("draw Text at {} {}", x, y);
+    clearWindow(x, y, text.size() * SEGMENT_WIDTH, SEGMENT_HEIGHT);
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     Paint_SelectImage(m_frameBuffer);
     if (isHighlighted) {
@@ -86,5 +97,13 @@ void WaveshareEink::drawBox(const uint16_t& width, const uint16_t& height, const
     spdlog::debug("draw Box at {} {}", x, y);
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     Paint_SelectImage(m_frameBuffer);
-    Paint_DrawRectangle(x, y, x + width, y + height, BLACK, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+    auto color{WHITE};
+    if (hasBorder) {
+        color = BLACK;
+    }
+    auto filled{DRAW_FILL_EMPTY};
+    if (isFilled) {
+        filled = DRAW_FILL_FULL;
+    }
+    Paint_DrawRectangle(x, y, x + width, y + height, color, DOT_PIXEL_1X1, filled);
 } 

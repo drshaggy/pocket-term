@@ -59,6 +59,7 @@ void UI::handleMessage(Message& message) {
             } //release lock
             m_screenChanged.notify_one();
         } 
+        default: {}
     }
 }
 

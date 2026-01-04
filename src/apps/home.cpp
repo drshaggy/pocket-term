@@ -25,14 +25,6 @@ Home::Home(Actor& caller)
 }
 
 int Home::initialise() {
-    spdlog::info("Home App Initilialised");
-    //m_ui.clear();
-    //m_ui.println("Pocket Terminal OS");
-    //m_ui.println("");
-    //m_ui.print(getCurrentTime());
-    //m_ui.print("  ");
-    //m_ui.printHighlighted(getCurrentDate());
-    //m_ui.update();
     return 0;
 }
 
@@ -56,7 +48,7 @@ int Home::processSpecificMessage(Message& m) {
                 updateUI();
             }
         }
-        case TICK: {
+        default: {
             
         }
     }
