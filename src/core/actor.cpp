@@ -20,7 +20,8 @@ Actor::Actor(Actor& caller, const std::string actorName)
       m_running { false },
       m_selfEnqueuer(m_messageQueue, m_queueMutex),
       m_callerEnqueuer(caller.getSelfEnqueuer()),
-      m_actorName(actorName)
+      m_actorName(actorName),
+      m_logger(createLogger(actorName))
 {}
 
 Actor::~Actor()
