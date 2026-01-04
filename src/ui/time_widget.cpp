@@ -23,7 +23,7 @@ TimeWidget::~TimeWidget()
     }
 }
 
-void TimeWidget::render(Display* display, const uint8_t& x, const uint8_t& y) const {
+void TimeWidget::render(Display* display, const uint16_t& x, const uint16_t& y) const {
     std::string timeCopy;
     {
         std::lock_guard<std::mutex> lock(m_timeMutex);

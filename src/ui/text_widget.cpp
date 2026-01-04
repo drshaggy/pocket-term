@@ -6,7 +6,7 @@ TextWidget::TextWidget(std::string text, bool isHighlighted)
       m_isHighlighted(isHighlighted)
 {}
 
-void TextWidget::render(Display* display, const uint8_t& x, const uint8_t& y) const {
+void TextWidget::render(Display* display, const uint16_t& x, const uint16_t& y) const {
     display->drawText(m_text, x, y, m_isHighlighted);
 }
 

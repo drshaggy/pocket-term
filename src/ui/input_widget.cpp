@@ -6,7 +6,7 @@ InputWidget::InputWidget(std::string defaultText, bool isSelected)
       m_isSelected(isSelected)
 {}
 
-void InputWidget::render(Display* display, const uint8_t& x, const uint8_t& y) const {
+void InputWidget::render(Display* display, const uint16_t& x, const uint16_t& y) const {
    display->drawText(m_text, x, y); 
 }
 

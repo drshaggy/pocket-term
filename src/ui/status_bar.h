@@ -10,15 +10,15 @@ class Display;
 class StatusBar
 {
 private:
-	uint8_t m_width;
-	uint8_t m_height;
+	uint16_t m_width;
+	uint16_t m_height;
 	std::unique_ptr<TextWidget> m_titleWidget;
 	std::unique_ptr<BoxWidget> m_boxWidget;
 	std::unique_ptr<TimeWidget> m_timeWidget;
 	Display* m_display;
 public:
 	StatusBar() = default;
-	StatusBar(uint8_t width, uint8_t height);
+	StatusBar(uint16_t width, uint16_t height);
 	void render(Display* display);
 };
 

@@ -1,7 +1,7 @@
 #include "status_bar.h"
 #include "../config.h"
 
-StatusBar::StatusBar(uint8_t width, uint8_t height)
+StatusBar::StatusBar(uint16_t width, uint16_t height)
     : m_width(width),
       m_height(height),
       m_titleWidget(std::make_unique<TextWidget>("Pocket Term", true)),
@@ -15,9 +15,10 @@ void StatusBar::render(Display* display) {
         m_titleWidget->render(display, 0, 0);
     }
     if (m_boxWidget) {
-        m_boxWidget->render(display, uint8_t(40), 0);
+        uint16_t length = m_titleWidget->getText().size();
+        m_boxWidget->render(display, uint16_t(length * SEGMENT_WIDTH), 0);
     }
     if (m_timeWidget) {
-        m_timeWidget->render(display, uint8_t(400), 0);
+        m_timeWidget->render(display, 400, 0);
     }
 }

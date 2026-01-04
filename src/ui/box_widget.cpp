@@ -1,8 +1,8 @@
 #include "box_widget.h"
 #include "../drivers/display.h"
 
-BoxWidget::BoxWidget(const uint8_t width,
-                     const uint8_t height,
+BoxWidget::BoxWidget(const uint16_t width,
+                     const uint16_t height,
                      const bool hasBorder,
                      const bool isFilled)
     : m_width(width),
@@ -11,7 +11,7 @@ BoxWidget::BoxWidget(const uint8_t width,
       m_isFilled(isFilled)
 {}
 
-void BoxWidget::render(Display* display, const uint8_t& x, const uint8_t& y) const {
+void BoxWidget::render(Display* display, const uint16_t& x, const uint16_t& y) const {
    display->drawBox(m_width, m_height, m_hasBorder, m_isFilled, x, y); 
 }
 

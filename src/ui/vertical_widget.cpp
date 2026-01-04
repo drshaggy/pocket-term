@@ -1,9 +1,9 @@
 #include "vertical_widget.h"
 #include "../config.h"
 
-void VerticalWidget::render(Display* display, const uint8_t& x, const uint8_t& y ) const {
-    uint8_t lx {x};
-    uint8_t ly {y};
+void VerticalWidget::render(Display* display, const uint16_t& x, const uint16_t& y ) const {
+    uint16_t lx {x};
+    uint16_t ly {y};
     for (const auto& widget : m_widgets) {
         widget->render(display, lx, ly);
         ly += SEGMENT_WIDTH;

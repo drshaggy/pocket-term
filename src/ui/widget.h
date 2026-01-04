@@ -7,9 +7,12 @@ class Display;
 
 class Widget
 {
+protected:
+    uint16_t m_boundWidth;
+    uint16_t m_boundHeight;
 public:
     virtual ~Widget() = default;
-    virtual void render(Display* display, const uint8_t& x, const uint8_t& y ) const = 0;
+    virtual void render(Display* display, const uint16_t& x, const uint16_t& y ) const = 0;
     virtual std::unique_ptr<Widget> clone() = 0;
 };
 

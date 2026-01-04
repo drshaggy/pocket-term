@@ -6,16 +6,16 @@
 class BoxWidget : public Widget
 {
 private:
-	const uint8_t m_width;
-	const uint8_t m_height;
+	const uint16_t m_width;
+	const uint16_t m_height;
 	const bool m_hasBorder;
 	const bool m_isFilled;
 public:
-	BoxWidget(const uint8_t width,
-			  const uint8_t height,
+	BoxWidget(const uint16_t width,
+			  const uint16_t height,
 			  const bool hasBorder = true,
 			  const bool isFilled = false);
-	virtual void render(Display* display, const uint8_t& x, const uint8_t& y) const override;
+	virtual void render(Display* display, const uint16_t& x, const uint16_t& y) const override;
 	virtual std::unique_ptr<Widget> clone() override;
 
 };

@@ -1,7 +1,7 @@
 #include "screen.h"
 #include "../config.h"
 
-Screen::Screen(uint8_t width, uint8_t height)
+Screen::Screen(uint16_t width, uint16_t height)
 	: m_width{width}, m_height{height}
 {};
 

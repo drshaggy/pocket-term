@@ -13,7 +13,7 @@ private:
 public:
 	InputWidget(std::string defaultText, bool isSelected);
 	std::string getText() const {return m_text;}
-	virtual void render(Display* display, const uint8_t& x, const uint8_t& y) const override;
+	virtual void render(Display* display, const uint16_t& x, const uint16_t& y) const override;
 	virtual std::unique_ptr<Widget> clone() override;
 };
 
