@@ -81,7 +81,7 @@ void WaveshareEink::clearWindow(const uint16_t& x,
 }
 
 void WaveshareEink::drawText(const std::string& text, const uint16_t& x, const uint16_t& y, bool isHighlighted) {
-    spdlog::debug("draw Text at {} {}", x, y);
+    //spdlog::debug("draw Text at {} {}", x, y);
     clearWindow(x, y, text.size() * SEGMENT_WIDTH, SEGMENT_HEIGHT);
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     Paint_SelectImage(m_frameBuffer);
@@ -90,11 +90,10 @@ void WaveshareEink::drawText(const std::string& text, const uint16_t& x, const u
     } else {
         Paint_DrawString_EN(x, y, text.c_str(), &Font24, BLACK, WHITE);
     }
-    //m_cursor.x += Font24.Width * text.length();
 }
 
 void WaveshareEink::drawBox(const uint16_t& width, const uint16_t& height, const bool hasBorder, const bool isFilled, const uint16_t& x, const uint16_t& y) {
-    spdlog::debug("draw Box at {} {}", x, y);
+    //spdlog::debug("draw Box at {} {}", x, y);
     std::lock_guard<std::mutex> lock(m_bufferMutex);
     Paint_SelectImage(m_frameBuffer);
     auto color{WHITE};

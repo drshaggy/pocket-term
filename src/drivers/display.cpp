@@ -7,14 +7,14 @@ Display::Display(bool verticalOrientation)
     : m_verticalOrientation(verticalOrientation) {};
 
 int Display::draw(Screen& screen) {
-    spdlog::debug("Attempting to draw screen on display");
+    //spdlog::debug("Attempting to draw screen on display");
     //clear();
     screen.render(this);
     return 0;
 }
 
 int Display::draw(StatusBar& statusBar) {
-    spdlog::debug("Attempting to draw status bar on display");
+    //spdlog::debug("Attempting to draw status bar on display");
     //clear();
     statusBar.render(this);
     return 0;
