@@ -1,8 +1,6 @@
 #include "actor.h"
 #include "logging.h"
 
-#include <spdlog/spdlog.h>
-
 std::atomic<size_t> Actor::s_nextActorId{1};
 
 Actor::Actor(const std::string actorName)
@@ -89,19 +87,19 @@ void Actor::enqueue(Message message) {
 }
 
 void Actor::handleMessage(Message& message) {
-    spdlog::debug("Actor handleMessage Called");
+    m_logger->debug("Actor handleMessage Called");
     if (message.type == SUBSCRIBE) {
         SubscribeMessageData data = static_cast<SubscribeMessageData&>(*message.data); 
         MessageType t = data.getMessageType();
         Enqueuer e = data.getEnqueuer();
         addToSubs(t, e);
-        spdlog::debug("Something Subscribed to something");
+        m_logger->debug("{} Subscribed to something", m_actorName);
     }
     for (const auto& [messageType, subscription] : m_subscriptions) {
         if (message.type == messageType) {
             for (const auto& enqueuer : subscription.getSubscribers()) {
                 sendMessage(enqueuer, message);
-                spdlog::debug("Sending {} message to child", static_cast<int>(messageType));
+                m_logger->debug("Sending {} message to child", static_cast<int>(messageType));
                 return;
             }
         } 

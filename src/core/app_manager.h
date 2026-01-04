@@ -6,27 +6,22 @@
 
 #include "../apps/app.h"
 #include "actor.h"
-
-enum Apps {
-	EMPTY,
-	HOME,
-	LAUNCHER
-};
-
+#include "../enums.h"
 
 
 class AppManager : public Actor
 {
 public:
-    AppManager(Actor& caller, Enqueuer ui);
-    void launchApp(Apps appId);
+    AppManager(Actor& caller);
+    template<typename AppType>
+    void launchApp() {
+        m_currentApp = launchNestedActor<AppType>(*this);
+    }
     void closeApp(Apps appId);
     void switchToApp(Apps appId);
-    App& getCurrentApp() {return *m_runningApps[m_currentApp];};
 private:
-    Enqueuer m_ui;
-    Apps m_currentApp;
-    Apps m_lastApp;
+    Enqueuer m_currentApp;
+    Enqueuer m_lastApp;
     std::map<Apps, std::unique_ptr<App>> m_runningApps;
     std::map<Apps, std::function<std::unique_ptr<App>(Actor& caller, Enqueuer ui)>> m_installedApps;
 };

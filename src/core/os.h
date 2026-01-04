@@ -22,7 +22,7 @@ private:
     Enqueuer m_input;
     Enqueuer m_ui;
     Enqueuer m_currentApp;
-    //AppManager m_appManager;
+    Enqueuer m_appManager;
     void setupLogging();
     void displayUpdateLoop();
 };
