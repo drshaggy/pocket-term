@@ -157,8 +157,8 @@ void sendMessage(Enqueuer e, const Message& m) {
 void Subscription::remove(Enqueuer enqueuer) {
     std::erase_if(
         m_subscribers,
-        [this, &enqueuer](const Enqueuer& subscriber) {
-            m_logger->debug("{} is equal to {}", subscriber.getName(), enqueuer.getName());
+        [&enqueuer](const Enqueuer& subscriber) {
+            spdlog::debug("{} is equal to {}", subscriber.getName(), enqueuer.getName());
             return enqueuer.isEqual(subscriber);
         }
     );
