@@ -111,6 +111,7 @@ void Actor::handleMessage(Message& message) {
             UnsubscribeMessageData data = static_cast<UnsubscribeMessageData&>(*message.data); 
             Enqueuer e = data.getEnqueuer();
             removeFromSubs(e);
+            break;
         }
             
         default:
@@ -151,6 +152,8 @@ void sendMessage(Enqueuer e, const Message& m) {
 }
 
 void Subscription::remove(Enqueuer enqueuer) {
+    spdlog::debug("Called remove subscription");
+        
     std::erase_if(
         m_subscribers,
         [&enqueuer](const Enqueuer& subscriber) {return enqueuer.isEqual(subscriber);}
