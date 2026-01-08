@@ -22,7 +22,7 @@ private:
     std::shared_ptr<spdlog::logger> m_logger;
 public:
     Subscription() : m_logger(createLogger("subscription")) {}
-    Subscription(MessageType messageType) : m_messageType(messageType), m_logger(createLogger("subscription")) {}
+    Subscription(MessageType messageType) : m_messageType(messageType), m_logger(createLogger(std::format("{}_subscription", MessageTypeNames[messageType]))) {}
     MessageType getMessageType() {return m_messageType;}
     const std::vector<Enqueuer>& getSubscribers() const {return m_subscribers;}
     void add(Enqueuer enqueuer) {m_subscribers.push_back(enqueuer);}
