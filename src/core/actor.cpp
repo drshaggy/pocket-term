@@ -143,8 +143,8 @@ void Actor::addToSubs(MessageType messageType, Enqueuer enqueuer) {
 }
 
 void Actor::removeFromSubs(Enqueuer enqueuer) {
+    m_logger->debug("Calling remove subscription");
     for (auto& subscription : m_subscriptions) {
-        m_logger->debug("Calling remove subscription");
         subscription.second.remove(enqueuer);
     }
 }
