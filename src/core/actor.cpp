@@ -96,7 +96,7 @@ void Actor::handleMessage(Message& message) {
             MessageType t = data.getMessageType();
             Enqueuer e = data.getEnqueuer();
             addToSubs(t, e);
-            m_logger->debug("{} Subscribed to {}", m_actorName, static_cast<int>(t));
+            m_logger->debug("{} Subscribed to {}", m_actorName, MessageTypeNames[t]);
             break;
         }
         case CLOSE: {
@@ -142,6 +142,7 @@ void Actor::addToSubs(MessageType messageType, Enqueuer enqueuer) {
 
 void Actor::removeFromSubs(Enqueuer enqueuer) {
     for (auto& subscription : m_subscriptions) {
+        m_logger->debug("Calling remove subscription");
         subscription.second.remove(enqueuer);
     }
 }
@@ -152,8 +153,6 @@ void sendMessage(Enqueuer e, const Message& m) {
 }
 
 void Subscription::remove(Enqueuer enqueuer) {
-    spdlog::debug("Called remove subscription");
-        
     std::erase_if(
         m_subscribers,
         [&enqueuer](const Enqueuer& subscriber) {return enqueuer.isEqual(subscriber);}

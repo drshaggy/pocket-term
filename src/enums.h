@@ -26,4 +26,23 @@ enum MessageType {
 	UNSUBSCRIBE
 };
 
+inline const char* MessageTypeNames[] =
+{
+	"CLOSE",
+	"KEY_PRESS",
+	"DOWN_KEY_PRESS",
+	"UP_KEY_PRESS",
+	"LEFT_KEY_PRESS",
+	"RIGHT_KEY_PRESS",
+	"ESCAPE_KEY_PRESS",
+	"TAB_KEY_PRESS",
+	"BACKSPACE_KEY_PRESS",
+	"ENTER_KEY_PRESS",
+	"TICK",
+	"ACKNOWLEDGE",
+	"SCREEN",
+	"SUBSCRIBE",
+	"UNSUBSCRIBE"
+};
+
 #endif // ENUMS_H_
