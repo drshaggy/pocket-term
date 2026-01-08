@@ -2,17 +2,18 @@
 #include "message.h"
 
 
-Enqueuer::Enqueuer(std::queue<Message>& queue, std::mutex& mutex, size_t& id)
-    : m_id(&id), m_queue(&queue), m_mutex(&mutex) {}
+Enqueuer::Enqueuer(std::queue<Message>& queue, std::mutex& mutex, size_t& id, std::string name)
+    : m_id(&id), m_queue(&queue), m_mutex(&mutex), m_name(name)  {}
 
 Enqueuer::Enqueuer(const Enqueuer& other)
-    : m_id(other.m_id), m_queue(other.m_queue), m_mutex(other.m_mutex) {}
+    : m_id(other.m_id), m_queue(other.m_queue), m_mutex(other.m_mutex), m_name(other.m_name) {}
 
 Enqueuer& Enqueuer::operator=(const Enqueuer& other) {
     if (this!= &other) {
         m_id = other.m_id;
         m_queue = other.m_queue;
         m_mutex = other.m_mutex;
+        m_name = other.m_name;
     }
     return *this;
 }

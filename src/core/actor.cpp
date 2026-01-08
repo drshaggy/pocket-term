@@ -8,8 +8,8 @@ std::atomic<size_t> Actor::s_nextActorId{1};
 Actor::Actor(const std::string actorName)
     : m_actorId(s_nextActorId.fetch_add(1)),
       m_running { false },
-      m_selfEnqueuer(m_messageQueue, m_queueMutex, m_actorId),
-      m_callerEnqueuer(m_messageQueue, m_queueMutex, m_actorId), //use own queuer for paerent as root.
+      m_selfEnqueuer(m_messageQueue, m_queueMutex, m_actorId, actorName),
+      m_callerEnqueuer(m_messageQueue, m_queueMutex, m_actorId, actorName), //use own queuer for paerent as root.
       m_actorName(actorName),
       m_logger(createLogger(actorName))
 {}
@@ -18,7 +18,7 @@ Actor::Actor(const std::string actorName)
 Actor::Actor(Actor& caller, const std::string actorName)
     : m_actorId(s_nextActorId.fetch_add(1)),
       m_running { false },
-      m_selfEnqueuer(m_messageQueue, m_queueMutex, m_actorId),
+      m_selfEnqueuer(m_messageQueue, m_queueMutex, m_actorId, actorName),
       m_callerEnqueuer(caller.getSelfEnqueuer()),
       m_actorName(actorName),
       m_logger(createLogger(actorName))
@@ -123,10 +123,12 @@ void Actor::handleMessage(Message& message) {
     for (const auto& [messageType, subscription] : m_subscriptions) {
         if (message.type == messageType) {
             m_logger->debug("Sending message type {} to {} nested actors",
-                static_cast<int>(messageType), subscription.getSubscribers().size());
+                MessageTypeNames[messageType], subscription.getSubscribers().size());
             for (const auto& enqueuer : subscription.getSubscribers()) {
                 sendMessage(enqueuer, message);
-                m_logger->debug("Sending {} message to child", static_cast<int>(messageType));
+                m_logger->debug("Sending {} message to {}",
+                                MessageTypeNames[messageType],
+                                enqueuer.getName());
             }
         } 
     }
@@ -155,6 +157,9 @@ void sendMessage(Enqueuer e, const Message& m) {
 void Subscription::remove(Enqueuer enqueuer) {
     std::erase_if(
         m_subscribers,
-        [&enqueuer](const Enqueuer& subscriber) {return enqueuer.isEqual(subscriber);}
+        [this, &enqueuer](const Enqueuer& subscriber) {
+            m_logger->debug("{} is equal to {}", subscriber.getName(), enqueuer.getName());
+            return enqueuer.isEqual(subscriber);
+        }
     );
 }

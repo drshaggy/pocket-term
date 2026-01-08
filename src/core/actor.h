@@ -3,6 +3,7 @@
 
 #include "enqueuer.h"
 #include "message.h"
+#include "logging.h"
 
 #include <spdlog/spdlog.h>
 #include <queue>
@@ -18,9 +19,10 @@ class Subscription
 private:
     MessageType m_messageType;
     std::vector<Enqueuer> m_subscribers;
+    std::shared_ptr<spdlog::logger> m_logger;
 public:
-    Subscription() {}
-    Subscription(MessageType messageType) : m_messageType(messageType) {}
+    Subscription() : m_logger(createLogger("subscription")) {}
+    Subscription(MessageType messageType) : m_messageType(messageType), m_logger(createLogger("subscription")) {}
     MessageType getMessageType() {return m_messageType;}
     const std::vector<Enqueuer>& getSubscribers() const {return m_subscribers;}
     void add(Enqueuer enqueuer) {m_subscribers.push_back(enqueuer);}
