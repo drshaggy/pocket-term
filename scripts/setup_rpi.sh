@@ -31,8 +31,9 @@ sudo apt install -y \
     build-essential \
     cmake \
     git \
-    wget \
-    tar
+    autoconf \
+    automake \
+    libtool
 echo "✓ Build tools installed"
 echo ""
 
@@ -49,16 +50,16 @@ echo "Step 4/6: Installing BCM2835 library..."
 if ldconfig -p | grep -q "libbcm2835.so"; then
     echo "BCM2835 already installed, skipping..."
 else
-    BCM_VERSION="1.77"
     cd /tmp
-    wget http://www.airspayce.com/mikem/bcm2835/bcm2835-${BCM_VERSION}.tar.gz
-    tar xvfz bcm2835-${BCM_VERSION}.tar.gz
-    cd bcm2835-${BCM_VERSION}/
+    # Use GitHub mirror (more reliable than airspayce.com)
+    git clone https://github.com/nRF24/bcm2835.git
+    cd bcm2835
+    autoreconf -fi
     ./configure
     make
     sudo make install
     cd ~
-    rm -rf /tmp/bcm2835-${BCM_VERSION}*
+    rm -rf /tmp/bcm2835
     echo "✓ BCM2835 library installed"
 fi
 echo ""

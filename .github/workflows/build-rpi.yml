@@ -23,8 +23,10 @@ jobs:
           gcc-arm-linux-gnueabihf \
           g++-arm-linux-gnueabihf \
           cmake \
-          wget \
-          tar
+          git \
+          autoconf \
+          automake \
+          libtool
 
     - name: Install spdlog (host, for headers)
       run: |
@@ -33,9 +35,10 @@ jobs:
     - name: Cross-compile BCM2835 library
       run: |
         cd /tmp
-        wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.77.tar.gz
-        tar xzf bcm2835-1.77.tar.gz
-        cd bcm2835-1.77
+        # Use GitHub mirror (more reliable than airspayce.com)
+        git clone https://github.com/nRF24/bcm2835.git
+        cd bcm2835
+        autoreconf -fi
 
         # Cross-compile for ARM
         ./configure \
