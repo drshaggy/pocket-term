@@ -1,4 +1,4 @@
-name: Build for Raspberry Pi Zero 2W
+name: Build for Raspberry Pi Zero 2W (ARM64)
 
 on:
   push:
@@ -20,25 +20,25 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Install ARM cross-compilation toolchain
+    - name: Install ARM64 cross-compilation toolchain
       run: |
         sudo apt update
         sudo apt install -y \
-          gcc-arm-linux-gnueabihf \
-          g++-arm-linux-gnueabihf \
+          gcc-aarch64-linux-gnu \
+          g++-aarch64-linux-gnu \
           cmake \
           git \
           autoconf \
           automake \
           libtool
 
-    - name: Create simple ARM toolchain file
+    - name: Create simple ARM64 toolchain file
       run: |
         cat > /tmp/arm-toolchain-simple.cmake << 'EOF'
         set(CMAKE_SYSTEM_NAME Linux)
-        set(CMAKE_SYSTEM_PROCESSOR arm)
-        set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
-        set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
+        set(CMAKE_SYSTEM_PROCESSOR aarch64)
+        set(CMAKE_C_COMPILER aarch64-linux-gnu-gcc)
+        set(CMAKE_CXX_COMPILER aarch64-linux-gnu-g++)
         EOF
 
     - name: Cross-compile spdlog library
@@ -66,11 +66,11 @@ jobs:
         cd bcm2835
         autoreconf -fi
 
-        # Cross-compile for ARM
+        # Cross-compile for ARM64
         ./configure \
-          --host=arm-linux-gnueabihf \
-          CC=arm-linux-gnueabihf-gcc \
-          AR=arm-linux-gnueabihf-ar \
+          --host=aarch64-linux-gnu \
+          CC=aarch64-linux-gnu-gcc \
+          AR=aarch64-linux-gnu-ar \
           --prefix=/tmp/arm-sysroot
 
         make
@@ -80,10 +80,10 @@ jobs:
       run: |
         cat > arm-toolchain.cmake << 'EOF'
         set(CMAKE_SYSTEM_NAME Linux)
-        set(CMAKE_SYSTEM_PROCESSOR arm)
+        set(CMAKE_SYSTEM_PROCESSOR aarch64)
 
-        set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
-        set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
+        set(CMAKE_C_COMPILER aarch64-linux-gnu-gcc)
+        set(CMAKE_CXX_COMPILER aarch64-linux-gnu-g++)
 
         set(CMAKE_FIND_ROOT_PATH /tmp/arm-sysroot)
         set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
@@ -104,10 +104,10 @@ jobs:
           ..
         make -j$(nproc)
 
-    - name: Verify ARM binary
+    - name: Verify ARM64 binary
       run: |
         file build/pocket-term
-        arm-linux-gnueabihf-readelf -h build/pocket-term | grep Machine
+        aarch64-linux-gnu-readelf -h build/pocket-term | grep Machine
 
     - name: Generate checksums
       run: |
@@ -118,7 +118,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: pocket-term-rpi-zero-2w
+        name: pocket-term-rpi-zero-2w-arm64
         path: |
           build/pocket-term
           build/pocket-term.sha256
