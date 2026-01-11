@@ -52,7 +52,7 @@ if ldconfig -p | grep -q "libbcm2835.so"; then
 else
     cd /tmp
     # Use GitHub mirror (more reliable than airspayce.com)
-    git clone https://github.com/nRF24/bcm2835.git
+    git clone https://github.com/smart-facility/bcm2835.git
     cd bcm2835
     autoreconf -fi
     ./configure
