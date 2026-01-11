@@ -100,7 +100,7 @@ void Actor::handleMessage(Message& message) {
             break;
         }
         case CLOSE: {
-            m_logger->info("Stopping {} Actor", m_actorName);
+            m_logger->info("Stopping {} Acto", m_actorName);
             for (const auto& enqueuer : m_nestedEnqueuers) {
                 // Send unsubscribe to all nested
                 Message m = createMessage<UnsubscribeMessageData>(enqueuer);
