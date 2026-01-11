@@ -1,0 +1,90 @@
+name: Build for Raspberry Pi Zero 2W
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  build-cross-compile:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install ARM cross-compilation toolchain
+      run: |
+        sudo apt update
+        sudo apt install -y \
+          gcc-arm-linux-gnueabihf \
+          g++-arm-linux-gnueabihf \
+          cmake \
+          wget \
+          tar
+
+    - name: Install spdlog (host, for headers)
+      run: |
+        sudo apt install -y libspdlog-dev
+
+    - name: Cross-compile BCM2835 library
+      run: |
+        cd /tmp
+        wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.77.tar.gz
+        tar xzf bcm2835-1.77.tar.gz
+        cd bcm2835-1.77
+
+        # Cross-compile for ARM
+        ./configure \
+          --host=arm-linux-gnueabihf \
+          CC=arm-linux-gnueabihf-gcc \
+          AR=arm-linux-gnueabihf-ar \
+          --prefix=/tmp/bcm2835-install
+
+        make
+        make install
+
+    - name: Create CMake toolchain file
+      run: |
+        cat > arm-toolchain.cmake << 'EOF'
+        set(CMAKE_SYSTEM_NAME Linux)
+        set(CMAKE_SYSTEM_PROCESSOR arm)
+
+        set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
+        set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
+
+        set(CMAKE_FIND_ROOT_PATH /tmp/bcm2835-install)
+        set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+        set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+        set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+        # Force RPI mode
+        add_definitions(-DRPI -DUSE_BCM2835_LIB)
+        EOF
+
+    - name: Build project
+      run: |
+        mkdir -p build
+        cd build
+        cmake \
+          -DCMAKE_TOOLCHAIN_FILE=../arm-toolchain.cmake \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DBCM2835_INCLUDE_DIR=/tmp/bcm2835-install/include \
+          -DBCM2835_LIBRARY=/tmp/bcm2835-install/lib/libbcm2835.a \
+          ..
+        make -j$(nproc)
+
+    - name: Verify ARM binary
+      run: |
+        file build/pocket-term
+        arm-linux-gnueabihf-readelf -h build/pocket-term | grep Machine
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: pocket-term-rpi-zero-2w
+        path: build/pocket-term
+        retention-days: 30
