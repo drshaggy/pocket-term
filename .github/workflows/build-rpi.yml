@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ master, develop ]
 
+# Required for creating releases
+permissions:
+  contents: write
+
 jobs:
   build-cross-compile:
     runs-on: ubuntu-latest
