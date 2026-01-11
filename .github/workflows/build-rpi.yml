@@ -105,9 +105,47 @@ jobs:
         file build/pocket-term
         arm-linux-gnueabihf-readelf -h build/pocket-term | grep Machine
 
+    - name: Generate checksums
+      run: |
+        cd build
+        sha256sum pocket-term > pocket-term.sha256
+        cat pocket-term.sha256
+
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: pocket-term-rpi-zero-2w
-        path: build/pocket-term
+        path: |
+          build/pocket-term
+          build/pocket-term.sha256
         retention-days: 30
+
+    # Auto-release on master branch (for rapid iteration)
+    # TODO: Switch to tag-based releases (on: push: tags: v*) when stable
+    - name: Create development release
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: dev-${{ github.run_number }}
+        name: Development Build ${{ github.run_number }}
+        body: |
+          **Automated development build**
+
+          - Commit: ${{ github.sha }}
+          - Branch: ${{ github.ref_name }}
+          - Build: #${{ github.run_number }}
+
+          Download with:
+          ```bash
+          curl -L https://github.com/${{ github.repository }}/releases/download/dev-${{ github.run_number }}/pocket-term -o pocket-term
+          chmod +x pocket-term
+          ```
+
+          ⚠️ Development builds may be unstable. Production releases coming soon!
+        files: |
+          build/pocket-term
+          build/pocket-term.sha256
+        prerelease: true
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
