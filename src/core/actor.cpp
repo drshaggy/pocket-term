@@ -100,9 +100,10 @@ void Actor::handleMessage(Message& message) {
             break;
         }
         case CLOSE: {
-            m_logger->info("Stopping {} Acto", m_actorName);
+            m_logger->info("Stopping {} Actor", m_actorName);
             for (const auto& enqueuer : m_nestedEnqueuers) {
                 // Send unsubscribe to all nested
+                m_logger->debug("Attempting to unsubscribe to {}", enqueuer.getName());
                 Message m = createMessage<UnsubscribeMessageData>(enqueuer);
                 sendMessage(enqueuer, m);
                 // Send close to all nested
@@ -114,6 +115,7 @@ void Actor::handleMessage(Message& message) {
         case UNSUBSCRIBE: {
             UnsubscribeMessageData data = static_cast<UnsubscribeMessageData&>(*message.data); 
             Enqueuer e = data.getEnqueuer();
+            m_logger->debug("Unsubscribe case called");
             removeFromSubs(e);
             break;
         }
